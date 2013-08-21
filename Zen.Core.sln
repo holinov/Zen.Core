@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2020D9D9-9514-4368-B15F-F66B303570BF}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen", "Zen\Zen.csproj", "{82D8EA0D-A5B1-43DF-A9B2-CF69EE166922}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.DataStore", "Zen.DataStore\Zen.DataStore.csproj", "{E33D2198-2695-45B3-A353-F54C1E510F8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.DataStore.Raven", "Zen.DataStore.Raven\Zen.DataStore.Raven.csproj", "{A2304828-9054-40C8-99E2-CC45495F4CED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.DataStore.Raven.Embeeded", "Zen.DataStore.Raven.Embeeded\Zen.DataStore.Raven.Embeeded.csproj", "{FA5F8C91-6D17-4C5F-9F3A-4BD16C0AE51C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{2CE1E4B9-DF01-4299-B8DF-E910A9F9F674}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.Tests", "Zen.Tests\Zen.Tests.csproj", "{757D0AE8-09CD-4BDD-8D19-A7C1D0D5ECE4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82D8EA0D-A5B1-43DF-A9B2-CF69EE166922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82D8EA0D-A5B1-43DF-A9B2-CF69EE166922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82D8EA0D-A5B1-43DF-A9B2-CF69EE166922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82D8EA0D-A5B1-43DF-A9B2-CF69EE166922}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E33D2198-2695-45B3-A353-F54C1E510F8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E33D2198-2695-45B3-A353-F54C1E510F8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E33D2198-2695-45B3-A353-F54C1E510F8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E33D2198-2695-45B3-A353-F54C1E510F8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2304828-9054-40C8-99E2-CC45495F4CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2304828-9054-40C8-99E2-CC45495F4CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2304828-9054-40C8-99E2-CC45495F4CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2304828-9054-40C8-99E2-CC45495F4CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA5F8C91-6D17-4C5F-9F3A-4BD16C0AE51C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA5F8C91-6D17-4C5F-9F3A-4BD16C0AE51C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA5F8C91-6D17-4C5F-9F3A-4BD16C0AE51C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA5F8C91-6D17-4C5F-9F3A-4BD16C0AE51C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{757D0AE8-09CD-4BDD-8D19-A7C1D0D5ECE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{757D0AE8-09CD-4BDD-8D19-A7C1D0D5ECE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{757D0AE8-09CD-4BDD-8D19-A7C1D0D5ECE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{757D0AE8-09CD-4BDD-8D19-A7C1D0D5ECE4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{757D0AE8-09CD-4BDD-8D19-A7C1D0D5ECE4} = {2CE1E4B9-DF01-4299-B8DF-E910A9F9F674}
+	EndGlobalSection
+EndGlobal
