@@ -1,28 +1,30 @@
 using System;
-using Newtonsoft.Json;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace Zen.DataStore
 {
-
     /// <summary>
-    /// Денормализованная ссылка на объект
+    ///     Денормализованная ссылка на объект
     /// </summary>
     /// <typeparam name="TRefObject">Тип объекта</typeparam>
     [Serializable]
-    public class Refrence<TRefObject> : IRefrence where TRefObject : class, IHasStringId 
+    public class Refrence<TRefObject> : IRefrence where TRefObject : class, IHasStringId
     {
-        /// <summary>
-        /// Ид на который ссылаемся
-        /// </summary>
-        [DisplayName("Идентификатор объекта")]
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage="Укажите идентификатор объекта")]
-        public string Id { get; set; }
+        public Refrence()
+        {
+        }
+
+        public Refrence(IRepository<TRefObject> repository)
+        {
+            Repository = repository;
+        }
 
         /// <summary>
-        /// Объект на который ссылаемся
+        ///     Объект на который ссылаемся
         /// </summary>
-        [JsonIgnore]        
+        [JsonIgnore]
         //[Raven.Imports.Newtonsoft.Json.JsonIgnore]
         public virtual TRefObject Object
         {
@@ -47,10 +49,17 @@ namespace Zen.DataStore
         }
 
         /// <summary>
-        /// Репозитарий объектов
+        ///     Репозитарий объектов
         /// </summary>
         [JsonIgnore]
         //[Raven.Imports.Newtonsoft.Json.JsonIgnore]
         public virtual IRepository<TRefObject> Repository { get; set; }
+
+        /// <summary>
+        ///     Ид на который ссылаемся
+        /// </summary>
+        [DisplayName("Идентификатор объекта")]
+        [Required(ErrorMessage = "Укажите идентификатор объекта")]
+        public string Id { get; set; }
     }
 }

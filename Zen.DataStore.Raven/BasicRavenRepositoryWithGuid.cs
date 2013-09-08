@@ -1,13 +1,13 @@
 using System;
-using System.Linq;
-using Raven.Client;
 using System.Collections.Generic;
+using System.Linq;
 using Raven.Abstractions.Commands;
+using Raven.Client;
 
 namespace Zen.DataStore.Raven
 {
     public class BasicRavenRepositoryWithGuid<TEntity> : BasicRavenRepository<TEntity>,
-                                                          IRepositoryWithGuid<TEntity>
+                                                         IRepositoryWithGuid<TEntity>
         where TEntity : IHasGuidId
     {
         public BasicRavenRepositoryWithGuid(IDocumentSession session) : base(session)
@@ -24,20 +24,20 @@ namespace Zen.DataStore.Raven
         }
 
         /// <summary>
-        /// Найти объект по GUID
+        ///     Найти объект по GUID
         /// </summary>
         /// <param name="guid">Уникальный ИД объекта</param>
         /// <returns></returns>
         public TEntity Find(Guid guid)
         {
-            return Session.Load<TEntity>(typeof(TEntity).Name + "s/" + guid);
+            return Session.Load<TEntity>(typeof (TEntity).Name + "s/" + guid);
         }
 
         public void Clone(TEntity entity)
         {
             Session.Advanced.Evict(entity);
             entity.Guid = Guid.NewGuid();
-            Session.Store(entity, typeof(TEntity).Name + "s/" + entity.Guid);
+            Session.Store(entity, typeof (TEntity).Name + "s/" + entity.Guid);
         }
 
         public void Detach(TEntity entity)
@@ -47,7 +47,7 @@ namespace Zen.DataStore.Raven
 
         public void DeleteById(string id)
         {
-            Session.Advanced.Defer(new DeleteCommandData { Key = id });
+            Session.Advanced.Defer(new DeleteCommandData {Key = id});
         }
 
         public IEnumerable<TEntity> GetAll()
@@ -57,15 +57,15 @@ namespace Zen.DataStore.Raven
 
         private List<TEntity> getAllFrom(int startFrom, List<TEntity> list)
         {
-            var allUsers = list;
+            List<TEntity> allUsers = list;
 
-            using (var session = Session.Advanced.DocumentStore.OpenSession())
+            using (IDocumentSession session = Session.Advanced.DocumentStore.OpenSession())
             {
                 int queryCount = 0;
                 int start = startFrom;
                 while (true)
                 {
-                    var current = session.Query<TEntity>().Take(1024).Skip(start).ToList();
+                    List<TEntity> current = session.Query<TEntity>().Take(1024).Skip(start).ToList();
                     queryCount += 1;
                     if (current.Count == 0)
                         break;

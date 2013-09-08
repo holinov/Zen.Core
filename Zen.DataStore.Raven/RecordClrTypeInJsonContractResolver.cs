@@ -1,8 +1,8 @@
-﻿using Raven.Imports.Newtonsoft.Json;
-using Raven.Imports.Newtonsoft.Json.Serialization;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Raven.Imports.Newtonsoft.Json;
+using Raven.Imports.Newtonsoft.Json.Serialization;
 
 namespace Zen.DataStore.Raven
 {
@@ -12,16 +12,16 @@ namespace Zen.DataStore.Raven
         {
             if (IsValidType(objectType))
                 return new JsonObjectContract(objectType)
-                {
-                    Converter = new RecordClrTypeInJsonConverter()
-                };
+                    {
+                        Converter = new RecordClrTypeInJsonConverter()
+                    };
             return base.CreateContract(objectType);
         }
 
         private static bool IsValidType(Type objectType)
         {
-           return objectType.IsGenericType &&
-                typeof(List<>) == (objectType.GetGenericTypeDefinition());/* &&
+            return objectType.IsGenericType &&
+                   typeof (List<>) == (objectType.GetGenericTypeDefinition()); /* &&
                     objectType.GetGenericArguments()[0] == typeof(Event);*/
         }
 
@@ -30,7 +30,7 @@ namespace Zen.DataStore.Raven
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
                 writer.WriteStartArray();
-                foreach (var item in (IEnumerable)value)
+                foreach (var item in (IEnumerable) value)
                 {
                     writer.WriteStartObject();
 
@@ -47,24 +47,25 @@ namespace Zen.DataStore.Raven
                 writer.WriteEndArray();
             }
 
-            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+            public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
+                                            JsonSerializer serializer)
             {
-                var list = (IList)Activator.CreateInstance(objectType);
+                var list = (IList) Activator.CreateInstance(objectType);
 
                 while (reader.Read())
                 {
                     if (reader.TokenType == JsonToken.EndArray)
                         break;
-                    
 
-                    reader.Read();//CrlType prop name
-                    reader.Read();//actual type
 
-                    var type = Type.GetType((string)reader.Value);
+                    reader.Read(); //CrlType prop name
+                    reader.Read(); //actual type
 
-                    reader.Read();// value property
-                    reader.Read();// actual value
-                    var item = serializer.Deserialize(reader, type);
+                    Type type = Type.GetType((string) reader.Value);
+
+                    reader.Read(); // value property
+                    reader.Read(); // actual value
+                    object item = serializer.Deserialize(reader, type);
                     list.Add(item);
                     reader.Read(); // end object
                 }

@@ -5,7 +5,7 @@ using Autofac.Core;
 namespace Zen
 {
     /// <summary>
-    /// Построитель ядра приложения
+    ///     Построитель ядра приложения
     /// </summary>
     public class AppCoreBuilder
     {
@@ -17,7 +17,7 @@ namespace Zen
         }
 
         /// <summary>
-        /// Добавить модуль
+        ///     Добавить модуль
         /// </summary>
         /// <param name="module">Экземпляр модуля</param>
         /// <returns>Построитель ядра</returns>
@@ -28,7 +28,7 @@ namespace Zen
         }
 
         /// <summary>
-        /// Добавить модуль
+        ///     Добавить модуль
         /// </summary>
         /// <typeparam name="TModule">Тип модуля</typeparam>
         /// <returns>Построитель ядра</returns>
@@ -39,7 +39,7 @@ namespace Zen
         }
 
         /// <summary>
-        /// Произвести произвольную конфигурацию Autofac ContainerBuilder
+        ///     Произвести произвольную конфигурацию Autofac ContainerBuilder
         /// </summary>
         /// <param name="configAction">Действие конфигурации</param>
         /// <returns>Построитель ядра</returns>
@@ -50,23 +50,23 @@ namespace Zen
         }
 
         /// <summary>
-        /// Построить ядро приложения
+        ///     Построить ядро приложения
         /// </summary>
         /// <returns>Ядро приложения</returns>
         public AppCore Build()
         {
-            var container = _builder.Build();
+            IContainer container = _builder.Build();
             return new AppCore(container);
         }
 
         /// <summary>
-        /// Получить экземпляр построителя ядра
+        ///     Получить экземпляр построителя ядра
         /// </summary>
         /// <param name="builder">Конфигуратор контейнера</param>
         /// <returns>Построитель ядра</returns>
         public static AppCoreBuilder Create(ContainerBuilder builder = null)
         {
-            return new AppCoreBuilder(builder??new ContainerBuilder());
+            return new AppCoreBuilder(builder ?? new ContainerBuilder());
         }
     }
 }

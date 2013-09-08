@@ -3,12 +3,12 @@ using System;
 namespace Zen.DataStore
 {
     /// <summary>
-    /// Объект с GUID идентификатором
+    ///     Объект с GUID идентификатором
     /// </summary>
     public interface IHasGuidId : IHasStringId
     {
         /// <summary>
-        /// Гуид записи
+        ///     Гуид записи
         /// </summary>
         Guid Guid { get; set; }
     }

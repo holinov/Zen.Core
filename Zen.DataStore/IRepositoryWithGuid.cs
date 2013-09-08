@@ -5,13 +5,13 @@ using System.Linq;
 namespace Zen.DataStore
 {
     /// <summary>
-    /// Репозитарий объектов 
+    ///     Репозитарий объектов
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     public interface IRepositoryWithGuid<TEntity> : IRepository<TEntity>
     {
         /// <summary>
-        /// Найти объект по GUID
+        ///     Найти объект по GUID
         /// </summary>
         /// <param name="guid">Уникальный ИД объекта</param>
         /// <returns></returns>
@@ -20,13 +20,13 @@ namespace Zen.DataStore
         IQueryable<TEntity> Find(IEnumerable<Guid> guids);
 
         /// <summary>
-        /// Клонировать документ
+        ///     Клонировать документ
         /// </summary>
         /// <param name="entity">Документ, который нужно клонировать</param>
         void Clone(TEntity entity);
 
         /// <summary>
-        /// Открепить
+        ///     Открепить
         /// </summary>
         /// <param name="entity">Документ</param>
         void Detach(TEntity entity);

@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
-using Autofac.Core.Registration;
+﻿using Autofac;
 using NUnit.Framework;
 
 namespace Zen.Tests
@@ -20,28 +15,28 @@ namespace Zen.Tests
         {
             public int Val { get; set; }
         }
+
         [Test]
         public void AppScopeTest()
         {
             var builder = new ContainerBuilder();
             builder.RegisterType<TestClass1>().AsSelf().SingleInstance();
             builder.RegisterType<TestClass2>().AsSelf().InstancePerLifetimeScope();
-            var cont = builder.Build();
+            IContainer cont = builder.Build();
 
             using (var scope = new AppScope(cont))
             {
-                var r1 = scope.Resolve(typeof(TestClass1));
+                object r1 = scope.Resolve(typeof (TestClass1));
                 var r2 = scope.Resolve<TestClass1>();
                 Assert.AreSame(r1, r2);
                 Assert.AreSame(cont, scope.Scope);
 
                 var t1 = scope.Resolve<TestClass2>();
-                using (var inner = scope.BeginScope())
+                using (AppScope inner = scope.BeginScope())
                 {
                     var t2 = inner.Resolve<TestClass2>();
-                    Assert.AreNotSame(t1,t2);
+                    Assert.AreNotSame(t1, t2);
                 }
-                
             }
         }
     }

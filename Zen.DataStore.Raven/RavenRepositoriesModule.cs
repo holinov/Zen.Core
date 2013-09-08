@@ -3,7 +3,7 @@ using Autofac;
 namespace Zen.DataStore.Raven
 {
     /// <summary>
-    /// Модуль стандартных репозиториев Raven
+    ///     Модуль стандартных репозиториев Raven
     /// </summary>
     public class RavenRepositoriesModule : Module
     {
@@ -12,9 +12,9 @@ namespace Zen.DataStore.Raven
             builder.RegisterGeneric(typeof (BasicRavenRepository<>))
                    .As(typeof (IRepository<>));
 
-            builder.RegisterGeneric(typeof(BasicRavenRepositoryWithGuid<>))
-                .As(typeof(IRepository<>))
-                .As(typeof(IRepositoryWithGuid<>));
+            builder.RegisterGeneric(typeof (BasicRavenRepositoryWithGuid<>))
+                //.As(typeof(IRepository<>))
+                   .As(typeof (IRepositoryWithGuid<>));
 
             builder.RegisterGeneric(typeof (Refrence<>))
                    .PropertiesAutowired()

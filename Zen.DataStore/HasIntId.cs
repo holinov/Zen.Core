@@ -3,12 +3,12 @@ using System;
 namespace Zen.DataStore
 {
     [Serializable]
-    public abstract class HasStringId : IHasStringId
+    public abstract class HasIntId : IHasIntId
     {
         /// <summary>
         ///     Ид записи
         /// </summary>
-        public virtual string Id { get; set; }
+        public virtual int Id { get; set; }
 
         /// <summary>
         ///     ИД сегмента

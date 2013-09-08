@@ -1,13 +1,13 @@
 namespace Zen.DataStore
 {
     /// <summary>
-    ///     Объект со строковым идентификатором
+    ///     Объект с числовым идентификатором
     /// </summary>
-    public interface IHasStringId : IHasSegmentId
+    public interface IHasIntId : IHasSegmentId
     {
         /// <summary>
         ///     Ид записи
         /// </summary>
-        string Id { get; set; }
+        int Id { get; set; }
     }
 }

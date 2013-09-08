@@ -1,12 +1,12 @@
 namespace Zen.DataStore
 {
     /// <summary>
-    /// Объект для хранения в шардинге
+    ///     Объект для хранения в шардинге
     /// </summary>
     public interface IHasSegmentId
     {
         /// <summary>
-        /// ИД сегмента
+        ///     ИД сегмента
         /// </summary>
         string SegmentId { get; set; }
     }

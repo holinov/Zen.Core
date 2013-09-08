@@ -15,18 +15,20 @@ namespace Zen.Tests
         {
             public int Val { get; set; }
         }
+
         public class TestClass3
         {
             public int Val { get; set; }
         }
 
-        public class TestModule:Module
+        public class TestModule : Module
         {
             protected override void Load(ContainerBuilder builder)
             {
-                builder.RegisterType<TestClass2>().InstancePerDependency();                
+                builder.RegisterType<TestClass2>().InstancePerDependency();
             }
         }
+
         public class TestModule1 : Module
         {
             protected override void Load(ContainerBuilder builder)
@@ -41,27 +43,26 @@ namespace Zen.Tests
             AppCoreBuilder.Create(new ContainerBuilder()).Build().Dispose();
 
             using (
-                var core =
+                AppCore core =
                     AppCoreBuilder.Create()
                                   .AddModule(new TestModule())
                                   .AddModule<TestModule1>()
                                   .Configure(b => b.RegisterType<TestClass1>().AsSelf().SingleInstance())
                                   .Build())
             {
-                using (var scope = core.BeginScope())
+                using (AppScope scope = core.BeginScope())
                 {
-                    var r1 = scope.Resolve(typeof(TestClass1));
+                    object r1 = scope.Resolve(typeof (TestClass1));
                     var r2 = scope.Resolve<TestClass1>();
                     Assert.AreSame(r1, r2);
-                   
+
 
                     var t1 = scope.Resolve<TestClass2>();
-                    using (var inner = scope.BeginScope())
+                    using (AppScope inner = scope.BeginScope())
                     {
                         var t2 = inner.Resolve<TestClass2>();
                         Assert.AreNotSame(t1, t2);
                     }
-
                 }
             }
         }

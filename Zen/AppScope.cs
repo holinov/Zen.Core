@@ -4,8 +4,8 @@ using Autofac;
 namespace Zen
 {
     /// <summary>
-    /// Область жизни созданных зависимостей
-    /// При разрушении области жизни разрушаются все зависимости созданные для нее
+    ///     Область жизни созданных зависимостей
+    ///     При разрушении области жизни разрушаются все зависимости созданные для нее
     /// </summary>
     public class AppScope : IAppScope
     {
@@ -18,7 +18,15 @@ namespace Zen
         }
 
         /// <summary>
-        /// Разрешить зависимость
+        ///     Ссылка на контейнер Autofac
+        /// </summary>
+        public ILifetimeScope Scope
+        {
+            get { return _scope; }
+        }
+
+        /// <summary>
+        ///     Разрешить зависимость
         /// </summary>
         /// <typeparam name="TType">Тип зависимости</typeparam>
         /// <returns>Созданный объект</returns>
@@ -28,7 +36,7 @@ namespace Zen
         }
 
         /// <summary>
-        /// Разрешить зависимость
+        ///     Разрешить зависимость
         /// </summary>
         /// <param name="type">Тип зависимости</param>
         /// <returns>Созданный объект</returns>
@@ -38,7 +46,7 @@ namespace Zen
         }
 
         /// <summary>
-        /// Сощдать вложенную область видимости
+        ///     Сощдать вложенную область видимости
         /// </summary>
         /// <returns>Новая область видимости</returns>
         public AppScope BeginScope()
@@ -50,10 +58,5 @@ namespace Zen
         {
             _scope.Dispose();
         }
-
-        /// <summary>
-        /// Ссылка на контейнер Autofac
-        /// </summary>
-        public ILifetimeScope Scope { get { return _scope; } }
     }
 }

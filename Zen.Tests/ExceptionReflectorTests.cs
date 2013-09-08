@@ -8,12 +8,18 @@ namespace Zen.Tests
     {
         public enum TestEnum
         {
-            One,Two
+            One,
+            Two
         }
-        public class TestException:Exception
+
+        public class TestException : Exception
         {
-            public TestException(string msg):base(msg)
-            {}
+            private string[] _arr = new[] {"s1", "s2"};
+
+            public TestException(string msg) : base(msg)
+            {
+            }
+
             public TestEnum Enum { get; set; }
 
             public string[] Arr
@@ -21,9 +27,8 @@ namespace Zen.Tests
                 get { return _arr; }
                 set { _arr = value; }
             }
-
-            private string[] _arr = new[] {"s1", "s2"};
         }
+
         [Test]
         public void ExceptionReflectorTest()
         {

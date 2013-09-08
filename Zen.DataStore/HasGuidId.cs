@@ -6,14 +6,15 @@ namespace Zen.DataStore
     [Serializable]
     public abstract class HasGuidId : HasStringId, IHasGuidId
     {
+        private Guid _guid;
+
         protected HasGuidId()
         {
             Guid = Guid.NewGuid();
         }
-        private Guid _guid;
 
         /// <summary>
-        /// Гуид записи
+        ///     Гуид записи
         /// </summary>
         [DisplayName("ГУИД")]
         public Guid Guid

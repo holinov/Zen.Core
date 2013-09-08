@@ -31,9 +31,9 @@ namespace Zen.DataStore
                         int nextByte = stream.ReadByte();
                         if (nextByte != -1)
                         {
-                            var temp = new byte[readBuffer.Length * 2];
+                            var temp = new byte[readBuffer.Length*2];
                             Buffer.BlockCopy(readBuffer, 0, temp, 0, readBuffer.Length);
-                            Buffer.SetByte(temp, totalBytesRead, (byte)nextByte);
+                            Buffer.SetByte(temp, totalBytesRead, (byte) nextByte);
                             readBuffer = temp;
                             totalBytesRead++;
                         }
@@ -59,8 +59,8 @@ namespace Zen.DataStore
 
         public static byte[] ReadFully(Stream input)
         {
-            byte[] buffer = new byte[16 * 1024];
-            using (MemoryStream ms = new MemoryStream())
+            var buffer = new byte[16*1024];
+            using (var ms = new MemoryStream())
             {
                 int read;
                 while ((read = input.Read(buffer, 0, buffer.Length)) > 0)

@@ -35,15 +35,51 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.1.1\lib\net40\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.2.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.OData.5.2.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage">
+      <HintPath>..\packages\WindowsAzure.Storage.2.0.6.1\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Raven.Abstractions-4.5">
+      <HintPath>..\packages\RavenDB.Client.2.5.2666\lib\net45\Raven.Abstractions-4.5.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Embedded-4.5">
+      <HintPath>..\packages\RavenDB.Embedded.2.5.2666\lib\net45\Raven.Client.Embedded-4.5.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight-4.5">
+      <HintPath>..\packages\RavenDB.Client.2.5.2666\lib\net45\Raven.Client.Lightweight-4.5.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Database-4.5">
+      <HintPath>..\packages\RavenDB.Database.2.5.2666\lib\net45\Raven.Database-4.5.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Spatial, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Spatial.5.2.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppCoreBuilderTests.cs" />
     <Compile Include="AppScopeTests.cs" />
+    <Compile Include="DataStore\Raven\BasicRavenRepositoryTests.cs" />
     <Compile Include="ExceptionReflectorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -51,6 +87,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Zen.DataStore.Raven.Embeeded\Zen.DataStore.Raven.Embeeded.csproj">
+      <Project>{FA5F8C91-6D17-4C5F-9F3A-4BD16C0AE51C}</Project>
+      <Name>Zen.DataStore.Raven.Embeeded</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zen.DataStore.Raven\Zen.DataStore.Raven.csproj">
+      <Project>{A2304828-9054-40C8-99E2-CC45495F4CED}</Project>
+      <Name>Zen.DataStore.Raven</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zen.DataStore\Zen.DataStore.csproj">
+      <Project>{E33D2198-2695-45B3-A353-F54C1E510F8A}</Project>
+      <Name>Zen.DataStore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zen\Zen.csproj">
       <Project>{82D8EA0D-A5B1-43DF-A9B2-CF69EE166922}</Project>
       <Name>Zen</Name>

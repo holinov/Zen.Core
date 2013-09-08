@@ -36,6 +36,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HasIntId.cs" />
+    <Compile Include="IHasIntId.cs" />
     <Compile Include="RefrenceHacks.cs" />
     <Compile Include="HasGuidId.cs" />
     <Compile Include="HasStringId.cs" />
