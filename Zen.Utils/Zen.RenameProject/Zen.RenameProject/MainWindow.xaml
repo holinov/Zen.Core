@@ -1,0 +1,44 @@
+﻿<Window x:Class="Zen.RenameProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Expander IsExpanded="True" Header="Настройки">
+            <StackPanel>
+                <CheckBox IsChecked="True" Name="renameDirs">Преименовать папки</CheckBox>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Путь:</TextBlock>
+                    <TextBox Name="Solution" Width="300"></TextBox>
+                    <Button Name="Browse" Click="Browse_Click">...</Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Переименовать из:</TextBlock>
+                    <TextBox Name="RenameFrom" Width="300">1</TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Переименовать в:</TextBlock>
+                    <TextBox Name="RenameTo" Width="300">2</TextBox>
+                </StackPanel>
+                <Button Click="Button_Click">Dectect</Button>
+                <Button Click="Button1_Click">GO</Button>
+            </StackPanel>
+        </Expander>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <ListBox Name="ToRename" Grid.Row="1" ></ListBox>
+            <ListBox Name="Renamed" Grid.Column="1" Grid.Row="1" ></ListBox>
+            <TextBox Name="logBox" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" MaxLines="5"></TextBox>
+        </Grid>
+    </Grid>
+</Window>
