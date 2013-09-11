@@ -142,7 +142,7 @@ namespace Zen.Tests.DataStore.Raven
         public void BulkOperationsTest()
         {
             var items = new List<TestObject3>();
-            for (int i = 0; i < 505050; i++)
+            for (int i = 0; i < 3000; i++)
             {
                 items.Add(new TestObject3
                     {

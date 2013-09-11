@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Zen.Core</id>
+        <version>1.0.1</version>
+        <title>Zen.Core</title>
+        <authors>frut</authors>
+        <owners>frut</owners>
+        <projectUrl>https://github.com/holinov/Zen.Core</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Проект для облегчения создания приложений использующих Autofac и RavenDB</description>
+        <summary />
+        <language>ru-RU</language>
+        <tags>RavenDB raven autofac</tags>
+        <dependencies>
+            <group targetFramework=".NETFramework4.5">
+                <dependency id="Autofac" version="3.1.1" />
+                <dependency id="log4net" version="2.0.0" />
+                <dependency id="RavenDB.Client" version="2.5.2666" />
+                <dependency id="RavenDB.Database" version="2.5.2666" />
+                <dependency id="RavenDB.Embedded" version="2.5.2666" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\bin\Zen.DataStore.dll" target="lib\net45\Zen.DataStore.dll" />
+        <file src="..\bin\Zen.DataStore.Raven.dll" target="lib\net45\Zen.DataStore.Raven.dll" />
+        <file src="..\bin\Zen.DataStore.Raven.Embeeded.dll" target="lib\net45\Zen.DataStore.Raven.Embeeded.dll" />
+        <file src="..\bin\Zen.dll" target="lib\net45\Zen.dll" />
+    </files>
+</package>
