@@ -9,3 +9,4 @@ Zen.Core - библиотека для быстрого построения п�
 * Zen.DataStore.Raven - Реализация репозиториев для Raven
 * Zen.DataStore.Raven.Embeeded - Реализация репозиториев для Raven.Embeeded
 
+[NuGet](https://www.nuget.org/packages/Zen.Core/)
