@@ -82,6 +82,10 @@
     <Compile Include="AppCoreBuilderTests.cs" />
     <Compile Include="AppScopeTests.cs" />
     <Compile Include="DataStore\Raven\BasicRavenRepositoryTests.cs" />
+    <Compile Include="DataStore\Raven\RavenDataStoreModuleTests.cs" />
+    <Compile Include="DataStore\DataModel\TestObject.cs" />
+    <Compile Include="DataStore\DataModel\TestObject1.cs" />
+    <Compile Include="DataStore\DataModel\TestObject3.cs" />
     <Compile Include="ExceptionReflectorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

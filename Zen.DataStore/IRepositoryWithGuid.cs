@@ -25,14 +25,5 @@ namespace Zen.DataStore
         /// <param name="entity">Документ, который нужно клонировать</param>
         void Clone(TEntity entity);
 
-        /// <summary>
-        ///     Открепить
-        /// </summary>
-        /// <param name="entity">Документ</param>
-        void Detach(TEntity entity);
-
-        void DeleteById(string id);
-
-        IEnumerable<TEntity> GetAll();
     }
 }

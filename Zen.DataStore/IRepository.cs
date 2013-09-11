@@ -44,5 +44,16 @@ namespace Zen.DataStore
         void SaveChanges();
 
         void DeleteAttach(string key);
+
+
+        /// <summary>
+        ///     Открепить
+        /// </summary>
+        /// <param name="entity">Документ</param>
+        void Detach(TEntity entity);
+
+        void DeleteById(string id);
+
+        IEnumerable<TEntity> GetAll();
     }
 }

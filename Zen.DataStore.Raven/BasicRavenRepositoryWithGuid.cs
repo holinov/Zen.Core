@@ -39,47 +39,5 @@ namespace Zen.DataStore.Raven
             entity.Guid = Guid.NewGuid();
             Session.Store(entity, typeof (TEntity).Name + "s/" + entity.Guid);
         }
-
-        public void Detach(TEntity entity)
-        {
-            Session.Advanced.Evict(entity);
-        }
-
-        public void DeleteById(string id)
-        {
-            Session.Advanced.Defer(new DeleteCommandData {Key = id});
-        }
-
-        public IEnumerable<TEntity> GetAll()
-        {
-            return getAllFrom(0, new List<TEntity>());
-        }
-
-        private List<TEntity> getAllFrom(int startFrom, List<TEntity> list)
-        {
-            List<TEntity> allUsers = list;
-
-            using (IDocumentSession session = Session.Advanced.DocumentStore.OpenSession())
-            {
-                int queryCount = 0;
-                int start = startFrom;
-                while (true)
-                {
-                    List<TEntity> current = session.Query<TEntity>().Take(1024).Skip(start).ToList();
-                    queryCount += 1;
-                    if (current.Count == 0)
-                        break;
-
-                    start += current.Count;
-                    allUsers.AddRange(current);
-
-                    if (queryCount >= session.Advanced.MaxNumberOfRequestsPerSession)
-                    {
-                        return getAllFrom(start, allUsers);
-                    }
-                }
-            }
-            return allUsers;
-        }
     }
 }

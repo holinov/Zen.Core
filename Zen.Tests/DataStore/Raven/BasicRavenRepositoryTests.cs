@@ -1,28 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using NUnit.Framework;
 using Zen.DataStore;
 using Zen.DataStore.Raven;
 using Zen.DataStore.Raven.Embeeded;
+using Zen.Tests.DataStore.DataModel;
 
 namespace Zen.Tests.DataStore.Raven
 {
     [TestFixture]
     public class BasicRavenRepositoryTests
     {
-        public class TestObject : HasGuidId
-        {
-            public string Name { get; set; }
-            public Refrence<TestObject1> Refrence { get; set; }
-            public Refrence<TestObject1> Refrence1 { get; set; }
-        }
+        
 
-        public class TestObject1 : HasGuidId
-        {
-            public string Name { get; set; }
-        }
-
+        
         private AppCore _core;
 
         [TestFixtureSetUp]
@@ -56,6 +49,7 @@ namespace Zen.Tests.DataStore.Raven
         public void BasicRavenReposTest()
         {
             string realId;
+            Guid realGuid;
             string refId;
             //using (var sess = _ds.OpenSession())
             using (var repos = _core.Resolve<IRepositoryWithGuid<TestObject>>())
@@ -84,11 +78,16 @@ namespace Zen.Tests.DataStore.Raven
                 refId = item1.Id;
 
                 realId = item.Id;
+                realGuid = item.Guid;
                 Assert.IsNotNullOrEmpty(realId);
             }
             using (var repos = _core.Resolve<IRepositoryWithGuid<TestObject>>())
             {
-                TestObject item = repos.Find(realId);
+                TestObject item = repos.Find(realGuid);
+
+                var clone = item;
+                Assert.NotNull(repos.Find(clone.Guid));
+                var item2 = repos.Find(new[]{realGuid});
                 TestObject item1 = repos.Find(realId + "123123123");
                 Assert.NotNull(item);
                 //Assert.NotNull(item);
@@ -136,6 +135,31 @@ namespace Zen.Tests.DataStore.Raven
             using (var repos = _core.Resolve<IRepositoryWithGuid<TestObject>>())
             {
                 Assert.NotNull(repos);
+            }
+        }
+
+        [Test]
+        public void BulkOperationsTest()
+        {
+            var items = new List<TestObject3>();
+            for (int i = 0; i < 505050; i++)
+            {
+                items.Add(new TestObject3
+                    {
+                        Name = "Tst" + i,
+                        Guid = Guid.NewGuid(),
+                        P = i
+                    });
+            }
+
+            using (var repo = _core.Resolve<IRepository<TestObject3>>())
+            {
+                repo.StoreBulk(items);
+            }
+
+            using (var repo = _core.Resolve<IRepository<TestObject3>>())
+            {
+                Assert.AreEqual(items.Count, repo.GetAll().Count());
             }
         }
     }

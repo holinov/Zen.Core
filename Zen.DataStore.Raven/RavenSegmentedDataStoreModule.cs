@@ -8,6 +8,7 @@ using Raven.Client.Shard;
 
 namespace Zen.DataStore.Raven
 {
+    /*
     /// <summary>
     ///     Регистрация DataStorage и фабрики сессий
     /// </summary>
@@ -126,5 +127,5 @@ namespace Zen.DataStore.Raven
             }
             return shardId;
         }
-    }
+    }*/
 }
