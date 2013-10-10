@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Zen.Core.Raven.Embeeded</id>
+        <version>1.1.0.6</version>
+        <authors>frut</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Модуль встроенного хранения данных в RavenDB для Zon.Core</description>
+        <summary />
+        <language />
+        <dependencies>
+            <group targetFramework=".NETFramework4.5">
+                <dependency id="RavenDB.Embedded" version="2.5.2700" />
+                <dependency id="Zen.Core.Raven" version="1.1.0.1" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="lib\net45\Zen.DataStore.Raven.Embeeded.dll" target="lib\net45\Zen.DataStore.Raven.Embeeded.dll" />
+    </files>
+</package>
