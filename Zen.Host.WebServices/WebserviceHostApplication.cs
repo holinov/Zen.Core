@@ -31,8 +31,11 @@ namespace Zen.Host.WebServices
 
         public void Start()
         {
-            foreach (var knownService in _knownServices)
+            var services = _knownServices.ToArray();
+            Log.InfoFormat("Запуск WCF-хоста для {0} сервисов", services.Length);
+            foreach (var knownService in services)
             {
+                Log.DebugFormat("Запуск хостов для типа: {0}", knownService.GetType().Name);
                 IWebService service = knownService;
                 var scope = AppScope.BeginScope(b => b.Register(ctx => this).As<WebserviceHostApplication>());
                 _hostScopes.Add(scope);
@@ -58,6 +61,8 @@ namespace Zen.Host.WebServices
                         {
                             try
                             {
+                                Log.DebugFormat("Запуск хостов для типа: {0} по контракту {1}", service.GetType().Name,
+                                                webService.Name);
                                 ServiceHost host = new ServiceHost(service.GetType(), address);
                                 host.AddServiceEndpoint(webService, new BasicHttpBinding(), string.Empty);
 
