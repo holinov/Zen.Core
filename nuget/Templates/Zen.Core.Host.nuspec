@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Zen.Core.Host</id>
+        <version>1.1.0.9</version>
+        <authors>frut</authors>
+        <owners>frut</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Модуль Zen.Core предназначенный для автоматического хостинга приложений и вебсервисов в консольном и сервисном режимах</description>
+        <dependencies>
+            <group targetFramework=".NETFramework4.5">
+                <dependency id="Zen.Core" version="1.1.0.7" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="content\Zen.Host.Launcher.exe.config" target="content\Zen.Host.Launcher.exe.config" />
+        <file src="lib\net45\Zen.Host.dll" target="lib\net45\Zen.Host.dll" />
+        <file src="lib\net45\Zen.Host.Launcher.exe" target="lib\net45\Zen.Host.Launcher.exe" />
+        <file src="lib\net45\Zen.Host.WebServices.dll" target="lib\net45\Zen.Host.WebServices.dll" />
+        <file src="tools\install.ps1" target="tools\install.ps1" />
+    </files>
+</package>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Zen.Core.Raven</id>
+        <version>1.1.0.7</version>
+        <authors>frut</authors>
+        <owners>frut</owners>
+        <projectUrl>https://github.com/holinov/Zen.Core</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Компонент хранения данных в RavenDB для Zen.Core</description>
+        <tags>zen zencore raven ravendb</tags>
+        <dependencies>
+            <group targetFramework=".NETFramework4.5">
+                <dependency id="RavenDB.Client" version="2.5.2700" />
+                <dependency id="Zen.Core" version="1.1.0.7" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="lib\net45\Zen.DataStore.Raven.dll" target="lib\net45\Zen.DataStore.Raven.dll" />
+    </files>
+</package>
