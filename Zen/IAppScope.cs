@@ -1,4 +1,5 @@
 ﻿using System;
+using Autofac;
 
 namespace Zen
 {
@@ -27,5 +28,11 @@ namespace Zen
         /// </summary>
         /// <returns>Новая область видимости</returns>
         AppScope BeginScope();
+
+        /// <summary>
+        ///     Сощдать вложенную область видимости
+        /// </summary>
+        /// <returns>Новая область видимости</returns>
+        AppScope BeginScope(Action<ContainerBuilder> confAction);
     }
 }

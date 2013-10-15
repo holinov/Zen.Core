@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.ServiceProcess;
 using Autofac;
+using Zen.Host.WebServices;
 using log4net.Config;
 
 namespace Zen.Host.Launcher
@@ -14,7 +15,7 @@ namespace Zen.Host.Launcher
             InitializeComponent();
             XmlConfigurator.Configure();
             var coreBuilder = HostConfigurator.GetBuilder();
-
+            //HostConfigurator.LoadHostedApps(typeof(IWebService).Assembly, true, coreBuilder);
             var core = coreBuilder.Build();
 
             _host = new AppHost(core);

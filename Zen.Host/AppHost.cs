@@ -26,47 +26,41 @@ namespace Zen.Host
             _factory = new TaskFactory(_cancellationToken);
             _tokenSource = new CancellationTokenSource();
             _cancellationToken = _tokenSource.Token;
+            Apps=new List<IHostedApp>();
         }
         public void Start()
         {
-            var appTypes = _core.Resolve<IEnumerable<IHostedApp>>();
-            var appList = new List<IHostedApp>();
-            foreach (var hostedAppType in appTypes.Select(a=>a.GetType()))
-            {
-                var scope = _core.BeginScope();
-                _appScopeList.Add(scope);
-                var app = (IHostedApp)scope.Resolve(hostedAppType);
-                appList.Add(app);
-                _hostedScopes[app] = scope;
-                Log.InfoFormat("Запуск приложения {0}", hostedAppType);
-                var task = _factory.StartNew((arg) =>
+            Task.Factory.StartNew(() =>
+                {
+                    var appTypes = _core.Resolve<IEnumerable<IHostedApp>>();
+                    var appList = new List<IHostedApp>();
+                    foreach (var hostedAppType in appTypes.Select(a => a.GetType()))
                     {
-                        var curApp = (IHostedApp) arg;
-                        try
-                        {
-                            curApp.Start();
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error("Ошибка исполнения приложения " + curApp.GetType(), ex);
-                        }
-                        return curApp;
-                    }, app).ContinueWith(t =>
-                        {
-                            Log.InfoFormat("Завершение приложения: " + t.Result.GetType());
-                            var app1 = t.Result;
-                            appList.Remove(app1);
-                            var scope1 = _hostedScopes[app1];
-                            _appScopeList.Remove(scope1);
-                            _hostedScopes.Remove(app1);
-                            scope1.Dispose();                            
-                        });
+                        var scope = _core.BeginScope();
+                        _appScopeList.Add(scope);
+                        var app = (IHostedApp) scope.Resolve(hostedAppType);
+                        app.AppScope = scope;
+                        appList.Add(app);
+                        _hostedScopes[app] = scope;
+                        Log.InfoFormat("Запуск приложения {0}", hostedAppType);
+                        var task = _factory.StartNew((arg) =>
+                            {
+                                var curApp = (IHostedApp) arg;
+                                try
+                                {
+                                    curApp.Start();
+                                }
+                                catch (Exception ex)
+                                {
+                                    Log.Error("Ошибка исполнения приложения " + curApp.GetType(), ex);
+                                }
+                                return curApp;
+                            }, app);
+                        _appTaskList.Add(task);
+                    }
 
-                _appTaskList.Add(task);
-                //task.Start();
-            }
-
-            Apps = appList;
+                    Apps = appList;
+                }).ContinueWith((a) => Log.Info("Запущены все известные приложения"));
         }
         public void Stop()
         {
@@ -85,6 +79,7 @@ namespace Zen.Host
         }
         ~AppHost()
         {
+            Log.Debug("Конечное разрушение хоста приложений.");
             _core.Dispose();
         }
         public IEnumerable<IHostedApp> Apps { get; private set; }

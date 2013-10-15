@@ -2,6 +2,8 @@
 using System.Configuration;
 using System.Configuration.Install;
 using System.Reflection;
+using Zen.Host.WebServices;
+using log4net;
 using log4net.Config;
 
 namespace Zen.Host.Launcher
@@ -11,6 +13,7 @@ namespace Zen.Host.Launcher
         static void Main(string[] args)
         {
 
+            XmlConfigurator.Configure();
             if (args.Length > 0)
             {
                 //Установка или удаление сервиса
@@ -24,30 +27,69 @@ namespace Zen.Host.Launcher
             }
         }
 
+        private static readonly ILog Log = LogManager.GetLogger(typeof(Program));
         private static void RunServiceInstaller(string action)
         {
             switch (action)
             {
+                case "-reinstall":
+                case "-r":
+                    {
+                        try
+                        {
+                            ManagedInstallerClass.InstallHelper(new string[] { "/u", Assembly.GetExecutingAssembly().Location }); 
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Fatal("Ошибка удаления сервиса", ex);
+                        }
+                        try
+                        {
+                            ManagedInstallerClass.InstallHelper(new string[] {Assembly.GetExecutingAssembly().Location});
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Fatal("Ошибка установки сервиса", ex);
+                        }
+                        break;
+                    }
                 case "-install":
                 case "-i":
                     {
-                        ManagedInstallerClass.InstallHelper(new string[] {Assembly.GetExecutingAssembly().Location});
+                        try
+                        {
+                            ManagedInstallerClass.InstallHelper(new string[] { Assembly.GetExecutingAssembly().Location });
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Fatal("Ошибка установки сервиса", ex);
+                        }
                         break;
                     }
                 case "-uninstall":
                 case "-u":
                     {
-                        ManagedInstallerClass.InstallHelper(new string[] {"/u", Assembly.GetExecutingAssembly().Location});
+                        try
+                        {
+                            ManagedInstallerClass.InstallHelper(new string[]
+                                {"/u", Assembly.GetExecutingAssembly().Location});
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Fatal("Ошибка удаления сервиса", ex);                            
+                        }
                         break;
                     }
             }
+            Console.WriteLine("Нажмите ENTER для выхода");
+            Console.ReadLine();
         }
 
         private static void RunConsole()
         {
-            XmlConfigurator.Configure();
             var coreBuilder = HostConfigurator.GetBuilder();
-            HostConfigurator.LoadHostedApps(typeof (Program).Assembly, false, coreBuilder);
+            //HostConfigurator.LoadHostedApps(typeof(Program).Assembly, false, coreBuilder);
+            //HostConfigurator.LoadHostedApps(typeof(IWebService).Assembly, true, coreBuilder);
 
             var core = coreBuilder.Build();
             var host = new AppHost(core);

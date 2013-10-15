@@ -54,6 +54,15 @@ namespace Zen
             return new AppScope(_scope.BeginLifetimeScope());
         }
 
+        /// <summary>
+        ///     Сощдать вложенную область видимости
+        /// </summary>
+        /// <returns>Новая область видимости</returns>
+        public AppScope BeginScope(Action<ContainerBuilder> confAction)
+        {
+            return new AppScope(_scope.BeginLifetimeScope(confAction));
+        }
+
         public void Dispose()
         {
             _scope.Dispose();

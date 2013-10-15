@@ -57,8 +57,6 @@
     <Compile Include="DispObject.cs" />
     <Compile Include="HostConfig.cs" />
     <Compile Include="HostConfigurator.cs" />
-    <Compile Include="HostedApp.cs" />
-    <Compile Include="HostedApp1.cs" />
     <Compile Include="HostedAppCollection.cs" />
     <Compile Include="HostedAppElement.cs" />
     <Compile Include="Program.cs" />
@@ -77,10 +75,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Zen.Host.WebServices\Zen.Host.WebServices.csproj">
+      <Project>{542e7c87-ac53-435e-8af7-0862e03d679d}</Project>
+      <Name>Zen.Host.WebServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zen.Host\Zen.Host.csproj">
       <Project>{F91EEADE-9EBD-4CF3-8154-A09A10E3B556}</Project>
       <Name>Zen.Host</Name>

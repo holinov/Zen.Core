@@ -20,7 +20,7 @@ namespace Zen.Host.Launcher
                                                               .AssignableTo<IHostedApp>()
                                                               .AsImplementedInterfaces()
                                                               .AsSelf())*/
-                                             .Configure(b => b.RegisterType<DispObject>().AsSelf().InstancePerLifetimeScope());
+                                             .Configure(b => b.RegisterType<Config>().AsSelf().SingleInstance());
             }
             var cfg = ConfigurationManager.GetSection("HostConfig") as HostConfig??new HostConfig();
             _coreBuilder.Configure(b => b.Register(ctx => cfg).As<HostConfig>().SingleInstance());
