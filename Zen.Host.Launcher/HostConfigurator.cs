@@ -16,10 +16,6 @@ namespace Zen.Host.Launcher
             if (_coreBuilder == null)
             {
                 _coreBuilder = AppCoreBuilder.Create()
-                                             /*.Configure(b => b.RegisterAssemblyTypes(typeof (Program).Assembly)
-                                                              .AssignableTo<IHostedApp>()
-                                                              .AsImplementedInterfaces()
-                                                              .AsSelf())*/
                                              .Configure(b => b.RegisterType<Config>().AsSelf().SingleInstance());
             }
             var cfg = ConfigurationManager.GetSection("HostConfig") as HostConfig??new HostConfig();
