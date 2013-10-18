@@ -5,7 +5,7 @@ using System.Data.Entity;
 
 namespace Zen.DataStore.EntityFramework
 {
-	public class BasicEntityFrameworkRepository<TEntity> : IRepository<TEntity> where TEntity : class
+	public class BasicEntityFrameworkRepository<TEntity> : IRepository<TEntity> where TEntity : HasStringId
 	{
         protected DbContext _context;
         protected DbSet<TEntity> _dbSet;
@@ -31,7 +31,7 @@ namespace Zen.DataStore.EntityFramework
 
         public IQueryable<TEntity> Find(IEnumerable<string> ids)
         {
-            throw new NotImplementedException();
+            return _dbSet.Where(x => ids.Contains(x.Id));
         }
 
         public void Store(TEntity entity)
