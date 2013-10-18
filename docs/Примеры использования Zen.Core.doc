@@ -1,0 +1,901 @@
+Message-ID: <19381630.11273.1382113868645.JavaMail.JIRA$@JIRA>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_11272_14742982.1382113868629"
+
+------=_Part_11272_14742982.1382113868629
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html>
+    <head>
+        <!-- MS Word on Windows doesn't realise the encoding is UTF-8 unles=
+s this meta tag is present -->
+        <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Du=
+tf-8">
+        <title>=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B =D0=B8=D1=81=D0=
+=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8F Zen.Core</t=
+itle>
+        <style>
+            body, p, td, table, tr, .bodytext, .stepfield {
+=09            font-family: Arial, Helvetica, FreeSans, sans-serif;
+            }
+            .panel {
+                margin: 10px;
+                padding: 10px;
+                border: 1px solid #999;
+                background-color: #f0f0f0;
+            }
+            .noteMacro { border-style: solid; border-width: 1px; border-col=
+or: #F0C000; background-color: #FFFFCE; text-align:left;}
+            .warningMacro { border-style: solid; border-width: 1px; border-=
+color: #c00; background-color: #fcc; text-align:left;}
+            .infoMacro { border-style: solid; border-width: 1px; border-col=
+or: #69c; background-color: #D8E4F1; text-align:left;}
+            .tipMacro { border-style: solid; border-width: 1px; border-colo=
+r: #090; background-color: #dfd; text-align:left;}
+            .informationMacroPadding { padding: 5px 0 0 5px; }
+
+            table.infoMacro td, table.warningMacro td, table.tipMacro td, t=
+able.noteMacro td, table.sectionMacro td {
+                border: none;
+            }
+
+            .grid {
+                margin: 2px 0px 5px 0px;
+                border-collapse: collapse;
+            }
+            .grid th  {
+                border: 1px solid #ccc;
+                padding: 2px 4px 2px 4px;
+                background: #f0f0f0;
+                text-align: center;
+            }
+            .grid td  {
+                border: 1px solid #ccc;
+                padding: 3px 4px 3px 4px;
+            }           =20
+        </style>
+    </head>
+
+    <body style=3D"background-color: white; padding: 10px;">
+        <h1>=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B =D0=B8=D1=81=D0=BF=
+=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8F Zen.Core</h1>
+        <p><div>
+<ul>
+    <li><a href=3D'#id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=
+=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Co=
+re-=D0=92=D1=81=D1=82=D1=83=D0=BF=D0=BB=D0=B5=D0=BD=D0=B8=D0=B5'>=D0=92=D1=
+=81=D1=82=D1=83=D0=BF=D0=BB=D0=B5=D0=BD=D0=B8=D0=B5</a></li>
+<ul>
+    <li><a href=3D'#id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=
+=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Co=
+re-=D0=A1=D1=81=D1=8B=D0=BB=D0=BA=D0=B8'>=D0=A1=D1=81=D1=8B=D0=BB=D0=BA=D0=
+=B8</a></li>
+</ul>
+    <li><a href=3D'#id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=
+=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Co=
+re-=D0=A8=D0=B0=D0=B31.=D0=A1=D0=BE=D0=B7=D0=B4=D0=B0=D0=BD=D0=B8=D0=B5=D0=
+=B8=D0=BF=D0=BE=D0=B4=D0=B3=D0=BE=D1=82=D0=BE=D0=B2=D0=BA=D0=B0=D0=BF=D1=80=
+=D0=BE=D0=B5=D0=BA=D1=82=D0=B0=D0=BA=D0=B8=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=
+=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8E=C2=A0Zen.Core.Hosting'>=D0=A8=D0=B0=
+=D0=B3 1. =D0=A1=D0=BE=D0=B7=D0=B4=D0=B0=D0=BD=D0=B8=D0=B5 =D0=B8 =D0=BF=D0=
+=BE=D0=B4=D0=B3=D0=BE=D1=82=D0=BE=D0=B2=D0=BA=D0=B0 =D0=BF=D1=80=D0=BE=D0=
+=B5=D0=BA=D1=82=D0=B0 =D0=BA =D0=B8=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=
+=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8E&nbsp;<strong>Zen.Core.Hosting</strong></a=
+></li>
+    <li><a href=3D'#id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=
+=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Co=
+re-=D0=A8=D0=B0=D0=B32.=D0=A1=D0=BE=D0=B7=D0=B4=D0=B0=D0=BD=D0=B8=D0=B5&quo=
+t;HelloWorld&quot;WCFWebservice.'>=D0=A8=D0=B0=D0=B3 2. =D0=A1=D0=BE=D0=B7=
+=D0=B4=D0=B0=D0=BD=D0=B8=D0=B5 &quot;Hello World&quot; WCF Webservice.</a><=
+/li>
+    <li><a href=3D'#id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=
+=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Co=
+re-=D0=A8=D0=B0=D0=B33.=D0=9F=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B5=D0=
+=BD=D0=B8=D0=B5=D1=85=D1=80=D0=B0=D0=BD=D0=B8=D0=BB=D0=B8=D1=89=D0=B0RavenD=
+B'>=D0=A8=D0=B0=D0=B3 3. =D0=9F=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B5=
+=D0=BD=D0=B8=D0=B5 =D1=85=D1=80=D0=B0=D0=BD=D0=B8=D0=BB=D0=B8=D1=89=D0=B0 R=
+avenDB</a></li>
+<ul>
+    <li><a href=3D'#id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=
+=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Co=
+re-=D0=A8=D0=B0=D0=B33.1=D0=9F=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B5=D0=
+=BD=D0=B8=D0=B5=D0=BARavenDB'>=D0=A8=D0=B0=D0=B3 3.1 =D0=9F=D0=BE=D0=B4=D0=
+=BA=D0=BB=D1=8E=D1=87=D0=B5=D0=BD=D0=B8=D0=B5 =D0=BA RavenDB</a></li>
+<ul>
+    <li><a href=3D'#id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=
+=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Co=
+re-=D0=A8=D0=B0=D0=B33.1.a=D0=9F=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B5=
+=D0=BD=D0=B8=D0=B5=D0=BA=D1=81=D0=B5=D1=80=D0=B2=D0=B5=D1=80=D1=83RavenDB'>=
+=D0=A8=D0=B0=D0=B3 3.1.a =D0=9F=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B5=
+=D0=BD=D0=B8=D0=B5 =D0=BA =D1=81=D0=B5=D1=80=D0=B2=D0=B5=D1=80=D1=83 RavenD=
+B</a></li>
+    <li><a href=3D'#id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=
+=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Co=
+re-=D0=A8=D0=B0=D0=B33.1.=D0=9F=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B5=
+=D0=BD=D0=B8=D0=B5RavenDBEmbeeded'>=D0=A8=D0=B0=D0=B3 3.1. =D0=9F=D0=BE=D0=
+=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B5=D0=BD=D0=B8=D0=B5 RavenDB Embeeded</a></l=
+i>
+</ul>
+    <li><a href=3D'#id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=
+=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Co=
+re-=D0=A8=D0=B0=D0=B33.2.=D0=A1=D0=BE=D0=B7=D0=B4=D0=B0=D0=BD=D0=B8=D0=B5=
+=D0=BE=D0=B1=D1=8A=D0=B5=D0=BA=D1=82=D0=BE=D0=B2=D1=85=D1=80=D0=B0=D0=BD=D0=
+=B8=D0=BC=D1=8B=D1=85=D0=B2=D0=91=D0=94'>=D0=A8=D0=B0=D0=B3 3.2. =D0=A1=D0=
+=BE=D0=B7=D0=B4=D0=B0=D0=BD=D0=B8=D0=B5 =D0=BE=D0=B1=D1=8A=D0=B5=D0=BA=D1=
+=82=D0=BE=D0=B2 =D1=85=D1=80=D0=B0=D0=BD=D0=B8=D0=BC=D1=8B=D1=85 =D0=B2 =D0=
+=91=D0=94</a></li>
+</ul>
+    <li><a href=3D'#id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=
+=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Co=
+re-=D0=A8=D0=B0=D0=B34.=D0=98=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=
+=B2=D0=B0=D0=BD=D0=B8=D0=B5IoC=D0=B4=D0=BB=D1=8F=D1=80=D0=B0=D0=B1=D0=BE=D1=
+=82=D1=8B=D1=81=D0=BA=D0=BE=D0=BC=D0=BF=D0=BE=D0=BD=D0=B5=D0=BD=D1=82=D0=B0=
+=D0=BC=D0=B8.'>=D0=A8=D0=B0=D0=B3 4. =D0=98=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=
+=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D0=B5 IoC =D0=B4=D0=BB=D1=8F =D1=80=D0=
+=B0=D0=B1=D0=BE=D1=82=D1=8B =D1=81 =D0=BA=D0=BE=D0=BC=D0=BF=D0=BE=D0=BD=D0=
+=B5=D0=BD=D1=82=D0=B0=D0=BC=D0=B8.</a></li>
+    <li><a href=3D'#id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=
+=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Co=
+re-=D0=A8=D0=B0=D0=B35.=D0=A1=D0=BE=D0=B7=D0=B4=D0=B0=D0=BD=D0=B8=D0=B5=D0=
+=B2=D0=BD=D1=83=D1=82=D1=80=D0=B5=D0=BD=D0=BD=D0=B5=D0=B3=D0=BE=D0=BF=D1=80=
+=D0=BE=D1=86=D0=B5=D1=81=D1=81=D0=B0'>=D0=A8=D0=B0=D0=B3 5. =D0=A1=D0=BE=D0=
+=B7=D0=B4=D0=B0=D0=BD=D0=B8=D0=B5 =D0=B2=D0=BD=D1=83=D1=82=D1=80=D0=B5=D0=
+=BD=D0=BD=D0=B5=D0=B3=D0=BE =D0=BF=D1=80=D0=BE=D1=86=D0=B5=D1=81=D1=81=D0=
+=B0</a></li>
+</ul></div></p><h2 id=3D"id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=
+=B8=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8F=
+Zen.Core-=D0=92=D1=81=D1=82=D1=83=D0=BF=D0=BB=D0=B5=D0=BD=D0=B8=D0=B5">=D0=
+=92=D1=81=D1=82=D1=83=D0=BF=D0=BB=D0=B5=D0=BD=D0=B8=D0=B5</h2><p>=D0=9F=D1=
+=80=D0=B8=D0=BC=D0=B5=D1=80 =D0=B8=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=
+=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8F =D0=B1=D0=B8=D0=B1=D0=BB=D0=B8=D0=BE=D1=
+=82=D0=B5=D0=BA=C2=A0<strong>Zen.Core</strong> =D0=B4=D0=BB=D1=8F =D0=B1=D1=
+=8B=D1=81=D1=82=D1=80=D0=BE=D0=B3=D0=BE =D0=BF=D0=BE=D1=81=D1=82=D1=80=D0=
+=BE=D0=B5=D0=BD=D0=B8=D1=8F =D0=BC=D0=BE=D0=B4=D1=83=D0=BB=D1=8C=D0=BD=D1=
+=8B=D1=85 =D0=BF=D1=80=D0=B8=D0=BB=D0=BE=D0=B6=D0=B5=D0=BD=D0=B8=D0=B9.</p>=
+<p>=D0=92 =D0=B4=D0=B0=D0=BD=D0=BD=D0=BE=D0=BC =D0=BF=D1=80=D0=B8=D0=BC=D0=
+=B5=D1=80=D0=B5 =D0=B1=D1=83=D0=B4=D0=B5=D1=82 =D1=80=D0=B0=D1=81=D1=81=D0=
+=BC=D0=BE=D1=82=D1=80=D0=B5=D0=BD=D0=BE =D1=81=D0=BE=D0=B7=D0=B4=D0=B0=D0=
+=BD=D0=B8=D0=B5 =D0=BF=D1=80=D0=B8=D0=BB=D0=BE=D0=B6=D0=B5=D0=BD=D0=B8=D1=
+=8F =D1=81 =D0=B2=D0=B5=D0=B1=D1=81=D0=B5=D1=80=D0=B2=D0=B8=D1=81=D0=B0=D0=
+=BC=D0=B8 =D0=B8 =D0=B2=D0=BD=D1=83=D1=82=D1=80=D0=B5=D0=BD=D0=BD=D0=B8=D0=
+=BC =D0=BF=D1=80=D0=BE=D1=86=D0=B5=D1=81=D1=81=D0=BE=D0=BC.</p><h3 id=3D"id=
+-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=81=D0=BF=D0=BE=D0=BB=
+=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Core-=D0=A1=D1=81=D1=8B=
+=D0=BB=D0=BA=D0=B8">=D0=A1=D1=81=D1=8B=D0=BB=D0=BA=D0=B8</h3><ul><li><stron=
+g>=D0=A1=D0=B0=D0=B9=D1=82 =D0=BF=D1=80=D0=BE=D0=B5=D0=BA=D1=82=D0=B0</stro=
+ng>=C2=A0<a href=3D"https://github.com/holinov/Zen.Core" class=3D"external-=
+link" rel=3D"nofollow">https://github.com/holinov/Zen.Core</a></li><li><str=
+ong>=D0=9F=D1=80=D0=B5=D0=B7=D0=B5=D0=BD=D1=82=D0=B0=D1=86=D0=B8=D1=8F</str=
+ong>:=C2=A0<a href=3D"https://github.com/holinov/Zen.Core/raw/master/docs/Z=
+enCore.pptx" class=3D"external-link" rel=3D"nofollow">https://github.com/ho=
+linov/Zen.Core/raw/master/docs/ZenCore.pptx</a></li><li><strong>=D0=A1=D0=
+=BF=D0=B8=D1=81=D0=BE=D0=BA NuGet =D0=BF=D0=B0=D0=BA=D0=B5=D1=82=D0=BE=D0=
+=B2</strong><br /><ul><li><a href=3D"https://www.nuget.org/packages/Zen.Cor=
+e/" style=3D"font-size: 10.0pt;line-height: 13.0pt;" class=3D"external-link=
+" rel=3D"nofollow">https</a><a href=3D"https://www.nuget.org/packages/Zen.C=
+ore/" style=3D"font-size: 10.0pt;line-height: 13.0pt;" class=3D"external-li=
+nk" rel=3D"nofollow">://www.nuget.org/packages/Zen.Core</a><a href=3D"https=
+://www.nuget.org/packages/Zen.Core/" style=3D"font-size: 10.0pt;line-height=
+: 13.0pt;" class=3D"external-link" rel=3D"nofollow">/</a></li><li><a href=
+=3D"https://www.nuget.org/packages/Zen.Core.Host/" style=3D"font-size: 10.0=
+pt;line-height: 13.0pt;" class=3D"external-link" rel=3D"nofollow">https://w=
+ww.nuget.org/packages/Zen.Core.Host</a><a href=3D"https://www.nuget.org/pac=
+kages/Zen.Core.Host/" style=3D"font-size: 10.0pt;line-height: 13.0pt;" clas=
+s=3D"external-link" rel=3D"nofollow">/</a></li><li><a href=3D"https://www.n=
+uget.org/packages/Zen.Core.Raven/" style=3D"font-size: 10.0pt;line-height: =
+13.0pt;" class=3D"external-link" rel=3D"nofollow">https://www.nuget.org/pac=
+kages/Zen.Core.Raven</a><a href=3D"https://www.nuget.org/packages/Zen.Core.=
+Raven/" style=3D"font-size: 10.0pt;line-height: 13.0pt;" class=3D"external-=
+link" rel=3D"nofollow">/</a></li><li><a href=3D"https://www.nuget.org/packa=
+ges/Zen.Core.Raven.Embeeded/" style=3D"font-size: 10.0pt;line-height: 13.0p=
+t;" class=3D"external-link" rel=3D"nofollow">https://www.nuget.org/packages=
+/Zen.Core.Raven.Embeeded/</a></li></ul></li></ul><h2 id=3D"id-=D0=9F=D1=80=
+=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=
+=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Core-=D0=A8=D0=B0=D0=B31.=D0=A1=D0=BE=
+=D0=B7=D0=B4=D0=B0=D0=BD=D0=B8=D0=B5=D0=B8=D0=BF=D0=BE=D0=B4=D0=B3=D0=BE=D1=
+=82=D0=BE=D0=B2=D0=BA=D0=B0=D0=BF=D1=80=D0=BE=D0=B5=D0=BA=D1=82=D0=B0=D0=BA=
+=D0=B8=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=
+=8E=C2=A0Zen.Core.Hosting">=D0=A8=D0=B0=D0=B3 1. =D0=A1=D0=BE=D0=B7=D0=B4=
+=D0=B0=D0=BD=D0=B8=D0=B5 =D0=B8 =D0=BF=D0=BE=D0=B4=D0=B3=D0=BE=D1=82=D0=BE=
+=D0=B2=D0=BA=D0=B0 =D0=BF=D1=80=D0=BE=D0=B5=D0=BA=D1=82=D0=B0 =D0=BA =D0=B8=
+=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8E=C2=
+=A0<strong>Zen.Core.Hosting</strong></h2><ol><li>=D0=A1=D0=BE=D0=B7=D0=B4=
+=D0=B0=D0=B5=D0=BC =D0=B2 Visual Studio =D0=BF=D1=80=D0=BE=D0=B5=D0=BA=D1=
+=82. =D0=A2=D0=B8=D0=BF =D0=B2=D1=8B=D0=B1=D0=B8=D1=80=D0=B0=D0=B5=D0=BC DL=
+L.</li><li>=D0=A7=D0=B5=D1=80=D0=B5=D0=B7 NuGet Manager =D1=83=D1=81=D1=82=
+=D0=B0=D0=BD=D0=B0=D0=B2=D0=BB=D0=B8=D0=B2=D0=B0=D0=B5=D0=BC=C2=A0<a href=
+=3D"https://www.nuget.org/packages/Zen.Core.Host/" class=3D"external-link" =
+rel=3D"nofollow">Zen.Core.Host</a></li><li>=D0=9F=D0=BE=D1=81=D0=BB=D0=B5 =
+=D1=83=D1=81=D1=82=D0=B0=D0=BD=D0=BE=D0=B2=D0=BA=D0=B8 =D0=BF=D0=B0=D0=BA=
+=D0=B5=D1=82=D0=BE=D0=B2 =D0=B8 =D0=BF=D0=B5=D1=80=D0=B5=D0=B7=D0=B0=D0=B3=
+=D1=80=D1=83=D0=B7=D0=BA=D0=B8 =D0=BF=D1=80=D0=BE=D0=B5=D0=BA=D1=82=D0=B0 =
+=D0=BF=D0=BE=D1=8F=D0=B2=D0=B8=D1=82=D1=81=D1=8F =D1=84=D0=B0=D0=B9=D0=BB=
+=C2=A0<strong>Zen.Host.Launcher.exe.config</strong> =D0=B2 =D0=BD=D0=B5=D0=
+=BC =D0=BD=D0=B0=D0=B9=D1=82=D0=B8 =D1=81=D0=B5=D0=BA=D1=86=D0=B8=D1=8E=C2=
+=A0<strong>HostConfig</strong>=D0=B8 =D0=B4=D0=BE=D0=B1=D0=B0=D0=B2=D0=B8=
+=D1=82=D1=8C =C2=A0<p>&lt;HostedApp HostedAssembly=3D&quot;<u><em>&lt;=D0=
+=9D=D0=B0=D0=B7=D0=B2=D0=B0=D0=BD=D0=B8=D0=B5 =D1=81=D0=B1=D0=BE=D1=80=D0=
+=BA=D0=B8 =D0=BF=D1=80=D0=BE=D0=B5=D0=BA=D1=82=D0=B0&gt;</em></u>&quot; Loa=
+dModules=3D&quot;true&quot; /&gt; =D0=B2 =D0=BA=D0=BE=D0=BD=D0=B5=D1=86 =D1=
+=81=D0=BF=D0=B8=D1=81=D0=BA=D0=B0 =D0=B7=D0=B0=D0=B3=D1=80=D1=83=D0=B6=D0=
+=B0=D0=B5=D0=BC=D1=8B=D1=85 =D0=BF=D1=80=D0=B8=D0=BB=D0=BE=D0=B6=D0=B5=D0=
+=BD=D0=B8=D0=B9.</p></li><li>=D0=92 =D1=81=D0=B2=D0=BE=D0=B9=D1=81=D1=82=D0=
+=B2=D0=B0=D1=85 =D1=84=D0=B0=D0=B9=D0=BB=D0=B0=C2=A0<strong>Zen.Host.Launch=
+er.exe.config</strong> =D1=83=D1=81=D1=82=D0=B0=D0=BD=D0=BE=D0=B2=D0=B8=D1=
+=82=D1=8C &quot;Copy to Output Directory&quot;=3D&quot;true&quot;</li></ol>=
+<h2 id=3D"id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=81=D0=BF=
+=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Core-=D0=A8=
+=D0=B0=D0=B32.=D0=A1=D0=BE=D0=B7=D0=B4=D0=B0=D0=BD=D0=B8=D0=B5&quot;HelloWo=
+rld&quot;WCFWebservice.">=D0=A8=D0=B0=D0=B3 2. =D0=A1=D0=BE=D0=B7=D0=B4=D0=
+=B0=D0=BD=D0=B8=D0=B5 &quot;Hello World&quot; WCF Webservice.</h2><ol><li><=
+p>=D0=A1=D0=BE=D0=B7=D0=B4=D0=B0=D0=B5=D0=BC =D0=BA=D0=BE=D0=BD=D1=82=D1=80=
+=D0=B0=D0=BA=D1=82 =D1=81=D0=B5=D1=80=D0=B2=D0=B8=D1=81=D0=B0 (=D0=BF=D1=80=
+=D0=B8=D0=BC=D0=B5=D1=87=D0=B0=D0=BD=D0=B8=D0=B5 - =D0=BA=D0=BE=D0=BD=D1=82=
+=D1=80=D0=B0=D0=BA=D1=82 =D0=B4=D0=BE=D0=BB=D0=B6=D0=B5=D0=BD =D0=BD=D0=B0=
+=D1=81=D0=BB=D0=B5=D0=B4=D0=BE=D0=B2=D0=B0=D1=82=D1=8C=D1=81=D1=8F =D0=BE=
+=D1=82 IWebService)</p><div class=3D"code panel" style=3D"border-width: 1px=
+;"><div class=3D"codeHeader panelHeader" style=3D"border-bottom-width: 1px;=
+"><b>IHelloWorldService</b></div><div class=3D"codeContent panelContent">
+<pre class=3D"theme: Confluence; brush: csharp; gutter: false" style=3D"fon=
+t-size:12px;">[ServiceContract]
+public interface IHelloWorldService:IWebService
+{
+    [OperationContract]
+    string Hello(string name);
+}</pre>
+</div></div></li><li><p>=D0=A0=D0=B5=D0=B0=D0=BB=D0=B8=D0=B7=D1=83=D0=B5=D0=
+=BC =D0=B2=D0=B5=D0=B1-=D1=81=D0=B5=D1=80=D0=B2=D0=B8=D1=81</p><div class=
+=3D"code panel" style=3D"border-width: 1px;"><div class=3D"codeHeader panel=
+Header" style=3D"border-bottom-width: 1px;"><b>HelloWorldService </b></div>=
+<div class=3D"codeContent panelContent">
+<pre class=3D"theme: Confluence; brush: csharp; gutter: false" style=3D"fon=
+t-size:12px;">public class HelloWorldService : IHelloWorldService
+{
+    public string Hello(string name)
+    {
+        return string.Format(&quot;{0}] Hello {1}&quot;, DateTime.Now, name=
+);
+    }
+=09
+=09public string GetWebserviceName()
+=09{
+=09=09return GetType().Name;
+=09}
+}</pre>
+</div></div></li><li><p>=D0=A0=D0=B5=D0=B3=D0=B8=D1=81=D1=82=D1=80=D0=B8=D1=
+=80=D1=83=D0=B5=D0=BC =D0=B2=D0=B5=D0=B1-=D1=81=D0=B5=D1=80=D0=B2=D0=B8=D1=
+=81 =D0=B2 =D0=BC=D0=BE=D0=B4=D1=83=D0=BB=D0=B5 =D0=BA=D0=BE=D0=BD=D1=82=D0=
+=B5=D0=B9=D0=BD=D0=B5=D1=80=D0=B0</p><div class=3D"code panel" style=3D"bor=
+der-width: 1px;"><div class=3D"codeHeader panelHeader" style=3D"border-bott=
+om-width: 1px;"><b>MainModule</b></div><div class=3D"codeContent panelConte=
+nt">
+<pre class=3D"theme: Confluence; brush: csharp; gutter: false" style=3D"fon=
+t-size:12px;">public class MainModule : Module
+{
+    protected override void Load(ContainerBuilder builder)
+    {
+        builder.RegisterType&lt;HelloWorldService&gt;()
+               .AsImplementedInterfaces()
+               .AsSelf();
+    }
+}</pre>
+</div></div></li><li>=D0=97=D0=B0=D0=BF=D1=83=D1=81=D0=BA=D0=B0=D0=B5=D0=BC=
+ =D0=BF=D1=80=D0=B8=D0=BB=D0=BE=D0=B6=D0=B5=D0=BD=D0=B8=D0=B5 =D0=BD=D0=B0=
+=D0=B6=D0=B0=D0=B2 F5.<br />=D0=95=D1=81=D0=BB=D0=B8 =D0=B2=D1=8B =D0=B2=D1=
+=81=D0=B5 =D1=81=D0=B4=D0=B5=D0=BB=D0=B0=D0=BB=D0=B8 =D0=BF=D1=80=D0=B0=D0=
+=B2=D0=B8=D0=BB=D1=8C=D0=BD=D0=BE =D1=82=D0=BE =D0=B2=D1=8B =D1=83=D0=B2=D0=
+=B8=D0=B4=D0=B8=D1=82=D0=B5 =D0=BA=D0=BE=D0=BD=D1=81=D0=BE=D0=BB=D1=8C =D0=
+=B8 =D0=BF=D0=BE=D1=81=D0=BB=D0=B5=D0=B4=D0=BD=D0=B8=D0=BC=D0=B8 =D0=B7=D0=
+=B0=D0=BF=D0=B8=D1=81=D1=8F=D0=BC=D0=B8 =D0=BB=D0=BE=D0=B3=D0=B0 =D0=B2 =D0=
+=BD=D0=B5=D0=B9 =D0=B1=D1=83=D0=B4=D1=83=D1=82:<br /><p><em>2013-10-15 21:1=
+2:05,879 [th:5] INFO Zen.Host.WebServices.WebserviceHostApplication</em><br=
+ /><em>=D0=94=D0=BB=D1=8F =D0=BA=D0=BE=D0=BD=D1=82=D1=80=D0=B0=D0=BA=D1=82=
+=D0=B0: IHelloWorldService =D1=81=D0=B5=D1=80=D0=B2=D0=B8=D1=81=D0=B0 Hello=
+WorldService =D0=BF=D1=80=D0=BE=D0=B8=D0=B7=D0=B2=D0=BE=D0=B4=D0=B8=D1=82=
+=D1=81=D1=8F =D0=BF=D1=80=D0=BE=D1=81=D0=BB=D1=83=D1=88=D0=B8=D0=B2=D0=B0=
+=D0=BD=D0=B8=D0=B5 =D0=BF=D0=BE =D0=B0=D0=B4=D1=80=D0=B5=D1=81=D1=83 <a hre=
+f=3D"http://localhost:8181/HelloWorldService" class=3D"external-link" rel=
+=3D"nofollow">http://localhost:8181/HelloWorldService</a></em></p></li><li>=
+=D0=97=D0=B0=D0=BF=D1=83=D1=81=D0=BA=D0=B0=D0=B5=D0=BC WcfTestClient ( =D0=
+=A0=D0=B0=D1=81=D0=BF=D0=BE=D0=BB=D0=BE=D0=B6=D0=B5=D0=BD=C2=A0C:\Program F=
+iles (x86)\Microsoft Visual Studio 11.0\Common7\IDE\WcfTestClient.exe )</li=
+><li>=D0=9D=D0=B0=D0=B6=D0=B8=D0=BC=D0=B0=D0=B5=D0=BC File-&gt;Add Service<=
+/li><li>=D0=90=D0=B4=D1=80=D0=B5=D1=81=D0=BE=D0=BC =D1=81=D0=B5=D1=80=D0=B2=
+=D0=B8=D1=81=D0=B0 =D1=83=D0=BA=D0=B0=D0=B7=D1=8B=D0=B2=D0=B0=D0=B5=D0=BC =
+=D0=B0=D0=B4=D1=80=D0=B5=D1=81 =D0=B8=D0=B7 =D0=BF=D0=BE=D1=81=D0=BB=D0=B5=
+=D0=B4=D0=BD=D0=B5=D0=B3=D0=BE =D1=81=D0=BE=D0=BE=D0=B1=D1=89=D0=B5=D0=BD=
+=D0=B8=D1=8F =D0=B2 =D0=BB=D0=BE=D0=B3=D0=B5 =D0=BA=D0=BE=D0=BD=D1=81=D0=BE=
+=D0=BB=D0=B8</li><li>=D0=9F=D1=80=D0=BE=D0=B2=D0=B5=D1=80=D1=8F=D0=B5=D0=BC=
+ =D1=80=D0=B0=D0=B1=D0=BE=D1=82=D1=83 =D0=BD=D0=B0=D1=88=D0=B5=D0=B3=D0=BE =
+=D0=BC=D0=B5=D1=82=D0=BE=D0=B4=D0=B0<br /><img class=3D"confluence-embedded=
+-image" width=3D"300" src=3D"attach_e1387f29413a4575c2e480266ccf6d00" data-=
+image-src=3D"attach_e1387f29413a4575c2e480266ccf6d00"></li></ol><h2 id=3D"i=
+d-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=81=D0=BF=D0=BE=D0=BB=
+=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Core-=D0=A8=D0=B0=D0=B3=
+3.=D0=9F=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B5=D0=BD=D0=B8=D0=B5=D1=85=
+=D1=80=D0=B0=D0=BD=D0=B8=D0=BB=D0=B8=D1=89=D0=B0RavenDB">=D0=A8=D0=B0=D0=B3=
+ 3. =D0=9F=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B5=D0=BD=D0=B8=D0=B5 =D1=
+=85=D1=80=D0=B0=D0=BD=D0=B8=D0=BB=D0=B8=D1=89=D0=B0 RavenDB</h2><h3 id=3D"i=
+d-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=81=D0=BF=D0=BE=D0=BB=
+=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Core-=D0=A8=D0=B0=D0=B3=
+3.1=D0=9F=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B5=D0=BD=D0=B8=D0=B5=D0=BA=
+RavenDB">=D0=A8=D0=B0=D0=B3 3.1 =D0=9F=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=D1=87=
+=D0=B5=D0=BD=D0=B8=D0=B5 =D0=BA RavenDB</h3><h4 id=3D"id-=D0=9F=D1=80=D0=B8=
+=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=
+=B2=D0=B0=D0=BD=D0=B8=D1=8FZen.Core-=D0=A8=D0=B0=D0=B33.1.a=D0=9F=D0=BE=D0=
+=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B5=D0=BD=D0=B8=D0=B5=D0=BA=D1=81=D0=B5=D1=80=
+=D0=B2=D0=B5=D1=80=D1=83RavenDB">=D0=A8=D0=B0=D0=B3 3.1.a =D0=9F=D0=BE=D0=
+=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B5=D0=BD=D0=B8=D0=B5 =D0=BA =D1=81=D0=B5=D1=
+=80=D0=B2=D0=B5=D1=80=D1=83 RavenDB</h4><ol><li>=D0=9F=D0=BE=D0=B4=D0=BA=D0=
+=BB=D1=8E=D1=87=D0=B8=D1=82=D1=8C NuGet =D0=BF=D0=B0=D0=BA=D0=B5=D1=82=C2=
+=A0<a href=3D"https://www.nuget.org/packages/Zen.Core.Raven/" class=3D"exte=
+rnal-link" rel=3D"nofollow">Zen.Core.Raven</a>=C2=A0</li><li><p>=D0=92 =D0=
+=BA=D0=BB=D0=B0=D1=81=D1=81=D0=B5 =D0=BC=D0=BE=D0=B4=D1=83=D0=BB=D1=8F =D0=
+=BF=D1=80=D0=B8=D0=BB=D0=BE=D0=B6=D0=B5=D0=BD=D0=B8=D1=8F =D0=B7=D0=B0=D0=
+=B3=D1=80=D1=83=D0=B7=D0=B8=D1=82=D1=8C =D0=BC=D0=BE=D0=B4=D1=83=D0=BB=D0=
+=B8 =D1=85=D1=80=D0=B0=D0=BD=D0=B5=D0=BD=D0=B8=D1=8F =D0=B4=D0=B0=D0=BD=D0=
+=BD=D1=8B=D1=85</p><div class=3D"code panel" style=3D"border-width: 1px;"><=
+div class=3D"codeHeader panelHeader" style=3D"border-bottom-width: 1px;"><b=
+>MainModule</b></div><div class=3D"codeContent panelContent">
+<pre class=3D"theme: Confluence; brush: csharp; gutter: false" style=3D"fon=
+t-size:12px;">public class MainModule : Module
+{
+    protected override void Load(ContainerBuilder builder)
+    {
+=09=09//=D0=A0=D0=B5=D0=B3=D0=B8=D1=81=D1=82=D1=80=D0=B0=D1=86=D0=B8=D1=8F =
+=D0=BC=D0=BE=D0=B4=D1=83=D0=BB=D1=8F =D0=BF=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=
+=D1=87=D0=B5=D0=BD=D0=B8=D1=8F =D0=BA RavenDB Server
+        builder.RegisterModule(new RavenDataStoreModule(&quot;http://localh=
+ost:9901&quot;, &quot;ApplicationBD&quot;));
+=09=09//=D0=A0=D0=B5=D0=B3=D0=B8=D1=81=D1=82=D1=80=D0=B0=D1=86=D0=B8=D1=8F =
+=D0=BC=D0=BE=D0=B4=D1=83=D0=BB=D1=8F =D1=80=D0=B5=D0=BF=D0=BE=D0=B7=D0=B8=
+=D1=82=D0=B0=D1=80=D0=B8=D0=B5=D0=B2 RavenDB
+        builder.RegisterModule&lt;RavenRepositoriesModule&gt;();
+=C2=A0
+=09=09//=D0=A0=D0=B5=D0=B3=D0=B8=D1=81=D1=82=D1=80=D0=B0=D1=86=D0=B8=D1=8F =
+=D0=B2=D0=B5=D0=B1=D1=81=D0=B5=D1=80=D0=B2=D0=B8=D1=81=D0=BE=D0=B2
+        builder.RegisterType&lt;HelloWorldService&gt;()
+               .AsImplementedInterfaces()
+               .AsSelf();
+    }
+}</pre>
+</div></div></li></ol><h4 id=3D"id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=
+=8B=D0=B8=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=
+=D1=8FZen.Core-=D0=A8=D0=B0=D0=B33.1.=D0=9F=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=
+=D1=87=D0=B5=D0=BD=D0=B8=D0=B5RavenDBEmbeeded">=D0=A8=D0=B0=D0=B3 3.1. =D0=
+=9F=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B5=D0=BD=D0=B8=D0=B5 RavenDB Emb=
+eeded</h4><ol><li>=D0=9F=D0=BE=D0=B4=D0=BA=D0=BB=D1=8E=D1=87=D0=B8=D1=82=D1=
+=8C NuGet =D0=BF=D0=B0=D0=BA=D0=B5=D1=82=C2=A0<a href=3D"https://www.nuget.=
+org/packages/Zen.Core.Raven.Embeeded/" class=3D"external-link" rel=3D"nofol=
+low">Zen.Core.Raven.Embeeded</a></li><li><p>=D0=92 =D0=BA=D0=BB=D0=B0=D1=81=
+=D1=81=D0=B5 =D0=BC=D0=BE=D0=B4=D1=83=D0=BB=D1=8F =D0=BF=D1=80=D0=B8=D0=BB=
+=D0=BE=D0=B6=D0=B5=D0=BD=D0=B8=D1=8F =D0=B7=D0=B0=D0=B3=D1=80=D1=83=D0=B7=
+=D0=B8=D1=82=D1=8C =D0=BC=D0=BE=D0=B4=D1=83=D0=BB=D0=B8 =D1=85=D1=80=D0=B0=
+=D0=BD=D0=B5=D0=BD=D0=B8=D1=8F =D0=B4=D0=B0=D0=BD=D0=BD=D1=8B=D1=85</p><div=
+ class=3D"code panel" style=3D"border-width: 1px;"><div class=3D"codeHeader=
+ panelHeader" style=3D"border-bottom-width: 1px;"><b>MainModule</b></div><d=
+iv class=3D"codeContent panelContent">
+<pre class=3D"theme: Confluence; brush: csharp; gutter: false" style=3D"fon=
+t-size:12px;">public class MainModule : Module
+{
+    protected override void Load(ContainerBuilder builder)
+    {
+        //=D0=A0=D0=B5=D0=B3=D0=B8=D1=81=D1=82=D1=80=D0=B0=D1=86=D0=B8=D1=
+=8F =D0=BC=D0=BE=D0=B4=D1=83=D0=BB=D1=8F =D0=BF=D0=BE=D0=B4=D0=BA=D0=BB=D1=
+=8E=D1=87=D0=B5=D0=BD=D0=B8=D1=8F =D0=BA RavenDB Embeeded
+        builder.RegisterModule(new RavenEmbeededDataStoreModule(&quot;DataD=
+irectory&quot;, true));
+        //=D0=A0=D0=B5=D0=B3=D0=B8=D1=81=D1=82=D1=80=D0=B0=D1=86=D0=B8=D1=
+=8F =D0=BC=D0=BE=D0=B4=D1=83=D0=BB=D1=8F =D1=80=D0=B5=D0=BF=D0=BE=D0=B7=D0=
+=B8=D1=82=D0=B0=D1=80=D0=B8=D0=B5=D0=B2 RavenDB
+        builder.RegisterModule&lt;RavenRepositoriesModule&gt;();
+        //=D0=A0=D0=B5=D0=B3=D0=B8=D1=81=D1=82=D1=80=D0=B0=D1=86=D0=B8=D1=
+=8F =D0=B2=D0=B5=D0=B1=D1=81=D0=B5=D1=80=D0=B2=D0=B8=D1=81=D0=BE=D0=B2
+        builder.RegisterType&lt;HelloWorldService&gt;()
+               .AsImplementedInterfaces()
+               .AsSelf();
+    }
+}</pre>
+</div></div></li></ol><h3 id=3D"id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=
+=8B=D0=B8=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=
+=D1=8FZen.Core-=D0=A8=D0=B0=D0=B33.2.=D0=A1=D0=BE=D0=B7=D0=B4=D0=B0=D0=BD=
+=D0=B8=D0=B5=D0=BE=D0=B1=D1=8A=D0=B5=D0=BA=D1=82=D0=BE=D0=B2=D1=85=D1=80=D0=
+=B0=D0=BD=D0=B8=D0=BC=D1=8B=D1=85=D0=B2=D0=91=D0=94">=D0=A8=D0=B0=D0=B3 3.2=
+. =D0=A1=D0=BE=D0=B7=D0=B4=D0=B0=D0=BD=D0=B8=D0=B5 =D0=BE=D0=B1=D1=8A=D0=B5=
+=D0=BA=D1=82=D0=BE=D0=B2 =D1=85=D1=80=D0=B0=D0=BD=D0=B8=D0=BC=D1=8B=D1=85 =
+=D0=B2 =D0=91=D0=94</h3><p>=D0=9E=D0=B1=D1=8A=D0=B5=D0=BA=D1=82 =D0=B4=D0=
+=BE=D0=BB=D0=B6=D0=B5=D0=BD =D1=80=D0=B5=D0=B0=D0=BB=D0=B8=D0=B7=D0=BE=D0=
+=B2=D1=8B=D0=B2=D0=B0=D1=82=D1=8C IHasStringId =D0=B8=D0=BB=D0=B8 IHasGuidI=
+d =D0=B4=D0=BB=D1=8F =D1=85=D1=80=D0=B0=D0=BD=D0=B5=D0=BD=D0=B8=D1=8F =D0=
+=B2 IRepositroy&lt;T&gt; =D0=B8 IRepositoryWithGuid&lt;T&gt; =D1=81=D0=BE=
+=D0=BE=D1=82=D0=B2=D0=B5=D1=82=D1=81=D1=82=D0=B2=D0=B5=D0=BD=D0=BD=D0=BE. =
+=D0=95=D1=81=D1=82=D1=8C =D0=B1=D0=B0=D0=B7=D0=BE=D0=B2=D1=8B=D0=B5 =D0=BA=
+=D0=BB=D0=B0=D1=81=D1=81=D1=8B HasStringId =D0=B8 HasGuidId (=D1=80=D0=B5=
+=D0=B0=D0=BB=D0=B8=D0=B7=D1=83=D1=8E=D1=89=D0=B8=D0=B5 =D1=81=D0=BE=D0=BE=
+=D1=82=D0=B2=D0=B5=D1=82=D1=81=D1=82=D0=B2=D1=83=D1=8E=D1=89=D0=B8=D0=B5 =
+=D0=B8=D0=BD=D1=82=D0=B5=D1=80=D1=84=D0=B5=D0=B9=D1=81=D1=8B)</p><div class=
+=3D"code panel" style=3D"border-width: 1px;"><div class=3D"codeContent pane=
+lContent">
+<pre class=3D"theme: Confluence; brush: csharp; gutter: false" style=3D"fon=
+t-size:12px;">//=D0=92=D1=81=D0=B5 =D1=87=D1=82=D0=BE =D0=BD=D0=B0=D0=B4=D0=
+=BE =D1=81=D0=B4=D0=B5=D0=BB=D1=82=D0=B8=D1=8C =D0=B4=D0=BB=D1=8F =D1=85=D1=
+=80=D0=B0=D0=BD=D0=B5=D0=BD=D0=B8=D1=8F =D0=BE=D0=B1=D1=8A=D0=B5=D0=BA=D1=
+=82=D0=B0 - =D1=80=D0=B5=D0=B0=D0=BB=D0=B8=D0=B7=D0=BE=D0=B2=D0=B0=D1=82=D1=
+=8C =D0=BE=D0=B4=D0=B8=D0=BD =D0=B8=D0=B7 =D0=B8=D0=BD=D1=82=D0=B5=D1=80=D1=
+=84=D0=B5=D0=B9=D1=81=D0=BE=D0=B2 =D1=83=D0=BA=D0=B0=D0=B7=D0=B0=D0=BD=D0=
+=BD=D1=8B=D1=85 =D0=B2=D1=8B=D1=88=D0=B5
+public class DatabaseObject:HasGuidId
+{
+    public string Name { get; set; }
+    public string DataPart { get; set; }
+}
+=C2=A0
+//Zec.Core =D0=B0=D0=B2=D1=82=D0=BE=D0=BC=D0=B0=D1=82=D0=B8=D1=87=D0=B5=D1=
+=81=D0=BA=D0=B8 =D0=B7=D0=B0=D0=B1=D0=BE=D1=82=D0=B8=D1=82=D1=81=D1=8F =D0=
+=BE =D0=B4=D0=B5=D1=81=D0=B5=D1=80=D0=B8=D0=B0=D0=BB=D0=B8=D0=B7=D0=B0=D1=
+=86=D0=B8=D0=B8 &quot;=D1=81=D0=BB=D0=BE=D0=B6=D0=BD=D1=8B=D1=85&quot; =D0=
+=B4=D0=B0=D0=BD=D0=BD=D1=8B=D1=85
+public class DataPart
+{
+    public int Val1 { get; set; }
+    public int Val2 { get; set; }
+}</pre>
+</div></div><p>=C2=A0</p><h2 id=3D"id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=
+=D1=8B=D0=B8=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=
+=B8=D1=8FZen.Core-=D0=A8=D0=B0=D0=B34.=D0=98=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=
+=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D0=B5IoC=D0=B4=D0=BB=D1=8F=D1=80=D0=B0=
+=D0=B1=D0=BE=D1=82=D1=8B=D1=81=D0=BA=D0=BE=D0=BC=D0=BF=D0=BE=D0=BD=D0=B5=D0=
+=BD=D1=82=D0=B0=D0=BC=D0=B8.">=D0=A8=D0=B0=D0=B3 4. =D0=98=D1=81=D0=BF=D0=
+=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D0=B5 IoC =D0=B4=D0=BB=
+=D1=8F =D1=80=D0=B0=D0=B1=D0=BE=D1=82=D1=8B =D1=81 =D0=BA=D0=BE=D0=BC=D0=BF=
+=D0=BE=D0=BD=D0=B5=D0=BD=D1=82=D0=B0=D0=BC=D0=B8.</h2><p>=D0=94=D0=BB=D1=8F=
+=C2=A0<strong>Zen.Core</strong> =D0=BE=D1=81=D0=BD=D0=BE=D0=B2=D0=BD=D1=8B=
+=D0=BC =D0=BF=D1=83=D1=82=D0=B5=D0=BC DI\IoC =D1=8F=D0=B2=D0=BB=D1=8F=D0=B5=
+=D1=82=D1=81=D1=8F =D0=B8=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=
+=D0=B0=D0=BD=D0=B8=D0=B5 Constructor Injection (=D0=B8=D1=81=D0=BF=D0=BE=D0=
+=BB=D1=8C=D0=B7=D1=83=D0=B5=D1=82=D1=81=D1=8F =D0=BF=D0=BE =D1=83=D0=BC=D0=
+=BE=D0=BB=D1=87=D0=B0=D0=BD=D0=B8=D1=8E =D0=B4=D0=BB=D1=8F =D0=B2=D1=81=D0=
+=B5=D1=85 =D1=82=D0=B8=D0=BF=D0=BE=D0=B2 =D0=B7=D0=B0=D1=80=D0=B5=D0=B3=D0=
+=B8=D1=81=D1=82=D1=80=D0=B8=D1=80=D0=BE=D0=B2=D1=8B=D0=BD=D0=BD=D1=8B=D1=85=
+ =D0=B2 =D0=BC=D0=BE=D0=B4=D1=83=D0=BB=D1=8F=D1=85 =D0=BF=D1=80=D0=B8=D0=BB=
+=D0=BE=D0=B6=D0=B5=D0=BD=D0=B8=D0=B9). =D0=A2=D0=B0=D0=BA-=D0=B6=D0=B5 =D0=
+=B2 =D0=BC=D0=BE=D0=B4=D1=83=D0=BB=D0=B5 =D0=BC=D0=BE=D0=B6=D0=BD=D0=BE =D1=
+=83=D0=BA=D0=B0=D0=B7=D0=B0=D1=82=D1=8C =D0=BD=D0=B5=D0=BE=D0=B1=D1=85=D0=
+=BE=D0=B4=D0=B8=D0=BC=D0=BE=D1=81=D1=82=D1=8C =D1=80=D0=B5=D0=B7=D1=80=D0=
+=B5=D1=88=D0=B5=D0=BD=D0=B8=D1=8F =D0=B7=D0=B0=D0=B2=D0=B8=D1=81=D0=B8=D0=
+=BC=D0=BE=D1=81=D1=82=D0=B5=D0=B9 =D0=B4=D0=BB=D1=8F =D1=81=D0=B2=D0=BE=D0=
+=B9=D1=81=D1=82=D0=B2 =D0=BE=D0=B1=D1=8A=D0=B5=D0=BA=D1=82=D0=BE=D0=B2.</p>=
+<p><span style=3D"font-size: 10.0pt;line-height: 13.0pt;">=D0=94=D0=BB=D1=
+=8F =D1=83=D1=81=D0=BB=D0=BE=D0=B6=D0=BD=D0=B5=D0=BD=D0=B8=D1=8F =D0=BF=D1=
+=80=D0=B8=D0=BC=D0=B5=D1=80=D0=B0 =D1=81=D0=B4=D0=B5=D0=BB=D0=B0=D0=B5=D0=
+=BC =D0=B2=D0=B5=D0=B1-=D1=81=D0=B5=D1=80=D0=B2=D0=B8=D1=81 =D0=BA=D0=BE=D1=
+=82=D0=BE=D1=80=D1=8B=D0=B9 =D0=BF=D0=BE=D0=BC=D0=BD=D0=B8=D1=82 =D0=BA=D0=
+=BE=D0=BB=D0=B8=D1=87=D0=B5=D1=81=D1=82=D0=B2=D0=BE =D0=BF=D1=80=D0=B8=D0=
+=B2=D0=B5=D1=82=D1=81=D1=82=D0=B2=D0=B8=D0=B9 =D0=BF=D0=BE=D1=81=D0=BB=D0=
+=B0=D0=BD=D0=BD=D1=8B=D1=85 =D0=BE=D1=82 =D0=B8=D0=BC=D0=B5=D0=BD=D0=B8 =D0=
+=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D1=82=D0=B5=D0=BB=D1=8F. =D0=
+=94=D0=BB=D1=8F =D1=85=D1=80=D0=B0=D0=BD=D0=B5=D0=BD=D0=B8=D1=8F =D0=B4=D0=
+=B0=D0=BD=D0=BD=D1=8B=D1=85 =D0=B8=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D1=
+=83=D0=B5=D1=82=D1=81=D1=8F RaveDB Embeeded.</span></p><ol><li><p>=D0=A1=D0=
+=BE=D0=B7=D0=B4=D0=B0=D0=B5=D0=BC =D0=BE=D0=B1=D1=8A=D0=B5=D0=BA=D1=82 =D0=
+=B4=D0=BB=D1=8F =D1=85=D1=80=D0=B0=D0=BD=D0=B5=D0=BD=D0=B8=D1=8F =D0=B4=D0=
+=B0=D0=BD=D0=BD=D1=8B=D1=85</p><div class=3D"code panel" style=3D"border-wi=
+dth: 1px;"><div class=3D"codeContent panelContent">
+<pre class=3D"theme: Confluence; brush: csharp; gutter: false" style=3D"fon=
+t-size:12px;">public class UserQueryCount : HasGuidId
+{
+    public string UserName { get; set; }
+    public int Count { get; set; }
+}</pre>
+</div></div></li><li><p>=D0=97=D0=B0=D0=BF=D1=80=D0=B0=D1=88=D0=B8=D0=B2=D0=
+=B0=D0=B5=D0=BC =D1=80=D0=B5=D0=BF=D0=BE=D0=B7=D0=B8=D1=82=D0=B0=D1=80=D0=
+=B8=D0=B9 =D0=B4=D0=BB=D1=8F =D1=85=D1=80=D0=B0=D0=BD=D0=B5=D0=BD=D0=B8=D1=
+=8F =D0=BE=D0=B1=D1=8A=D0=B5=D0=BA=D1=82=D0=BE=D0=B2 =D0=B4=D0=B0=D0=BD=D0=
+=BD=D1=8B=D1=85 =D1=87=D0=B5=D1=80=D0=B5=D0=B7 IoC =D0=B8 =D0=B8=D1=81=D0=
+=BF=D0=BE=D0=BB=D1=8C=D0=B7=D1=83=D0=B5=D0=BC =D0=B5=D0=B3=D0=BE</p><div cl=
+ass=3D"code panel" style=3D"border-width: 1px;"><div class=3D"codeContent p=
+anelContent">
+<pre class=3D"theme: Confluence; brush: csharp; gutter: false" style=3D"fon=
+t-size:12px;">public class HelloWorldService : IHelloWorldService
+{
+    private readonly IRepositoryWithGuid&lt;UserQueryCount&gt; _userReposit=
+ory;
+    public HelloWorldService(IRepositoryWithGuid&lt;UserQueryCount&gt; user=
+Repository)
+    {
+        _userRepository =3D userRepository;
+    }
+    public string Hello(string name)
+    {
+        var userProfile =3D _userRepository.Query.FirstOrDefault(i =3D&gt; =
+i.UserName =3D=3D name);
+        if (userProfile =3D=3D null)
+        {
+            userProfile =3D new UserQueryCount()
+                {
+                    Count =3D 1,
+                    UserName =3D name
+                };
+            _userRepository.Store(userProfile);
+        }
+        else
+        {
+            userProfile.Count++;
+        }
+        _userRepository.SaveChanges();
+        return string.Format(&quot;{0}] Hello {1} count: {2}&quot;, DateTim=
+e.Now, name, userProfile.Count);
+    }
+    public string GetWebserviceName()
+    {
+        return GetType().Name;
+    }
+}</pre>
+</div></div><h2 id=3D"id-=D0=9F=D1=80=D0=B8=D0=BC=D0=B5=D1=80=D1=8B=D0=B8=
+=D1=81=D0=BF=D0=BE=D0=BB=D1=8C=D0=B7=D0=BE=D0=B2=D0=B0=D0=BD=D0=B8=D1=8FZen=
+.Core-=D0=A8=D0=B0=D0=B35.=D0=A1=D0=BE=D0=B7=D0=B4=D0=B0=D0=BD=D0=B8=D0=B5=
+=D0=B2=D0=BD=D1=83=D1=82=D1=80=D0=B5=D0=BD=D0=BD=D0=B5=D0=B3=D0=BE=D0=BF=D1=
+=80=D0=BE=D1=86=D0=B5=D1=81=D1=81=D0=B0">=D0=A8=D0=B0=D0=B3 5. =D0=A1=D0=BE=
+=D0=B7=D0=B4=D0=B0=D0=BD=D0=B8=D0=B5 =D0=B2=D0=BD=D1=83=D1=82=D1=80=D0=B5=
+=D0=BD=D0=BD=D0=B5=D0=B3=D0=BE =D0=BF=D1=80=D0=BE=D1=86=D0=B5=D1=81=D1=81=
+=D0=B0</h2><p><br /><br /></p></li></ol>
+    </body>
+</html>
+------=_Part_11272_14742982.1382113868629
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///C:/attach_e1387f29413a4575c2e480266ccf6d00
+
+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
+OYQRANUQRgAAwBzCCIBqCCMAAGAOYQRANYQRAAAwhzACoBrCCAAAmEMYAVANYQQAAMwhjACohjAC
+AADmEEYAVEMYAQAAcwgjAKohjAAAgDmEEQDVEEYAAMAcwgiAaggjAABgDmEEQDWEEQAAMIcwAqAa
+wggAAJhDGAFQDWEEAADMIYwAqIYwAgAA5hBGAFRDGAEAAHMIIwCqIYwAAIA5hBEA1RBGAADAHMII
+gGoIIwAAYA5hBEA1hBEAADCHMAKgGsIIAACYQxgBUA1hBAAAzCGMAKiGMAIAAOYQRgBUQxgBAABz
+CCMAqiGMAACAOYQRANUQRgAAwBzCCIBqCCMAAGAOYQRANYQRAAAwhzACoBrCCAAAmEMYAVANYQQA
+AMwhjACohjACAADmEEYAVEMYAQAAcwgjAKohjAAAgDmEEQDVEEYAAMAcwgiAaggjAABgDmEEQDWE
+EQAAMIcwAqAawggAAJhDGAFQDWEEAADMIYwAqIYwAgAA5hBGAFRDGAEAAHMIIwCqIYwAAIA5hBEA
+1RBGAADAHMIIgGoIIwAAYA5hBEA1hBEAADCHMAKgGsIIAACYQxgBUA1hBAAAzCGMAKiGMAIAAOYQ
+RgBUQxgBAABzCCMAqiGMAACAOYQRANUQRgAAwBzCCIBqCCMAAGAOYQRANYQRAAAwhzACoBrCCAAA
+mEMYAVANYQQAAMwhjACohjACAADmEEYAVEMYAQAAcwgjAKohjAAAgDmEEQDVEEYAAMAcwgiAaggj
+AABgDmEEQDWEEQAAMIcwAqAawggAAJhDGAFQDWEEAADMIYwAqIYwAgAA5hBGAFRDGAEAAHMIIwCq
+IYwAAIA5hBEA1RBGAADAHMIIgGoIIwAAYA5hBEA1hBEAADCHMAKgGsIIAACYQxgBUA1hBAAAzCGM
+AKiGMAIAAOYQRgBUQxgBAABzCCMAqiGMAACAOYQRANUQRgAAwBzCCIBqCCMAAGAOYQRANYQRAAAw
+hzACoBrCCAAAmEMYAVANYQQAAMwhjACohjACAADmEEYAVEMYAQAAcwgjAKohjAAAgDmEEQDVEEYA
+AMAcwgiAaggjAABgDmEEQDWEEQAAMIcwAqAawggAAJhDGAFQDWEEAADMIYwAqIYwAgAA5hBGAFRD
+GAEAAHMIIwCqIYwAAIA5hBEA1RBGAADAHMIIgGoIIwAAYA5hBEA1hBEAADCHMAKgGsIIAACYQxgB
+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
+Av/j6v8H58XPjaIuO0wAAAAASUVORK5CYII=
+------=_Part_11272_14742982.1382113868629--
