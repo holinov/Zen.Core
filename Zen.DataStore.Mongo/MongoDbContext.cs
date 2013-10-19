@@ -10,7 +10,7 @@ namespace Zen.DataStore.Mongo
         private readonly MongoServer _server;
         private readonly MongoDatabase _database;
 
-        public MongoDbContext(string connectionString = "mongodb://localhost", string databaseName="ZenDatabase")
+        public MongoDbContext(string connectionString = "mongodb://localhost", string databaseName = "ZenDatabase")
         {
             _client = new MongoClient(connectionString);
             _server = _client.GetServer();
