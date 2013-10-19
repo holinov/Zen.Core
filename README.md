@@ -13,4 +13,12 @@ Zen.Core - библиотека для быстрого построения п�
 * Zen.Host.Launcher - Приложение ланчер, способное работаь в консоли и как сервис
 * Zen.Host.WebServices - Хост WCF сервисов для Zen.Host.Launcher
 
-[NuGet](https://www.nuget.org/packages/Zen.Core/)
+Nuget пакеты
+========
+
+* https://www.nuget.org/packages/Zen.Core/
+* https://www.nuget.org/packages/Zen.Core.Host/
+* https://www.nuget.org/packages/Zen.Core.Raven/
+* https://www.nuget.org/packages/Zen.Core.Raven.Embeeded/
+* https://www.nuget.org/packages/Zen.Core.Mongo/
+
