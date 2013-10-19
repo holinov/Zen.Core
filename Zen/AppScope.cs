@@ -11,6 +11,10 @@ namespace Zen
     {
         private readonly ILifetimeScope _scope;
 
+        /// <summary>
+        /// Создать область видимости по области видимости контейнера
+        /// </summary>
+        /// <param name="scope">Ссылка на контейнер Autofac</param>
         public AppScope(ILifetimeScope scope)
         {
             if (scope == null) throw new ArgumentNullException("scope");

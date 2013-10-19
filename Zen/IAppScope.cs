@@ -24,13 +24,13 @@ namespace Zen
         object Resolve(Type type);
 
         /// <summary>
-        ///     Сощдать вложенную область видимости
+        ///     Создать вложенную область видимости
         /// </summary>
         /// <returns>Новая область видимости</returns>
         AppScope BeginScope();
 
         /// <summary>
-        ///     Сощдать вложенную область видимости
+        ///     Создать вложенную область видимости
         /// </summary>
         /// <returns>Новая область видимости</returns>
         AppScope BeginScope(Action<ContainerBuilder> confAction);

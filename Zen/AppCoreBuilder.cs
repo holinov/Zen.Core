@@ -11,6 +11,10 @@ namespace Zen
     {
         private readonly ContainerBuilder _builder;
 
+        /// <summary>
+        /// Создать построитель ядра
+        /// </summary>
+        /// <param name="builder">Построитель контейнера Autofac</param>
         public AppCoreBuilder(ContainerBuilder builder)
         {
             _builder = builder;

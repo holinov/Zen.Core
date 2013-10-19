@@ -8,6 +8,10 @@ namespace Zen
     /// </summary>
     public class AppCore : AppScope
     {
+        /// <summary>
+        /// Создать область видимости приложения
+        /// </summary>
+        /// <param name="container">Контейнер области видимости приложения</param>
         public AppCore(ILifetimeScope container)
             : base(container)
         {

@@ -10,6 +10,11 @@ namespace Zen.DataStore.Mongo
         {
         }
 
+        /// <summary>
+        ///     Найти объект по GUID
+        /// </summary>
+        /// <param name="guid">Уникальный ИД объекта</param>
+        /// <returns></returns>
         public T Find(Guid guid)
         {
             return Query.FirstOrDefault(e => e.Guid == guid);
@@ -20,6 +25,10 @@ namespace Zen.DataStore.Mongo
             return Query.Where(e => guids.Contains(e.Guid));
         }
 
+        /// <summary>
+        ///     Клонировать документ
+        /// </summary>
+        /// <param name="entity">Документ, который нужно клонировать</param>
         public void Clone(T entity)
         {
             throw new NotImplementedException();

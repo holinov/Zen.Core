@@ -17,25 +17,43 @@ namespace Zen.DataStore.Mongo
             _collection = _dbContext.Database.GetCollection<T>(typeof (T).Name);
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        /// <filterpriority>2</filterpriority>
         public void Dispose()
         {
         }
 
+        /// <summary>
+        ///     Постоить запрос
+        /// </summary>
         public IQueryable<T> Query
         {
             get { return _collection.AsQueryable(); }
         }
 
-        public MongoCollection<T> Collection
+        /// <summary>
+        /// Коллекция Mongo DB
+        /// </summary>
+        protected MongoCollection<T> Collection
         {
             get { return _collection; }
         }
 
+        /// <summary>
+        /// Контекс БД Mongo
+        /// </summary>
         public MongoDbContext DbContext
         {
             get { return _dbContext; }
         }
 
+        /// <summary>
+        ///     Найти объект БД по строковому ИД
+        /// </summary>
+        /// <param name="id">Ид объекта</param>
+        /// <returns>Объект из БД</returns>
         public T Find(string id)
         {
             return Query.FirstOrDefault(e => e.Id == id);
@@ -46,6 +64,10 @@ namespace Zen.DataStore.Mongo
             return Query.Where(e => ids.Contains(e.Id));
         }
 
+        /// <summary>
+        ///     Сохранить объект в БД
+        /// </summary>
+        /// <param name="entity">Объект</param>
         public void Store(T entity)
         {
             _collection.Save(entity);
@@ -61,6 +83,9 @@ namespace Zen.DataStore.Mongo
             DeleteById(entity.Id);
         }
 
+        /// <summary>
+        ///     Сохранить изменения сессии
+        /// </summary>
         public void SaveChanges()
         {
             //TODO: Save\Rollback 
