@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Configuration.Install;
 using System.Reflection;
+using System.ServiceProcess;
 using Zen.Host.WebServices;
 using log4net;
 using log4net.Config;
@@ -22,8 +23,15 @@ namespace Zen.Host.Launcher
             }
             else
             {
-                //Запуск в режиме консольного приложения
-                RunConsole();                
+                if (Environment.UserInteractive)
+                {
+                    //Запуск в режиме консольного приложения
+                    RunConsole();
+                }
+                else
+                {
+                    ServiceBase.Run(new ServiceAppHost());
+                }
             }
         }
 

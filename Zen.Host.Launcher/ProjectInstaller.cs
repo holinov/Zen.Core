@@ -10,13 +10,19 @@ namespace Zen.Host.Launcher
         public ProjectInstaller()
         {
             InitializeComponent();
-            serviceInstaller1.ServiceName = ServiceName;
+            //serviceInstaller1.ServiceName = ServiceName;
+            //se
         }
 
         public static string ServiceName
         {
             get { return _serviceName; }
             set { _serviceName = value; }
+        }
+
+        private void serviceProcessInstaller1_AfterInstall(object sender, System.Configuration.Install.InstallEventArgs e)
+        {
+
         }
     }
 }
