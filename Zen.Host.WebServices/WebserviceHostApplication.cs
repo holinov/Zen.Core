@@ -100,12 +100,19 @@ namespace Zen.Host.WebServices
             }
         }
 
-        private readonly ILog Log = LogManager.GetLogger(typeof (WebserviceHostApplication));
+        private static readonly ILog Log = LogManager.GetLogger(typeof (WebserviceHostApplication));
         public void Stop()
         {
             foreach (var host in _hosts)
             {
-                host.Close(TimeSpan.FromMinutes(1));
+                try
+                {
+                    host.Close(TimeSpan.FromMinutes(1));
+                }
+                catch (Exception ex)
+                {
+                    Log.Warn("Ошибка остановки хоста веб-сервиса", ex);
+                }
             }
             _tokenSource.Cancel();
 
