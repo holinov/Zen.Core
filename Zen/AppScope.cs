@@ -9,8 +9,6 @@ namespace Zen
     /// </summary>
     public class AppScope : IAppScope
     {
-        private readonly ILifetimeScope _scope;
-
         /// <summary>
         /// Создать область видимости по области видимости контейнера
         /// </summary>
@@ -18,16 +16,17 @@ namespace Zen
         public AppScope(ILifetimeScope scope)
         {
             if (scope == null) throw new ArgumentNullException("scope");
-            _scope = scope;
+            Scope = scope;
+        }
+
+        protected AppScope()
+        {
         }
 
         /// <summary>
         ///     Ссылка на контейнер Autofac
         /// </summary>
-        public ILifetimeScope Scope
-        {
-            get { return _scope; }
-        }
+        public ILifetimeScope Scope { get; protected set; }
 
         /// <summary>
         ///     Разрешить зависимость
@@ -36,7 +35,7 @@ namespace Zen
         /// <returns>Созданный объект</returns>
         public TType Resolve<TType>()
         {
-            return _scope.Resolve<TType>();
+            return Scope.Resolve<TType>();
         }
 
         /// <summary>
@@ -46,7 +45,7 @@ namespace Zen
         /// <returns>Созданный объект</returns>
         public object Resolve(Type type)
         {
-            return _scope.Resolve(type);
+            return Scope.Resolve(type);
         }
 
         /// <summary>
@@ -55,7 +54,13 @@ namespace Zen
         /// <returns>Новая область видимости</returns>
         public AppScope BeginScope()
         {
-            return new AppScope(_scope.BeginLifetimeScope());
+            var scope = new AppScope();
+            var lscope = Scope.BeginLifetimeScope(b => b.Register(c => scope)
+                .AsImplementedInterfaces()
+                .AsSelf()
+                .InstancePerLifetimeScope());
+            scope.Scope = lscope;
+            return scope;
         }
 
         /// <summary>
@@ -64,12 +69,22 @@ namespace Zen
         /// <returns>Новая область видимости</returns>
         public AppScope BeginScope(Action<ContainerBuilder> confAction)
         {
-            return new AppScope(_scope.BeginLifetimeScope(confAction));
+            var scope = new AppScope();
+            var lscope = Scope.BeginLifetimeScope(b =>
+                {
+                    b.Register(c => scope)
+                     .AsImplementedInterfaces()
+                     .AsSelf()
+                     .InstancePerLifetimeScope();
+                    confAction(b);
+                });
+            scope.Scope = lscope;
+            return scope;
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
-            _scope.Dispose();
+            Scope.Dispose();
         }
     }
 }

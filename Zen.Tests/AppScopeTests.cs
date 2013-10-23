@@ -36,6 +36,9 @@ namespace Zen.Tests
                 {
                     var t2 = inner.Resolve<TestClass2>();
                     Assert.AreNotSame(t1, t2);
+
+                    var resolvedScope = inner.Resolve<IAppScope>();
+                    Assert.AreSame(inner,resolvedScope);
                 }
             }
         }
