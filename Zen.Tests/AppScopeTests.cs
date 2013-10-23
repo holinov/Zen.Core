@@ -16,6 +16,47 @@ namespace Zen.Tests
             public int Val { get; set; }
         }
 
+
+        public interface IInterface
+        {
+            TestClass1 Test1 { get; }
+            TestClass2 Test2 { get; } 
+        }
+
+        [Test]
+        public void EmitInterfaceImplementorTest()
+        {
+            EmitInterfaceImplementorBase.SaveCache = false;
+            var builder = new ContainerBuilder();
+            builder.RegisterType<TestClass1>().AsSelf().InstancePerDependency();
+            builder.RegisterType<TestClass2>().AsSelf().InstancePerLifetimeScope();
+            
+            using (var core = AppCoreBuilder.Create(builder)
+                .Configure(b =>
+                    {
+                        b.RegisterGeneric(typeof (EmitInterfaceImplementor<>))
+                         .AsSelf()
+                         .InstancePerLifetimeScope();
+
+                        b.Register(c => c.Resolve<EmitInterfaceImplementor<IInterface>>().ImplementInterface())
+                         .AsSelf();
+                    }).Build())
+            {
+                using (var scope=core.BeginScope())
+                {
+                    var vaf = scope.Resolve<EmitInterfaceImplementor<IInterface>>().ImplementInterface();
+                    Assert.NotNull(vaf);
+                    Assert.NotNull(vaf.Test1);
+                    Assert.NotNull(vaf.Test2);
+
+                    var vaf1 = scope.Resolve<IInterface>();
+                    Assert.AreNotSame(vaf, vaf1);
+                    Assert.AreSame(vaf.Test2, vaf1.Test2);
+                    Assert.AreNotSame(vaf.Test1, vaf1.Test1);
+                }
+            }
+        }
+
         [Test]
         public void AppScopeTest()
         {

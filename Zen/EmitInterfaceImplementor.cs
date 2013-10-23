@@ -11,13 +11,19 @@ namespace Zen
     public class EmitInterfaceImplementor<TInterface> : EmitInterfaceImplementorBase
     {
         private FieldBuilder _fieldScopeBuilder;
+        private readonly AppScope _scope;
+
+        public EmitInterfaceImplementor(AppScope scope)
+        {
+            this._scope = scope;
+        }
 
         /// <summary>
         /// Получить реализацию интерфейса
         /// </summary>
         /// <param name="scope">Область видимости для IoC</param>
         /// <returns>Экземпляр класса реализующий интерфейс</returns>
-        public TInterface ImplementInterface(AppScope scope)
+        public TInterface ImplementInterface()
         {
             var interfaceType = typeof(TInterface);
             if (!Types.ContainsKey(interfaceType))
@@ -39,7 +45,7 @@ namespace Zen
                 Types[interfaceType] = typeBuilder.CreateType();
             }
             var type = Types[interfaceType];
-            var inst = Activator.CreateInstance(type, scope);
+            var inst = Activator.CreateInstance(type, _scope);
             return (TInterface)inst;
         }
 
