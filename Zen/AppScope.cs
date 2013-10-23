@@ -84,7 +84,11 @@ namespace Zen
 
         public virtual void Dispose()
         {
-            Scope.Dispose();
+            if (Scope != null)
+            {
+                Scope.Dispose();
+                Scope = null;
+            }
         }
     }
 }

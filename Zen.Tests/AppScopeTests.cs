@@ -30,19 +30,14 @@ namespace Zen.Tests
             var builder = new ContainerBuilder();
             builder.RegisterType<TestClass1>().AsSelf().InstancePerDependency();
             builder.RegisterType<TestClass2>().AsSelf().InstancePerLifetimeScope();
-            
-            using (var core = AppCoreBuilder.Create(builder)
-                .Configure(b =>
-                    {
-                        b.RegisterGeneric(typeof (EmitInterfaceImplementor<>))
-                         .AsSelf()
-                         .InstancePerLifetimeScope();
 
-                        b.Register(c => c.Resolve<EmitInterfaceImplementor<IInterface>>().ImplementInterface())
-                         .AsSelf();
-                    }).Build())
+            using (var core = AppCoreBuilder
+                .Create(builder)
+                .AddModule<EmitImplementerModule>()
+                .Configure(b => b.RegisterInterfaceForEmit<IInterface>())
+                .Build())
             {
-                using (var scope=core.BeginScope())
+                using (var scope = core.BeginScope())
                 {
                     var vaf = scope.Resolve<EmitInterfaceImplementor<IInterface>>().ImplementInterface();
                     Assert.NotNull(vaf);

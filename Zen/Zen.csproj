@@ -48,8 +48,10 @@
     <Compile Include="AppCoreBuilder.cs" />
     <Compile Include="AppScope.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="EmitImplementerModule.cs" />
     <Compile Include="EmitInterfaceImplementor.cs" />
     <Compile Include="EmitInterfaceImplementorBase.cs" />
+    <Compile Include="EmitRegistrationHelper.cs" />
     <Compile Include="ExceptionReflector.cs" />
     <Compile Include="IAppScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
