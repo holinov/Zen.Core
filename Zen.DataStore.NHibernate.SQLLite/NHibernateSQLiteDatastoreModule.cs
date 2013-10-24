@@ -33,7 +33,10 @@ namespace Zen.DataStore.NHibernate.SQLLite
                        if (!s.IsClosed) s.Close();
                    })
                    .SingleInstance();
-            builder.Register(c => c.Resolve<ISessionFactory>().OpenSession()).As<ISession>().InstancePerDependency();
+
+            builder.Register(c => c.Resolve<ISessionFactory>().OpenSession())
+                   .As<ISession>()
+                   .InstancePerLifetimeScope();
         }
 
         private ISessionFactory BuildSessionFactory()

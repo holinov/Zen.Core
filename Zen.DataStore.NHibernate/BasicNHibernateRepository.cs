@@ -20,17 +20,16 @@ namespace Zen.DataStore.NHibernate
         public BasicNHibernateRepository(ISession session, ITransaction transaction)
         {
             _session = session;
-            _transaction = transaction;
+            //_transaction = transaction;
         }
 
         public void Dispose()
         {
             if (_transaction != null) _transaction.Dispose();
-            if (_session != null)
+            /*if (_session != null)
             {
-                _session.Close();
                 _session.Dispose();
-            }
+            }*/
         }
 
         /// <summary>
@@ -64,10 +63,13 @@ namespace Zen.DataStore.NHibernate
 
         public void StoreBulk(IEnumerable<TEntity> entities)
         {
+            var innerSession = _session;
+            var tr = innerSession.BeginTransaction();
             foreach (var entity in entities)
             {
-                _session.SaveOrUpdate(entity);
+                innerSession.SaveOrUpdate(entity);
             }
+            tr.Commit();
         }
 
         /// <summary>
