@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Zen.Host")]
+[assembly: AssemblyTitle("Zen.NugetPacker")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Zen.Host")]
+[assembly: AssemblyProduct("Zen.NugetPacker")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d435012e-11d9-4223-817e-4e531494d0f6")]
+[assembly: Guid("6fa83fe4-8ac3-4eb3-b211-3834f69ee459")]
 
 // Version information for an assembly consists of the following four values:
 //

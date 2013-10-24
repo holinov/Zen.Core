@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Zen.Core.Raven.Embeeded</id>
-        <version>1.1.0.7</version>
+        <version>{{VERSION}}</version>
         <authors>frut</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Модуль встроенного хранения данных в RavenDB для Zon.Core</description>

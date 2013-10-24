@@ -52,15 +52,11 @@ namespace Zen.Tests.DataStore.NHibernate
         public void BasicNHibernateRepositoryTest()
         {
             string realId;
-            //using (var sess = _ds.OpenSession())
             using (var scope = _core.BeginScope())
             {
                 using (var repos = scope.Resolve<IRepositoryWithGuid<TestObject>>())
                 using (var repos1 = scope.Resolve<IRepositoryWithGuid<TestObject>>())
-                    //using (var repos1 = _core.Resolve<IRepositoryWithGuid<TestObject1>>())
                 {
-                    var item1 = new TestObject {Name = "1233"};
-                    // repos.Store(item1);
                     var item = new TestObject
                         {
                             Name = "123",
@@ -78,7 +74,6 @@ namespace Zen.Tests.DataStore.NHibernate
                 using (var repos = scope.Resolve<IRepositoryWithGuid<TestObject>>())
                 {
                     var items = repos.Query.First();
-                    //Assert.Greater(items.Count(), 0);
                     Assert.NotNull(items);
                 }
             }

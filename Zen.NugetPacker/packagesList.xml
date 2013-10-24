@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackagesConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+                SolutionPath="C:\src\Zen.Core" 
+                BuildType="Release" 
+                VersionString="1.1.0.16" 
+                Publish="false"
+                PublishKey="insert your key">
+  <Packages>
+    <NugetPackage Name="Zen.Core">
+      <Projects>
+        <Project Name="Zen" />
+        <Project Name="Zen.DataStore" />
+      </Projects>
+    </NugetPackage>
+    <NugetPackage Name="Zen.Core.Host">
+      <Projects>
+        <Project Name="Zen.Host" />
+        <Project Name="Zen.Host.Launcher" />
+        <Project Name="Zen.Host.WebServices" />
+      </Projects>
+    </NugetPackage>
+    <NugetPackage Name="Zen.Core.Mongo">
+      <Projects>
+        <Project Name="Zen.DataStore.Mongo" />
+      </Projects>
+    </NugetPackage>
+    <NugetPackage Name="Zen.Core.NHibernate">
+      <Projects>
+        <Project Name="Zen.DataStore.NHibernate" />
+      </Projects>
+    </NugetPackage>
+    <NugetPackage Name="Zen.Core.NHibernate.SQLite">
+      <Projects>
+        <Project Name="Zen.DataStore.NHibernate.SQLLite" />
+      </Projects>
+    </NugetPackage>
+    <NugetPackage Name="Zen.Core.Raven">
+      <Projects>
+        <Project Name="Zen.DataStore.Raven" />
+      </Projects>
+    </NugetPackage>
+    <NugetPackage Name="Zen.Core.Raven.Embeeded">
+      <Projects>
+        <Project Name="Zen.DataStore.Raven.Embeeded" />
+      </Projects>
+    </NugetPackage>
+  </Packages>
+</PackagesConfig>

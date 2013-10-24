@@ -151,3 +151,7 @@ $RECYCLE.BIN/
 .DS_Store
 packages/*/*
 Examples/packages/*/*
+nuget/Templates/*/lib/*
+nuget/Templates/*/*.nupkg
+
+
