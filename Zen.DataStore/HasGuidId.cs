@@ -10,14 +10,15 @@ namespace Zen.DataStore
 
         protected HasGuidId()
         {
-            Guid = Guid.NewGuid();
+            _guid = Guid.NewGuid();
+            Id = GetType().Name + "s/" + _guid;
         }
 
         /// <summary>
         ///     Гуид записи
         /// </summary>
         [DisplayName("ГУИД")]
-        public Guid Guid
+        public virtual Guid Guid
         {
             get { return _guid; }
             set
