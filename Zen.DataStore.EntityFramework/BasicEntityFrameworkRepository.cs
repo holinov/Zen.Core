@@ -50,7 +50,7 @@ namespace Zen.DataStore.EntityFramework
                 int counter = 0;
                 foreach (var entity in entities)
                 {
-                    bulkContext.Set<TEntity>().Add(entity);
+                    bulkContext.Entry(entity).State = EntityState.Added;
                     counter++;
                     if (counter % 100 == 0)
                         bulkContext.SaveChanges();
