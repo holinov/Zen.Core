@@ -8,12 +8,14 @@ namespace Zen.DataStore.EntityFramework
 	public class BasicEntityFrameworkRepository<TEntity> : IRepository<TEntity> where TEntity : HasStringId
 	{
         protected DbContext _context;
+        protected IDbContextFactory _contextFactory;
         protected DbSet<TEntity> _dbSet;
 
-        public BasicEntityFrameworkRepository(DbContext context)
+        public BasicEntityFrameworkRepository(IDbContextFactory contextFactory)
         {
-            _context = context;
-            _dbSet = context.Set<TEntity>();
+            _context = contextFactory.Create();
+            _dbSet = _context.Set<TEntity>();
+            _contextFactory = contextFactory;
         }
 
         public IQueryable<TEntity> Query
@@ -41,7 +43,20 @@ namespace Zen.DataStore.EntityFramework
 
         public void StoreBulk(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            using (var bulkContext = _contextFactory.Create())
+            {
+                bulkContext.Configuration.AutoDetectChangesEnabled = false;
+                bulkContext.Configuration.ValidateOnSaveEnabled = false;
+                int counter = 0;
+                foreach (var entity in entities)
+                {
+                    bulkContext.Set<TEntity>().Add(entity);
+                    counter++;
+                    if (counter % 100 == 0)
+                        bulkContext.SaveChanges();
+                }
+                bulkContext.SaveChanges();
+            }
         }
 
         public void Delete(TEntity entity)
