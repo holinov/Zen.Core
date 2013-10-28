@@ -36,7 +36,7 @@ namespace Zen.DataStore.NHibernate.SQLLite
 
             builder.Register(c => c.Resolve<ISessionFactory>().OpenSession())
                    .As<ISession>()
-                   .InstancePerLifetimeScope();
+                   .SingleInstance();
         }
 
         private ISessionFactory BuildSessionFactory()
