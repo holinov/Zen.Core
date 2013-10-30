@@ -19,12 +19,14 @@ namespace Zen.DataStore.Raven.Embeeded
         private readonly bool _httpAccesss;
         private readonly Assembly[] _indexAssemblies;
         private bool _useCreationConverter = true;
+        private readonly int _httpAccesssPort;
 
-        public RavenEmbeededDataStoreModule(string dataDirectory, bool httpAccesss = false,
+        public RavenEmbeededDataStoreModule(string dataDirectory, bool httpAccesss = false, int httpAccesssPort = 9999,
                                             params Assembly[] indexAssemblies)
         {
             _dataDirectory = dataDirectory;
             _httpAccesss = httpAccesss;
+            _httpAccesssPort = httpAccesssPort;
             _indexAssemblies = indexAssemblies;
         }
 
@@ -67,7 +69,7 @@ namespace Zen.DataStore.Raven.Embeeded
             if (_httpAccesss)
             {
                 ds.UseEmbeddedHttpServer = true;
-                NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(9999);
+                NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(_httpAccesssPort);
             }
 
             if (converter != null && UseCreationConverter)
