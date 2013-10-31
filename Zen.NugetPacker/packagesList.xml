@@ -2,7 +2,7 @@
 <PackagesConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
                 SolutionPath="C:\src\Zen.Core" 
                 BuildType="Release" 
-                VersionString="1.1.0.18" 
+                VersionString="1.1.0.21" 
                 Publish="true"
                 PublishKey="0b95448f-b7cf-42db-bef3-00f689b280dc">
   <Packages>
@@ -32,11 +32,6 @@
     <NugetPackage Name="Zen.Core.EntityFramework">
       <Projects>
         <Project Name="Zen.DataStore.EntityFramework" />
-      </Projects>
-    </NugetPackage>
-    <NugetPackage Name="Zen.Core.Raven">
-      <Projects>
-        <Project Name="Zen.DataStore.Raven" />
       </Projects>
     </NugetPackage>
     <NugetPackage Name="Zen.Core.Raven">

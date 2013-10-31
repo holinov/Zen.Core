@@ -200,10 +200,6 @@ namespace Zen.DataStore.Raven
             Session.Advanced.Evict(entity);
         }
 
-        public void DeleteById(string id)
-        {
-            Session.Advanced.Defer(new DeleteCommandData { Key = id });
-        }
 
         public IEnumerable<TEntity> GetAll()
         {
@@ -235,6 +231,84 @@ namespace Zen.DataStore.Raven
                 }
             }
             return allUsers;
+        }
+
+        public IQueryable<TEntity> QueryAll(Expression<Func<TEntity, bool>> queryExpr = null)
+        {
+            return QueryAll<TEntity>(x => x, queryExpr);
+        }
+        public IQueryable<TResult> QueryAll<TResult>(Expression<Func<TEntity, TResult>> selectExpr, Expression<Func<TEntity, bool>> queryExpr = null)
+        {
+            var total = Session.Query<TEntity>().Count();
+
+            var pages = queryAllFrom<TResult>(0, total, new List<IQueryable<TResult>>(), queryExpr, selectExpr);
+
+            var result = new List<TResult>().AsQueryable();
+
+            pages.ForEach(x =>
+            {
+                result = result.Union(x);
+            });
+
+            return result;
+        }
+
+        private List<IQueryable<TResult>> queryAllFrom<TResult>(int startFrom, int total, List<IQueryable<TResult>> list, Expression<Func<TEntity, bool>> query, Expression<Func<TEntity, TResult>> selectExpr)
+        {
+            var allUsers = list;
+
+            using (var session = Session.Advanced.DocumentStore.OpenSession())
+            {
+                int queryCount = 0;
+                int start = startFrom;
+                while (true)
+                {
+                    var current = query == null ? session.Query<TEntity>().Skip(start).Take(1024).Select<TEntity, TResult>(selectExpr) : session.Query<TEntity>().Skip(start).Take(1024).Where(query).Select<TEntity, TResult>(selectExpr);
+                    queryCount += 1;
+                    allUsers.Add(current);
+                    start += 1024;
+
+                    if (start >= total)
+                        break;
+
+                    if (queryCount >= session.Advanced.MaxNumberOfRequestsPerSession)
+                    {
+                        return queryAllFrom(start, total, allUsers, query, selectExpr);
+                    }
+                }
+            }
+            return allUsers;
+        }
+
+        private List<TEntity> getAllFrom(int startFrom, List<TEntity> list)
+        {
+            var allUsers = list;
+
+            using (var session = Session.Advanced.DocumentStore.OpenSession())
+            {
+                int queryCount = 0;
+                int start = startFrom;
+                while (true)
+                {
+                    var current = session.Query<TEntity>().Take(1024).Skip(start).ToList();
+                    queryCount += 1;
+                    if (current.Count == 0)
+                        break;
+
+                    start += current.Count;
+                    allUsers.AddRange(current);
+
+                    if (queryCount >= session.Advanced.MaxNumberOfRequestsPerSession)
+                    {
+                        return getAllFrom(start, allUsers);
+                    }
+                }
+            }
+            return allUsers;
+        }
+        public void DeleteById(string id)
+        {
+            Session.Advanced.Defer(new DeleteCommandData { Key = id });
         }
     }
 }

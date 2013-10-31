@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq.Expressions;
 
 namespace Zen.DataStore.EntityFramework
 {
@@ -17,7 +18,36 @@ namespace Zen.DataStore.EntityFramework
             _dbSet = _context.Set<TEntity>();
             _contextFactory = contextFactory;
         }
+        public IQueryable<TEntity> QueryAll(Expression<Func<TEntity, bool>> queryExpr = null)
+        {
+            if (queryExpr != null)
+            {
+                var flt = queryExpr.Compile();
+                return Query.Where(e => flt(e));
+            }
+            else
+            {
+                return Query;
+            }
+        }
 
+        public IQueryable<TResult> QueryAll<TResult>(Expression<Func<TEntity, TResult>> selectExpr,
+                                                     Expression<Func<TEntity, bool>> queryExpr = null)
+        {
+            var q = Query;
+            IQueryable<TResult> resq;
+            if (queryExpr != null)
+            {
+                var ex = queryExpr.Compile();
+                q = q.Where(e => ex(e));
+            }
+
+            var se = selectExpr.Compile();
+            resq = q.Select(e => se(e));
+
+
+            return resq;
+        }
         public IQueryable<TEntity> Query
         {
             get 

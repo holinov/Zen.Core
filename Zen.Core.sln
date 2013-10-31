@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.NugetPacker", "Zen.Nuge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.Core.MVC4", "Zen.Core.MVC4\Zen.Core.MVC4.csproj", "{519F1707-389F-42BB-BB04-09C904B4F323}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZenMvc4Test", "ZenMvc4Test\ZenMvc4Test.csproj", "{4DB3F145-26D1-42B5-AE66-2A6558B9E591}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -212,6 +214,16 @@ Global
 		{519F1707-389F-42BB-BB04-09C904B4F323}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{519F1707-389F-42BB-BB04-09C904B4F323}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{519F1707-389F-42BB-BB04-09C904B4F323}.Release|x86.ActiveCfg = Release|Any CPU
+		{4DB3F145-26D1-42B5-AE66-2A6558B9E591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DB3F145-26D1-42B5-AE66-2A6558B9E591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DB3F145-26D1-42B5-AE66-2A6558B9E591}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4DB3F145-26D1-42B5-AE66-2A6558B9E591}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4DB3F145-26D1-42B5-AE66-2A6558B9E591}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4DB3F145-26D1-42B5-AE66-2A6558B9E591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DB3F145-26D1-42B5-AE66-2A6558B9E591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DB3F145-26D1-42B5-AE66-2A6558B9E591}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4DB3F145-26D1-42B5-AE66-2A6558B9E591}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4DB3F145-26D1-42B5-AE66-2A6558B9E591}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

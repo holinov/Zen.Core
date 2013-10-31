@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Autofac;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using IDependencyResolver = System.Web.Mvc.IDependencyResolver;
 
 namespace Zen.Core.MVC4
@@ -56,5 +57,19 @@ namespace Zen.Core.MVC4
             builder.Configure(b => b.RegisterType<ZenMvcDependencyResolver>().As<IDependencyResolver>());
             return builder;
         }
+
+        /// <summary>
+        /// Установить IoC резолверы по данным ядра
+        /// </summary>
+        /// <param name="core">Ядро</param>
+        /// <returns>Ядро</returns>
+        public static AppCore SetupResolvers(this AppCore core)
+        {
+            ZenDependencyLifetimeModule.Core = core;
+            ZenMvcDependencyResolver.Core = core;
+            DependencyResolver.SetResolver(core.Resolve<IDependencyResolver>());
+            return core;
+        }
+        
     }
 }

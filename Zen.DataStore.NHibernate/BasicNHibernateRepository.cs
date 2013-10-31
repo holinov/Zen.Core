@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using NHibernate;
 using NHibernate.Linq;
 
@@ -22,7 +23,36 @@ namespace Zen.DataStore.NHibernate
             _session = session;
             //_transaction = transaction;
         }
+        public IQueryable<TEntity> QueryAll(Expression<Func<TEntity, bool>> queryExpr = null)
+        {
+            if (queryExpr != null)
+            {
+                var flt = queryExpr.Compile();
+                return Query.Where(e => flt(e));
+            }
+            else
+            {
+                return Query;
+            }
+        }
 
+        public IQueryable<TResult> QueryAll<TResult>(Expression<Func<TEntity, TResult>> selectExpr,
+                                                     Expression<Func<TEntity, bool>> queryExpr = null)
+        {
+            var q = Query;
+            IQueryable<TResult> resq;
+            if (queryExpr != null)
+            {
+                var ex = queryExpr.Compile();
+                q = q.Where(e => ex(e));
+            }
+
+            var se = selectExpr.Compile();
+            resq = q.Select(e => se(e));
+
+
+            return resq;
+        }
         public void Dispose()
         {
             if (_transaction != null) _transaction.Dispose();

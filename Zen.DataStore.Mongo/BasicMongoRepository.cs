@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
@@ -110,6 +111,37 @@ namespace Zen.DataStore.Mongo
         public IEnumerable<T> GetAll()
         {
             return Query;
+        }
+
+        public IQueryable<T> QueryAll(Expression<Func<T, bool>> queryExpr = null)
+        {
+            if (queryExpr != null)
+            {
+                var flt = queryExpr.Compile();
+                return Query.Where(e => flt(e));
+            }
+            else
+            {
+                return Query;
+            }
+        }
+
+        public IQueryable<TResult> QueryAll<TResult>(Expression<Func<T, TResult>> selectExpr,
+                                                     Expression<Func<T, bool>> queryExpr = null)
+        {
+            var q = Query;
+            IQueryable<TResult> resq;
+            if (queryExpr != null)
+            {
+                var ex = queryExpr.Compile();
+                q = q.Where(e => ex(e));
+            }
+
+            var se = selectExpr.Compile();
+            resq = q.Select(e => se(e));
+
+
+            return resq;
         }
     }
 }

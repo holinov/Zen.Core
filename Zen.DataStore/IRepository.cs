@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Zen.DataStore
 {
@@ -55,5 +56,9 @@ namespace Zen.DataStore
         void DeleteById(string id);
 
         IEnumerable<TEntity> GetAll();
+        IQueryable<TEntity> QueryAll(Expression<Func<TEntity, bool>> queryExpr = null);
+
+        IQueryable<TResult> QueryAll<TResult>(Expression<Func<TEntity, TResult>> selectExpr,
+                                              Expression<Func<TEntity, bool>> queryExpr = null);
     }
 }

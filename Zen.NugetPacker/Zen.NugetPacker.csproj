@@ -56,6 +56,7 @@
   <ItemGroup>
     <Content Include="packagesList.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="NuGet.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

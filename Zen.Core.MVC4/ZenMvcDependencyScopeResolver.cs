@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
+using System.Web.Mvc;
 
 namespace Zen.Core.MVC4
 {
     public class ZenMvcDependencyScopeResolver : IDependencyScope
     {
+        private static AppScope _appScope;
         private readonly IAppScope _scope;
 
 
@@ -14,6 +16,13 @@ namespace Zen.Core.MVC4
             //Всегда создаем дочернюю область видимости
             _scope = scope.BeginScope();
         }
+
+        public static AppScope AppScope
+        {
+            get { return _appScope??DependencyResolver.Current.GetService<AppCore>(); }
+            set { _appScope = value; }
+        }
+
 
         /// <summary>
         /// Resolves singly registered services that support arbitrary object creation.
@@ -26,7 +35,7 @@ namespace Zen.Core.MVC4
         {
             try
             {
-                return _scope.Resolve(serviceType);
+                return AppScope.Resolve(serviceType);
             }
             catch (Exception)
             {
