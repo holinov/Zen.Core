@@ -22,6 +22,11 @@ namespace Zen
 
         static EmitInterfaceImplementorBase()
         {
+            if (IsDirty && SaveCache)
+            {
+                AppDomain.CurrentDomain.ProcessExit += (sender, args) => AssemblyBuilder.Save(AsmFileName);
+            } 
+            
             ResolveMethodInfo = null;
             foreach (var methodInfo in typeof(AppScope).GetMethods())
             {
@@ -74,6 +79,7 @@ namespace Zen
         /// <summary>
         /// Сохранить сборку
         /// </summary>
+        [Obsolete]
         public static void SaveAssembly()
         {
             if (IsDirty && SaveCache)

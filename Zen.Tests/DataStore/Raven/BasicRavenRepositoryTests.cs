@@ -129,6 +129,65 @@ namespace Zen.Tests.DataStore.Raven
             }
         }
 
+        public class LeafDataObject:HasGuidId
+        {
+            public int Number { get; set; }
+        }
+        public class RootDataObject:HasGuidId
+        {
+            public string Name { get; set; }
+            public List<Refrence<LeafDataObject>> Data { get; set; }
+        }
+        [Test]
+        public void RefrenceArrayTests()
+        {
+            Guid id;
+            using (var scope=_core.BeginScope())
+            {
+                var data = new List<LeafDataObject>();
+                for (int i = 0; i < 100; i++)
+                {
+                    data.Add(new LeafDataObject()
+                        {
+                            Number = i
+                        });
+                }
+
+                var rep = scope.Resolve<IRepositoryWithGuid<LeafDataObject>>();
+                rep.StoreBulk(data);
+
+                rep.SaveChanges();
+                var rootRep = scope.Resolve<IRepositoryWithGuid<RootDataObject>>();
+                var root = new RootDataObject()
+                    {
+                        Data = data.Select(d => new Refrence<LeafDataObject>
+                            {
+                                Id = d.Id
+                            }).ToList(),
+                        Name = "data"
+                    };
+                rootRep.Store(root);
+
+                rootRep.SaveChanges();
+                id = root.Guid;
+            }
+            using (var scope = _core.BeginScope())
+            {
+                var rootRep = scope.Resolve<IRepositoryWithGuid<RootDataObject>>();
+                var rootData = rootRep.Find(id);
+
+                Assert.AreNotEqual(rootData.Data.Count, 0);
+                foreach (var dataRef in rootData.Data)
+                {
+                    Assert.NotNull(dataRef.Repository);
+                    Assert.NotNull(dataRef.Object);
+                    Assert.GreaterOrEqual(dataRef.Object.Number, 0);
+                }
+            }
+        }
+
+
+
         [Test]
         public void ReposCreationTest()
         {

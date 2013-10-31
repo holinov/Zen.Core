@@ -23,6 +23,8 @@ namespace Zen.Tests
             TestClass2 Test2 { get; } 
         }
 
+        
+
         [Test]
         public void EmitInterfaceImplementorTest()
         {

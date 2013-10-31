@@ -20,7 +20,7 @@ namespace Zen
             _rootScope = container;
             Scope =
                 _rootScope.BeginLifetimeScope(
-                    b => b.Register(c => this).SingleInstance().AsSelf().AsImplementedInterfaces());
+                    b => b.Register(c => this).SingleInstance().AsSelf());
         }
 
         public override void Dispose()
