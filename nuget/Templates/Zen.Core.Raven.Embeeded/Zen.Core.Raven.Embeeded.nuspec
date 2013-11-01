@@ -10,7 +10,7 @@
         <language />
         <dependencies>
             <group targetFramework=".NETFramework4.5">
-                <dependency id="RavenDB.Embedded" version="2.5.2700" />
+                <dependency id="RavenDB.Embedded" version="[2.5.2750]" />
                 <dependency id="Zen.Core.Raven" version="{{VERSION}}" />
             </group>
         </dependencies>

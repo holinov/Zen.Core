@@ -96,8 +96,8 @@ namespace Zen.Tests.DataStore.Raven
                 TestObject item1 = repos.Find(realId + "123123123");
                 Assert.NotNull(item);
                 //Assert.NotNull(item);
-                //item.Refrence.Repository = repos1;
-                Assert.NotNull(item.Refrence.Repository);
+                //item.Refrence.RepositoryFactory = repos1;
+                Assert.NotNull(item.Refrence);
                 Assert.NotNull(item.Refrence.Object);
                 Assert.AreEqual(item.Refrence.Object.Id, refId);
                 Assert.Null(item1);
@@ -184,7 +184,7 @@ namespace Zen.Tests.DataStore.Raven
                 Assert.AreNotEqual(rootData.Data.Count, 0);
                 foreach (var dataRef in rootData.Data)
                 {
-                    Assert.NotNull(dataRef.Repository);
+                    Assert.NotNull(dataRef);
                     Assert.NotNull(dataRef.Object);
                     Assert.GreaterOrEqual(dataRef.Object.Number, 0);
                 }
