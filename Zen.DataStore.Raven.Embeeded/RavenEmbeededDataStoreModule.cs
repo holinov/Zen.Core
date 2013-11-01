@@ -54,7 +54,7 @@ namespace Zen.DataStore.Raven.Embeeded
             builder
                 .Register(context => context.Resolve<IDocumentStore>().OpenSession())
                 .As<IDocumentSession>()
-                .InstancePerDependency();
+                .InstancePerLifetimeScope();
         }
 
         private IDocumentStore InitDocumentStore(AutofacCreationConverter converter)

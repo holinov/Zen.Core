@@ -2,6 +2,8 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
+using Raven.Client;
+using JSIgnore = Raven.Imports.Newtonsoft.Json.JsonIgnoreAttribute;
 
 namespace Zen.DataStore
 {
@@ -12,12 +14,16 @@ namespace Zen.DataStore
     [Serializable]
     public class Refrence<TRefObject> : IRefrence where TRefObject : class, IHasStringId
     {
+        private readonly Func<IDocumentSession> _sessionFactory;
+
         public Refrence()
         {
         }
 
-        public Refrence(IRepository<TRefObject> repository)
+        public Refrence(Func<IDocumentSession, IRepository<TRefObject>> repository,
+            Func<IDocumentSession> sessionFactory)
         {
+            _sessionFactory = sessionFactory;
             Repository = repository;
         }
 
@@ -25,14 +31,18 @@ namespace Zen.DataStore
         ///     Объект на который ссылаемся
         /// </summary>
         [JsonIgnore]
-        //[Raven.Imports.Newtonsoft.Json.JsonIgnore]
+        [JSIgnore]
         public virtual TRefObject Object
         {
             get
             {
-                return Repository != null && !RefrenceHacks.SkipRefrences
-                           ? Repository.Find(Id)
-                           : default(TRefObject);
+                using (var sess = _sessionFactory())
+                using (var repos = Repository(sess))
+                {
+                    return !RefrenceHacks.SkipRefrences
+                               ? repos.Find(Id)
+                               : default(TRefObject);
+                }
             }
             set {
                 Id = value != null ? value.Id : null;
@@ -43,8 +53,8 @@ namespace Zen.DataStore
         ///     Репозитарий объектов
         /// </summary>
         [JsonIgnore]
-        //[Raven.Imports.Newtonsoft.Json.JsonIgnore]
-        public virtual IRepository<TRefObject> Repository { get; set; }
+        [JSIgnore]
+        public virtual Func<IDocumentSession, IRepository<TRefObject>> Repository { get; set; }
 
         /// <summary>
         ///     Ид на который ссылаемся

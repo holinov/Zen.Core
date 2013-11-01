@@ -10,15 +10,18 @@ namespace Zen.DataStore.Raven
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterGeneric(typeof (BasicRavenRepository<>))
-                   .As(typeof (IRepository<>));
+                   .As(typeof(IRepository<>))
+                   .InstancePerLifetimeScope();
 
             builder.RegisterGeneric(typeof (BasicRavenRepositoryWithGuid<>))
                 //.As(typeof(IRepository<>))
-                   .As(typeof (IRepositoryWithGuid<>));
+                   .As(typeof (IRepositoryWithGuid<>))
+                   .InstancePerLifetimeScope();
 
             builder.RegisterGeneric(typeof (Refrence<>))
-                   .PropertiesAutowired()
-                   .AsSelf();
+                   //.PropertiesAutowired()
+                   .AsSelf()
+                   .InstancePerDependency();
 /*
             builder.RegisterGeneric(typeof(EventsRepository<>))
                 .As(typeof(IEventsRepository<>));

@@ -113,7 +113,7 @@ namespace Zen
         {
             if (Scope != null)
             {
-                Scope.Dispose();
+                //Scope.Dispose();
                 Scope = null;
             }
         }

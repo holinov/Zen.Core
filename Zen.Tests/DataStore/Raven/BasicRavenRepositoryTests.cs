@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using NUnit.Framework;
+using Raven.Client;
 using Zen.DataStore;
 using Zen.DataStore.Raven;
 using Zen.DataStore.Raven.Embeeded;
@@ -55,8 +56,9 @@ namespace Zen.Tests.DataStore.Raven
             //using (var sess = _ds.OpenSession())
             var curScope = _scope.Scope.IsRegistered<IAppScope>();
             Assert.True(curScope);
-            using (var repos = _scope.Resolve<IRepositoryWithGuid<TestObject>>())
-            using (var repos1 = _scope.Resolve<IRepositoryWithGuid<TestObject1>>())
+            using (var scope = _core1.BeginScope())
+            using (var repos = scope.Resolve<IRepositoryWithGuid<TestObject>>())
+            using (var repos1 = scope.Resolve<IRepositoryWithGuid<TestObject1>>())
             {
                 var item1 = new TestObject1 {Name = "1233"};
                 repos1.Store(item1);
@@ -64,17 +66,15 @@ namespace Zen.Tests.DataStore.Raven
                 //repos1.Store(item2);
                 repos1.SaveChanges();
 
+                var ref1 = _scope.Resolve<Refrence<TestObject1>>();
+                var ref2 = _scope.Resolve<Refrence<TestObject1>>();
+                ref1.Object = item1;
+                ref2.Object = item2;
                 var item = new TestObject
                     {
                         Name = "123",
-                        Refrence = new Refrence<TestObject1>
-                            {
-                                Object = item1
-                            },
-                        Refrence1 = new Refrence<TestObject1>(repos1)
-                            {                                 
-                                Object = item2
-                            }
+                        Refrence = ref1,
+                        Refrence1 = ref2
                     };
                 repos.Store(item);
                 repos.SaveChanges();
@@ -84,12 +84,14 @@ namespace Zen.Tests.DataStore.Raven
                 realGuid = item.Guid;
                 Assert.IsNotNullOrEmpty(realId);
             }
-            using (var repos = _scope.Resolve<IRepositoryWithGuid<TestObject>>())
+            using (var scope = _core1.BeginScope())
+            using (var repos = scope.Resolve<IRepositoryWithGuid<TestObject>>())
             {
                 TestObject item = repos.Find(realGuid);
 
                 var clone = item;
                 Assert.NotNull(repos.Find(clone.Guid));
+                item = repos.Find(clone.Guid);
                 var item2 = repos.Find(new[]{realGuid});
                 TestObject item1 = repos.Find(realId + "123123123");
                 Assert.NotNull(item);
