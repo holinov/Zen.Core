@@ -9,7 +9,7 @@ namespace Zen
     public class AppCore : AppScope
     {
         private readonly ILifetimeScope _rootScope;
-
+        public static AppCore Instance { get; private set; }
         /// <summary>
         /// Создать область видимости приложения
         /// </summary>
@@ -21,6 +21,7 @@ namespace Zen
             Scope =
                 _rootScope.BeginLifetimeScope(
                     b => b.Register(c => this).SingleInstance().AsSelf());
+            Instance = this;
         }
 
         public override void Dispose()

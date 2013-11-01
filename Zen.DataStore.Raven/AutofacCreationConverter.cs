@@ -20,7 +20,14 @@ namespace Zen.DataStore.Raven
             get { return false; }
         }
 
-        public static ILifetimeScope Container { get; set; }
+        public AutofacCreationConverter(AppCore scope)
+        {
+            Container = (AppScope)scope;
+        }
+
+        protected AppScope Container { get; set; }
+
+        //public static ILifetimeScope Container { get; set; }
 
         /// <summary>
         ///     Writes the JSON representation of the object.
@@ -52,13 +59,15 @@ namespace Zen.DataStore.Raven
         {
             if (reader.TokenType == JsonToken.Null)
                 return null;
-            object obj = Container.Resolve(objectType);
-            if (obj == null)
-                throw new JsonSerializationException("No object created.");
-            serializer.Populate(reader, obj);
-            Container.InjectUnsetProperties(obj);
-//            Container.
-            return obj;
+            using (var scope=Container.BeginScope())
+            {
+                object obj = scope.Resolve(objectType);
+                if (obj == null)
+                    throw new JsonSerializationException("No object created.");
+                serializer.Populate(reader, obj);
+                scope.Scope.InjectUnsetProperties(obj);
+                return obj;
+            }
         }
 
 
@@ -71,7 +80,10 @@ namespace Zen.DataStore.Raven
         /// </returns>
         public override bool CanConvert(Type objectType)
         {
-            return Container != null && Container.IsRegistered(objectType);
+            using (var scope = Container.BeginScope())
+            {
+                return Container != null && scope.Scope.IsRegistered(objectType);
+            }
         }
     }
 }

@@ -43,13 +43,13 @@ namespace Zen.DataStore.Raven.Embeeded
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<AutofacCreationConverter>().AsSelf().SingleInstance();
+            builder.Register(ctx=>new AutofacCreationConverter(AppCore.Instance)).AsSelf().SingleInstance();
 
             builder.Register(context => InitDocumentStore(context.Resolve<AutofacCreationConverter>()))
                    .AsSelf()
                    .As<IDocumentStore>()
                    .SingleInstance()
-                   .OnRelease(x => { if (!x.WasDisposed) x.Dispose(); });
+                   .OnRelease(x => { if (!x.WasDisposed) x.Dispose(); });           
 
             builder
                 .Register(context => context.Resolve<IDocumentStore>().OpenSession())

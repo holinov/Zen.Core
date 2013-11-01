@@ -45,6 +45,7 @@ namespace Zen
         /// <returns>Созданный объект</returns>
         public object Resolve(Type type)
         {
+            if (!Scope.IsRegistered(type)) return null;
             return Scope.Resolve(type);
         }
 
@@ -56,7 +57,7 @@ namespace Zen
         {
             var scope = new AppScope();
             var lscope = Scope.BeginLifetimeScope(b => b.Register(c => scope)
-                .AsImplementedInterfaces()
+                .As<IAppScope>()
                 .AsSelf()
                 .InstancePerLifetimeScope());
             scope.Scope = lscope;
@@ -73,11 +74,37 @@ namespace Zen
             var lscope = Scope.BeginLifetimeScope(b =>
                 {
                     b.Register(c => scope)
-                     .AsImplementedInterfaces()
+                     .As<IAppScope>()
                      .AsSelf()
                      .InstancePerLifetimeScope();
                     confAction(b);
                 });
+            scope.Scope = lscope;
+            return scope;
+        }
+
+        public AppScope BeginScope(object tag)
+        {
+            var scope = new AppScope();
+            var lscope = Scope.BeginLifetimeScope(tag,b => b.Register(c => scope)
+                                                            .As<IAppScope>()
+                                                            .AsSelf()
+                                                            .InstancePerLifetimeScope());
+            scope.Scope = lscope;
+            return scope;
+        }
+
+        public AppScope BeginScope(object tag, Action<ContainerBuilder> confAction)
+        {
+            var scope = new AppScope();
+            var lscope = Scope.BeginLifetimeScope(tag,b =>
+            {
+                b.Register(c => scope)
+                 .As<IAppScope>()
+                 .AsSelf()
+                 .InstancePerLifetimeScope();
+                confAction(b);
+            });
             scope.Scope = lscope;
             return scope;
         }

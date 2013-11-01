@@ -16,14 +16,15 @@ namespace Zen.Tests.DataStore.Raven
         
 
         
-        private AppCore _core;
+        private AppScope _scope;
+        private AppCore _core1;
 
         [TestFixtureSetUp]
         public void Start()
         {
-            if (_core == null)
+            if (_scope == null)
             {
-                _core = AppCoreBuilder
+                _core1 = AppCoreBuilder
                     .Create()
                     .AddModule(new RavenEmbeededDataStoreModule("Data") {RunInMemory = true})
                     .AddModule<RavenRepositoriesModule>()
@@ -34,15 +35,15 @@ namespace Zen.Tests.DataStore.Raven
                             //b.RegisterType<TestObject1>();
                         })
                     .Build();
-
-                AutofacCreationConverter.Container = _core.Scope;
+                _scope = _core1.BeginScope();
+                //AutofacCreationConverter.Container = _core.Scope;
             }
         }
 
         [TestFixtureTearDown]
         public void Stop()
         {
-            _core.Dispose();
+            _core1.Dispose();
         }
 
         [Test]
@@ -52,8 +53,10 @@ namespace Zen.Tests.DataStore.Raven
             Guid realGuid;
             string refId;
             //using (var sess = _ds.OpenSession())
-            using (var repos = _core.Resolve<IRepositoryWithGuid<TestObject>>())
-            using (var repos1 = _core.Resolve<IRepositoryWithGuid<TestObject1>>())
+            var curScope = _scope.Scope.IsRegistered<IAppScope>();
+            Assert.True(curScope);
+            using (var repos = _scope.Resolve<IRepositoryWithGuid<TestObject>>())
+            using (var repos1 = _scope.Resolve<IRepositoryWithGuid<TestObject1>>())
             {
                 var item1 = new TestObject1 {Name = "1233"};
                 repos1.Store(item1);
@@ -81,7 +84,7 @@ namespace Zen.Tests.DataStore.Raven
                 realGuid = item.Guid;
                 Assert.IsNotNullOrEmpty(realId);
             }
-            using (var repos = _core.Resolve<IRepositoryWithGuid<TestObject>>())
+            using (var repos = _scope.Resolve<IRepositoryWithGuid<TestObject>>())
             {
                 TestObject item = repos.Find(realGuid);
 
@@ -101,8 +104,8 @@ namespace Zen.Tests.DataStore.Raven
                 repos.SaveChanges();
             }
 
-            using (var repos = _core.Resolve<IRepositoryWithGuid<TestObject>>())
-            using (var repos1 = _core.Resolve<IRepositoryWithGuid<TestObject1>>())
+            using (var repos = _scope.Resolve<IRepositoryWithGuid<TestObject>>())
+            using (var repos1 = _scope.Resolve<IRepositoryWithGuid<TestObject1>>())
             {
                 TestObject item = repos.Find(realId);
                 Assert.Null(item);
@@ -112,7 +115,7 @@ namespace Zen.Tests.DataStore.Raven
             }
 
             var lst = new List<TestObject>();
-            using (var repos = _core.Resolve<IRepositoryWithGuid<TestObject>>())
+            using (var repos = _scope.Resolve<IRepositoryWithGuid<TestObject>>())
             {
                 for (int i = 0; i < 10; i++)
                 {
@@ -122,7 +125,7 @@ namespace Zen.Tests.DataStore.Raven
                 repos.SaveChanges();
             }
 
-            using (var repos = _core.Resolve<IRepositoryWithGuid<TestObject>>())
+            using (var repos = _scope.Resolve<IRepositoryWithGuid<TestObject>>())
             {
                 List<TestObject> res = repos.Find(lst.Select(i => i.Id)).ToList();
                 Assert.AreEqual(res.Count, lst.Count);
@@ -142,7 +145,7 @@ namespace Zen.Tests.DataStore.Raven
         public void RefrenceArrayTests()
         {
             Guid id;
-            using (var scope=_core.BeginScope())
+            using (var scope=_scope.BeginScope())
             {
                 var data = new List<LeafDataObject>();
                 for (int i = 0; i < 100; i++)
@@ -171,7 +174,7 @@ namespace Zen.Tests.DataStore.Raven
                 rootRep.SaveChanges();
                 id = root.Guid;
             }
-            using (var scope = _core.BeginScope())
+            using (var scope = _scope.BeginScope())
             {
                 var rootRep = scope.Resolve<IRepositoryWithGuid<RootDataObject>>();
                 var rootData = rootRep.Find(id);
@@ -191,7 +194,7 @@ namespace Zen.Tests.DataStore.Raven
         [Test]
         public void ReposCreationTest()
         {
-            using (var repos = _core.Resolve<IRepositoryWithGuid<TestObject>>())
+            using (var repos = _scope.Resolve<IRepositoryWithGuid<TestObject>>())
             {
                 Assert.NotNull(repos);
             }
@@ -211,12 +214,12 @@ namespace Zen.Tests.DataStore.Raven
                     });
             }
 
-            using (var repo = _core.Resolve<IRepository<TestObject3>>())
+            using (var repo = _scope.Resolve<IRepository<TestObject3>>())
             {
                 repo.StoreBulk(items);
             }
 
-            using (var repo = _core.Resolve<IRepository<TestObject3>>())
+            using (var repo = _scope.Resolve<IRepository<TestObject3>>())
             {
                 Assert.AreEqual(items.Count, repo.GetAll().Count());
             }

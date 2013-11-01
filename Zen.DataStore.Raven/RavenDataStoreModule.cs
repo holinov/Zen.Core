@@ -72,7 +72,7 @@ namespace Zen.DataStore.Raven
                 .AssignableTo<IReport>()
                 .As<IReport>();*/
 
-            builder.RegisterType<AutofacCreationConverter>().AsSelf().SingleInstance();
+            builder.Register(ctx => new AutofacCreationConverter(AppCore.Instance)).AsSelf().SingleInstance();
 
             builder.Register(context => InitDocumentStore(context.Resolve<AutofacCreationConverter>()))
                    .AsSelf()

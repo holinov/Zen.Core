@@ -78,6 +78,10 @@
       <Project>{E33D2198-2695-45B3-A353-F54C1E510F8A}</Project>
       <Name>Zen.DataStore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Zen\Zen.csproj">
+      <Project>{82D8EA0D-A5B1-43DF-A9B2-CF69EE166922}</Project>
+      <Name>Zen</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

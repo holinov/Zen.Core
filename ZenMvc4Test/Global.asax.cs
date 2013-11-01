@@ -10,6 +10,7 @@ using Autofac;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Zen;
 using Zen.Core.MVC4;
+using Zen.Core.MVC4.Web;
 
 namespace ZenMvc4Test
 {
@@ -37,10 +38,12 @@ namespace ZenMvc4Test
             //DependencyResolver.SetResolver(_core.Resolve<IDependencyResolver>());
             _core = AppCoreBuilder.Create()
                                   .Configure(b => b.RegisterType<Dep>().AsSelf())
-                                  .ConfigureMvcResolver()
-                                  .RegisterControllers(typeof (MvcApplication).Assembly)
+                                  .RegisterProviders()
+                                  .RegisterControllersAndBinders(typeof (MvcApplication).Assembly)
+                //.ConfigureMvcResolver()
+                //.RegisterControllers(typeof (MvcApplication).Assembly)
                                   .Build()
-                                  .SetupResolvers();
+                                  .SetupDependencyResolvers();
 
         }
 

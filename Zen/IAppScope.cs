@@ -34,5 +34,17 @@ namespace Zen
         /// </summary>
         /// <returns>Новая область видимости</returns>
         AppScope BeginScope(Action<ContainerBuilder> confAction);
+
+        /// <summary>
+        ///     Создать вложенную область видимости
+        /// </summary>
+        /// <returns>Новая область видимости</returns>
+        AppScope BeginScope(object tag);
+
+        /// <summary>
+        ///     Создать вложенную область видимости
+        /// </summary>
+        /// <returns>Новая область видимости</returns>
+        AppScope BeginScope(object tag, Action<ContainerBuilder> confAction);
     }
 }
