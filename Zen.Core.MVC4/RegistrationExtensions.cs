@@ -52,6 +52,7 @@ namespace Zen.Core.MVC4.Web
                 {
                     b.RegisterControllers(asm);
                     b.RegisterModelBinders(asm);
+                    b.RegisterFilterProvider();
                 });
             return builder;
         }

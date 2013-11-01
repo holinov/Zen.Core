@@ -34,17 +34,8 @@ namespace Zen.DataStore
                            ? Repository.Find(Id)
                            : default(TRefObject);
             }
-            set
-            {
-                if (value != null)
-                {
-                    Id = value.Id;
-                    if (Repository != null && Repository.Find(Id) == null)
-                    {
-                        Repository.Store(value);
-                        Repository.SaveChanges();
-                    }
-                }
+            set {
+                Id = value != null ? value.Id : null;
             }
         }
 
