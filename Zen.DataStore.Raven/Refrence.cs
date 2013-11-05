@@ -38,9 +38,10 @@ namespace Zen.DataStore
         {
             get
             {
+                if (RefrenceHacks.SkipRefrences) return default(TRefObject);
                 using (var sess=GetRefrenceSession())
                 {
-                    return !RefrenceHacks.SkipRefrences && sess.Repository!=null
+                    return sess.Repository!=null
                                ? sess.Repository.Find(Id)
                                : default(TRefObject);
                 }

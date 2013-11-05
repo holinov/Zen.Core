@@ -65,7 +65,9 @@ namespace Zen.DataStore.Raven
                 if (obj == null)
                     throw new JsonSerializationException("No object created.");
                 serializer.Populate(reader, obj);
+                /*RefrenceHacks.SkipRefrences = true;
                 scope.Scope.InjectUnsetProperties(obj);
+                RefrenceHacks.SkipRefrences = false;*/
                 return obj;
             }
         }
