@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Reflection.Emit;
 
@@ -35,11 +36,16 @@ namespace Zen
                                                            TypeAttributes.Sealed | TypeAttributes.BeforeFieldInit);
 
                 typeBuilder.AddInterfaceImplementation(interfaceType);
+                var disposableInterface = interfaceType.GetInterface(typeof(IDisposable).Name);
+                var disposableType = disposableInterface != null;
+
                 MakeAppScopeField(typeBuilder);
-                ImplementConstructor(typeBuilder);
-                foreach (var propertyInfo in interfaceType.GetProperties())
+                ImplementConstructor(typeBuilder, disposableType);
+                ImplementInterfaces(interfaceType, typeBuilder);
+
+                if (disposableType)
                 {
-                    ImplementProperty(typeBuilder, propertyInfo);
+                    ImplementDispose(typeBuilder);
                 }
 
                 Types[interfaceType] = typeBuilder.CreateType();
@@ -47,6 +53,36 @@ namespace Zen
             var type = Types[interfaceType];
             var inst = Activator.CreateInstance(type, _scope);
             return (TInterface)inst;
+        }
+
+        private void ImplementInterfaces(Type interfaceType, TypeBuilder typeBuilder)
+        {
+            var props = interfaceType.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
+            foreach (var propertyInfo in props)
+            {
+                ImplementProperty(typeBuilder, propertyInfo);
+            }
+
+            foreach (var ancestorInterface in interfaceType.GetInterfaces())
+            {
+                ImplementInterfaces(ancestorInterface, typeBuilder);
+            }
+        }
+
+        private void ImplementDispose(TypeBuilder typeBuilder)
+        {
+            const MethodAttributes attributes =
+                MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.NewSlot |
+                MethodAttributes.Virtual | MethodAttributes.Final;
+            var disposeBuilder = typeBuilder.DefineMethod("Dispose", attributes, CallingConventions.HasThis,
+                                                          typeof (void), null);
+            var ilGen = disposeBuilder.GetILGenerator();
+            ilGen.Emit(OpCodes.Ldarg_0);
+            ilGen.Emit(OpCodes.Ldfld, _fieldScopeBuilder);
+
+            var genMethod = typeof (IDisposable).GetMethod("Dispose");
+            ilGen.EmitCall(OpCodes.Callvirt, genMethod, null);
+            ilGen.Emit(OpCodes.Ret);
         }
 
         private void ImplementProperty(TypeBuilder typeBuilder, PropertyInfo propertyInfo)
@@ -79,7 +115,7 @@ namespace Zen
             _fieldScopeBuilder = typeBuilder.DefineField("_scope", typeof(IAppScope), FieldAttributes.Private);
         }
 
-        private void ImplementConstructor(TypeBuilder typeBuilder)
+        private void ImplementConstructor(TypeBuilder typeBuilder, bool disposableType)
         {
             ConstructorBuilder ctorBuilder = typeBuilder.DefineConstructor(MethodAttributes.Public |
                                                                            MethodAttributes.HideBySig |
@@ -87,11 +123,49 @@ namespace Zen
                                                                            MethodAttributes.RTSpecialName,
                                                                            CallingConventions.Standard,
                                                                            new Type[] { typeof(IAppScope) });
-            ILGenerator ctorILGen = ctorBuilder.GetILGenerator();
-            ctorILGen.Emit(OpCodes.Ldarg_0);
-            ctorILGen.Emit(OpCodes.Ldarg_1);
-            ctorILGen.Emit(OpCodes.Stfld, _fieldScopeBuilder);
-            ctorILGen.Emit(OpCodes.Ret);
+            ILGenerator ctorIlGen = ctorBuilder.GetILGenerator();
+            if (disposableType) MakeDisposableConstructor(ctorIlGen);
+            else MakeNonDisposableConstructor(ctorIlGen);
+        }
+
+        private void MakeDisposableConstructor(ILGenerator ctorIlGen)
+        {
+            ctorIlGen.Emit(OpCodes.Ldarg_0);
+            ctorIlGen.Emit(OpCodes.Ldarg_1);
+            var methodInfo = typeof (IAppScope).GetMethod("BeginScope", new Type[0]);
+            ctorIlGen.EmitCall(OpCodes.Callvirt, methodInfo, null);
+            ctorIlGen.Emit(OpCodes.Stfld, _fieldScopeBuilder);
+            ctorIlGen.Emit(OpCodes.Ret);
+        }
+
+        private void MakeNonDisposableConstructor(ILGenerator ctorIlGen)
+        {
+            ctorIlGen.Emit(OpCodes.Ldarg_0);
+            ctorIlGen.Emit(OpCodes.Ldarg_1);
+            ctorIlGen.Emit(OpCodes.Stfld, _fieldScopeBuilder);
+            ctorIlGen.Emit(OpCodes.Ret);
         }
     }
+
+    /*public interface IUowSample:IDisposable
+    {
+        Config Config { get; }
+    }
+
+    public class UnitOfWorkExample:IUowSample
+    {
+        private IAppScope _scope;
+
+        public UnitOfWorkExample(IAppScope scope)
+        {
+            _scope = scope.BeginScope();
+        }
+
+        public void Dispose()
+        {
+            _scope.Dispose();
+        }
+
+        public Config Config { get { return _scope.Resolve<Config>(); } }
+    }*/
 }

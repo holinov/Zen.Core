@@ -71,7 +71,7 @@ namespace Zen
         public AppScope BeginScope(Action<ContainerBuilder> confAction)
         {
             var scope = new AppScope();
-            var lscope = Scope.BeginLifetimeScope(b =>
+            var lscope = Scope.BeginLifetimeScope(scope,b =>
                 {
                     b.Register(c => scope)
                      .As<IAppScope>()
