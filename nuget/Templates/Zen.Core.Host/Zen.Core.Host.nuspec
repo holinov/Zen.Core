@@ -10,6 +10,7 @@
         <dependencies>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="Zen.Core" version="[{{VERSION}}]" />
+				<dependency id="Autofac.Wcf" version="3.0.0" />
             </group>
         </dependencies>
     </metadata>

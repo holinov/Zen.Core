@@ -28,47 +28,51 @@ namespace Zen.Host
             _cancellationToken = _tokenSource.Token;
             Apps=new List<IHostedApp>();
         }
+
         public void Start()
         {
-            Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        var appTypes = _core.Resolve<IEnumerable<IHostedApp>>();
-                        var appList = new List<IHostedApp>();
-                        foreach (var hostedAppType in appTypes.Select(a => a.GetType()))
-                        {
-                            var scope = _core.BeginScope();
-                            _appScopeList.Add(scope);
-                            var app = (IHostedApp) scope.Resolve(hostedAppType);
-                            app.AppScope = scope;
-                            appList.Add(app);
-                            _hostedScopes[app] = scope;
-                            Log.InfoFormat("Запуск приложения {0}", hostedAppType);
-                            var task = _factory.StartNew((arg) =>
-                                {
-                                    var curApp = (IHostedApp) arg;
-                                    try
-                                    {
-                                        curApp.Start();
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Log.Error("Ошибка исполнения приложения " + curApp.GetType(), ex);
-                                    }
-                                    return curApp;
-                                }, app);
-                            _appTaskList.Add(task);
-                        }
 
-                        Apps = appList;
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error("Ошибка запуска приложений", ex);
-                    }
-                }).ContinueWith((a) => Log.Info("Запущены все известные приложения"));
+            try
+            {
+                Log.Debug("Начало поиска приложений");
+                var appTypes = _core.Resolve<IEnumerable<IHostedApp>>().ToArray();
+                Log.Debug("Найдено приложений: " + appTypes.Length);
+                var appList = new List<IHostedApp>();
+                foreach (var hostedAppType in appTypes.Select(a => a.GetType()))
+                {
+                    var scope = _core.BeginScope();
+                    _appScopeList.Add(scope);
+                    var app = (IHostedApp) scope.Resolve(hostedAppType);
+                    app.AppScope = scope;
+                    appList.Add(app);
+                    _hostedScopes[app] = scope;
+                    Log.InfoFormat("Запуск приложения {0}", hostedAppType);
+                    var task = _factory.StartNew((arg) =>
+                        {
+                            var curApp = (IHostedApp) arg;
+                            try
+                            {
+                                curApp.Start();
+                            }
+                            catch (Exception ex)
+                            {
+                                Log.Error("Ошибка исполнения приложения " + curApp.GetType(), ex);
+                            }
+                            return curApp;
+                        }, app);
+                    _appTaskList.Add(task);
+                }
+
+                Apps = appList;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Ошибка запуска приложений", ex);
+            }
+
+            Log.Info("Запущены все известные приложения");
         }
+
         public void Stop()
         {
             foreach (var hostedApp in Apps.ToArray())

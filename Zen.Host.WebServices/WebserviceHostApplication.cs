@@ -19,7 +19,8 @@ namespace Zen.Host.WebServices
         private readonly CancellationTokenSource _tokenSource;
         private readonly TaskFactory _taskFactory;
         private readonly List<ServiceHost> _hosts = new List<ServiceHost>();
-        private readonly List<IAppScope> _hostScopes = new List<IAppScope>(); 
+        private readonly List<IAppScope> _hostScopes = new List<IAppScope>();
+        private readonly List<Thread> _hostThreads = new List<Thread>(); 
 
         public WebserviceHostApplication(IEnumerable<IWebService> knownServices,Config config)
         {
@@ -33,20 +34,19 @@ namespace Zen.Host.WebServices
         {
             var services = _knownServices.ToArray();
             Log.InfoFormat("Запуск WCF-хоста для {0} сервисов", services.Length);
+            var hostName = _config.GetAppSettingString("Zen/Hostname");
+            if (string.IsNullOrEmpty(hostName)) hostName = "localhost";
+
+            var port = _config.GetAppSettingString("Zen/Port");
+            if (string.IsNullOrEmpty(port)) port = "8080"; 
+            
             foreach (var knownService in services)
             {
                 Log.DebugFormat("Запуск хостов для типа: {0}", knownService.GetType().Name);
                 IWebService service = knownService;
                 var scope = AppScope.BeginScope(b => b.Register(ctx => this).As<WebserviceHostApplication>());
                 _hostScopes.Add(scope);
-
-                var hostName = _config.GetAppSettingString("Zen/Hostname");
-                if (string.IsNullOrEmpty(hostName)) hostName = "localhost";
-
-                var port = _config.GetAppSettingString("Zen/Port");
-                if (string.IsNullOrEmpty(port)) port = "8080";
-
-                _taskFactory.StartNew(() =>
+                _hostThreads.Add(new Thread(() =>
                     {
                         var uriStr = string.Format("http://{0}:{1}/{2}", hostName, port, service.GetWebserviceName());
                         Uri address = new Uri(uriStr);
@@ -96,7 +96,12 @@ namespace Zen.Host.WebServices
                                                         service.GetType().Name), ex);
                             }
                         }
-                    });
+                    }));
+            }
+
+            foreach (var hostThread in _hostThreads)
+            {
+                hostThread.Start();
             }
         }
 
@@ -115,6 +120,11 @@ namespace Zen.Host.WebServices
                 }
             }
             _tokenSource.Cancel();
+
+            foreach (var thread in _hostThreads)
+            {
+                thread.Abort();
+            }
 
             foreach (var hostScope in _hostScopes)
             {

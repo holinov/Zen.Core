@@ -20,7 +20,12 @@ namespace Zen
             _rootScope = container;
             Scope =
                 _rootScope.BeginLifetimeScope(
-                    b => b.Register(c => this).SingleInstance().AsSelf());
+                    b =>
+                        {
+                            b.Register(c => this).SingleInstance().AsSelf();
+                            b.Register(c => this.BeginScope()).InstancePerDependency().As<IAppScope>().AsSelf();
+                            b.RegisterModule<EmitImplementerModule>();
+                        });
             Instance = this;
         }
 
