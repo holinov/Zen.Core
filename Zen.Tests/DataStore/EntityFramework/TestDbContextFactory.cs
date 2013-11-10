@@ -4,7 +4,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zen.DataStore.EntityFramework;
+/*using Zen.DataStore.EntityFramework;
 
 namespace Zen.Tests.DataStore.EntityFramework
 {
@@ -18,3 +18,4 @@ namespace Zen.Tests.DataStore.EntityFramework
         }
     }
 }
+*/

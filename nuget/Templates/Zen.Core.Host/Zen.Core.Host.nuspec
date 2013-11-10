@@ -9,7 +9,7 @@
         <description>Модуль Zen.Core предназначенный для автоматического хостинга приложений и вебсервисов в консольном и сервисном режимах</description>
         <dependencies>
             <group targetFramework=".NETFramework4.5">
-                <dependency id="Zen.Core" version="{{VERSION}}" />
+                <dependency id="Zen.Core" version="[{{VERSION}}]" />
             </group>
         </dependencies>
     </metadata>

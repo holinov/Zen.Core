@@ -32,34 +32,41 @@ namespace Zen.Host
         {
             Task.Factory.StartNew(() =>
                 {
-                    var appTypes = _core.Resolve<IEnumerable<IHostedApp>>();
-                    var appList = new List<IHostedApp>();
-                    foreach (var hostedAppType in appTypes.Select(a => a.GetType()))
+                    try
                     {
-                        var scope = _core.BeginScope();
-                        _appScopeList.Add(scope);
-                        var app = (IHostedApp) scope.Resolve(hostedAppType);
-                        app.AppScope = scope;
-                        appList.Add(app);
-                        _hostedScopes[app] = scope;
-                        Log.InfoFormat("Запуск приложения {0}", hostedAppType);
-                        var task = _factory.StartNew((arg) =>
-                            {
-                                var curApp = (IHostedApp) arg;
-                                try
+                        var appTypes = _core.Resolve<IEnumerable<IHostedApp>>();
+                        var appList = new List<IHostedApp>();
+                        foreach (var hostedAppType in appTypes.Select(a => a.GetType()))
+                        {
+                            var scope = _core.BeginScope();
+                            _appScopeList.Add(scope);
+                            var app = (IHostedApp) scope.Resolve(hostedAppType);
+                            app.AppScope = scope;
+                            appList.Add(app);
+                            _hostedScopes[app] = scope;
+                            Log.InfoFormat("Запуск приложения {0}", hostedAppType);
+                            var task = _factory.StartNew((arg) =>
                                 {
-                                    curApp.Start();
-                                }
-                                catch (Exception ex)
-                                {
-                                    Log.Error("Ошибка исполнения приложения " + curApp.GetType(), ex);
-                                }
-                                return curApp;
-                            }, app);
-                        _appTaskList.Add(task);
-                    }
+                                    var curApp = (IHostedApp) arg;
+                                    try
+                                    {
+                                        curApp.Start();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Log.Error("Ошибка исполнения приложения " + curApp.GetType(), ex);
+                                    }
+                                    return curApp;
+                                }, app);
+                            _appTaskList.Add(task);
+                        }
 
-                    Apps = appList;
+                        Apps = appList;
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error("Ошибка запуска приложений", ex);
+                    }
                 }).ContinueWith((a) => Log.Info("Запущены все известные приложения"));
         }
         public void Stop()

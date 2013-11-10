@@ -149,10 +149,6 @@
       <Project>{54F53486-7C25-4ECC-99D0-9841DD43940D}</Project>
       <Name>Zen.DataStore.NHibernate.SQLLite</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zen.DataStore.EntityFramework\Zen.DataStore.EntityFramework.csproj">
-      <Project>{e9c8ac4e-9a97-4f44-9323-26b1df31abcb}</Project>
-      <Name>Zen.DataStore.EntityFramework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Zen.DataStore.NHibernate\Zen.DataStore.NHibernate.csproj">
       <Project>{20C6AF5E-C05D-4412-945C-BD9292DE068F}</Project>
       <Name>Zen.DataStore.NHibernate</Name>

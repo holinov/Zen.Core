@@ -9,7 +9,7 @@
         <tags>sqlite nhibernate zen zencore</tags>
         <dependencies>
             <group targetFramework=".NETFramework4.5">
-                <dependency id="Zen.Core.NHibernate" version="{{VERSION}}" />
+                <dependency id="Zen.Core.NHibernate" version="[{{VERSION}}]" />
                 <dependency id="System.Data.SQLite" version="1.0.88.0" />
             </group>
         </dependencies>

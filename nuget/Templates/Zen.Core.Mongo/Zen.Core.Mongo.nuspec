@@ -11,7 +11,7 @@
         <dependencies>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="mongocsharpdriver" version="1.8.3" />
-                <dependency id="Zen.Core" version="{{VERSION}}" />
+                <dependency id="Zen.Core" version="[{{VERSION}}]" />
             </group>
         </dependencies>
     </metadata>

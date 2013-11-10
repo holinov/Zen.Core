@@ -12,7 +12,7 @@
         <dependencies>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="RavenDB.Client" version="[2.5.2750]" />
-                <dependency id="Zen.Core" version="{{VERSION}}" />
+                <dependency id="Zen.Core" version="[{{VERSION}}]" />
             </group>
         </dependencies>
     </metadata>

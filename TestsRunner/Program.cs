@@ -7,7 +7,7 @@ using Zen.Tests.DataStore.EntityFramework;
 
 namespace TestsRunner
 {
-    class Program
+    /*class Program
     {
         static void Main(string[] args)
         {
@@ -15,5 +15,5 @@ namespace TestsRunner
             test.TestCrud();
             test.TestStoreBulk();
         }
-    }
+    }*/
 }

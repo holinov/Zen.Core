@@ -6,10 +6,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zen.DataStore.EntityFramework;
+//using Zen.DataStore.EntityFramework;
 
 namespace Zen.Tests.DataStore.EntityFramework
-{
+{/*
     [TestFixture]
     public class BasicEntityFrameworkRepositoryTests
     {
@@ -77,4 +77,4 @@ namespace Zen.Tests.DataStore.EntityFramework
             Assert.AreEqual(2, allEntities.Count());
         }
     }
-}
+*/}

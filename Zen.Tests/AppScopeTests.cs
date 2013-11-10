@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using NUnit.Framework;
 
 namespace Zen.Tests
@@ -17,13 +18,21 @@ namespace Zen.Tests
         }
 
 
-        public interface IInterface
+        public interface IInterfaceConfig
+        {
+            Config Config { get; }
+        }
+        public interface IInterface : IInterfaceConfig
         {
             TestClass1 Test1 { get; }
-            TestClass2 Test2 { get; } 
+            TestClass2 Test2 { get; }
+        }
+        public interface IInterface1 : IInterface,IDisposable
+        {
+            
         }
 
-        
+
 
         [Test]
         public void EmitInterfaceImplementorTest()
@@ -37,6 +46,8 @@ namespace Zen.Tests
                 .Create(builder)
                 .AddModule<EmitImplementerModule>()
                 .Configure(b => b.RegisterInterfaceForEmit<IInterface>())
+                .Configure(b => b.RegisterInterfaceForEmit<IInterface1>())
+                .Configure(b => b.RegisterType<Config>().AsSelf().SingleInstance())
                 .Build())
             {
                 using (var scope = core.BeginScope())
@@ -50,6 +61,11 @@ namespace Zen.Tests
                     Assert.AreNotSame(vaf, vaf1);
                     Assert.AreSame(vaf.Test2, vaf1.Test2);
                     Assert.AreNotSame(vaf.Test1, vaf1.Test1);
+
+                    using (var vaf2 = scope.Resolve<IInterface1>())
+                    {
+                        Assert.AreNotSame(vaf2.Test2, vaf1.Test2);
+                    }
                 }
             }
         }
