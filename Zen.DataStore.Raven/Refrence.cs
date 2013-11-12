@@ -29,6 +29,9 @@ namespace Zen.DataStore
             RepositoryFactory = repository;
         }
 
+
+        private TRefObject refObject = default(TRefObject);
+
         /// <summary>
         ///     Объект на который ссылаемся
         /// </summary>
@@ -41,9 +44,12 @@ namespace Zen.DataStore
                 if (RefrenceHacks.SkipRefrences) return default(TRefObject);
                 using (var sess=GetRefrenceSession())
                 {
-                    return sess.Repository!=null
-                               ? sess.Repository.Find(Id)
-                               : default(TRefObject);
+                    if (refObject == default(TRefObject) && sess.Repository != null)
+                    {
+                        refObject = sess.Repository.Find(Id);
+                    }
+
+                    return refObject;
                 }
             }
             set {
@@ -61,8 +67,13 @@ namespace Zen.DataStore
 
         public RefrenceSession<TRefObject> GetRefrenceSession()
         {
-            var session = _sessionFactory();
-            return new RefrenceSession<TRefObject>(RepositoryFactory(session), session);
+            //Гарантируем открытие сессии вне скоупов для конкретной транкации
+            IDocumentSession session;
+            using (var rootSession = _sessionFactory())
+            {
+                session = rootSession.Advanced.DocumentStore.OpenSession();
+                return new RefrenceSession<TRefObject>(RepositoryFactory(session), session);
+            }
         }
 
         /// <summary>
@@ -71,33 +82,5 @@ namespace Zen.DataStore
         [DisplayName("Идентификатор объекта")]
         [Required(ErrorMessage = "Укажите идентификатор объекта")]
         public string Id { get; set; }
-    }
-
-    public class RefrenceSession<TRefObject>:IDisposable
-    {
-        private readonly IDocumentSession _session;
-        private readonly IRepository<TRefObject> _repository;
-
-        public RefrenceSession(IRepository<TRefObject> repository, IDocumentSession session)
-        {
-            _repository = repository;
-            _session = session;
-        }
-
-        public IRepository<TRefObject> Repository
-        {
-            get { return _repository; }
-        }
-
-        public IDocumentSession Session
-        {
-            get { return _session; }
-        }
-
-        public void Dispose()
-        {
-            Repository.Dispose();
-            Session.Dispose();
-        }
     }
 }
