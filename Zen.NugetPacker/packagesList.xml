@@ -2,7 +2,7 @@
 <PackagesConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
                 SolutionPath="C:\src\Zen.Core" 
                 BuildType="Release" 
-                VersionString="1.1.0.44" 
+                VersionString="1.1.0.45" 
                 Publish="true"
                 PublishKey="0b95448f-b7cf-42db-bef3-00f689b280dc">
   <Packages>
