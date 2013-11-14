@@ -32,7 +32,7 @@ namespace Zen.Core.MVC4.Web
     /// An <see cref="IHttpModule"/> and <see cref="ILifetimeScopeProvider"/> implementation 
     /// that creates a nested lifetime scope for each HTTP request.
     /// </summary>
-    internal class RequestLifetimeHttpModule : IHttpModule
+    public class RequestLifetimeHttpModule : IHttpModule
     {
         /// <summary>
         /// Gets the lifetime scope provider that should be notified when a HTTP request ends.

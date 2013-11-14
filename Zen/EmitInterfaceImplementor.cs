@@ -26,33 +26,37 @@ namespace Zen
         /// <returns>Экземпляр класса реализующий интерфейс</returns>
         public TInterface ImplementInterface()
         {
-            var interfaceType = typeof(TInterface);
-            if (!Types.ContainsKey(interfaceType))
+            var interfaceType = typeof (TInterface);
+            lock (_locker)
             {
-                IsDirty = true;
-                var typeBuilder = ModuleBuilder.DefineType("Implementor" + interfaceType.Name,
-                                                           TypeAttributes.Class | TypeAttributes.Public |
-                                                           TypeAttributes.AutoLayout | TypeAttributes.AnsiClass |
-                                                           TypeAttributes.Sealed | TypeAttributes.BeforeFieldInit);
-
-                typeBuilder.AddInterfaceImplementation(interfaceType);
-                var disposableInterface = interfaceType.GetInterface(typeof(IDisposable).Name);
-                var disposableType = disposableInterface != null;
-
-                MakeAppScopeField(typeBuilder);
-                ImplementConstructor(typeBuilder, disposableType);
-                ImplementInterfaces(interfaceType, typeBuilder);
-
-                if (disposableType)
+                if (!Types.ContainsKey(interfaceType))
                 {
-                    ImplementDispose(typeBuilder);
-                }
+                    IsDirty = true;
+                    var typeBuilder = ModuleBuilder.DefineType("Implementor" + interfaceType.Name,
+                                                               TypeAttributes.Class | TypeAttributes.Public |
+                                                               TypeAttributes.AutoLayout | TypeAttributes.AnsiClass |
+                                                               TypeAttributes.Sealed | TypeAttributes.BeforeFieldInit);
 
-                Types[interfaceType] = typeBuilder.CreateType();
+                    typeBuilder.AddInterfaceImplementation(interfaceType);
+                    var disposableInterface = interfaceType.GetInterface(typeof (IDisposable).Name);
+                    var disposableType = disposableInterface != null;
+
+                    MakeAppScopeField(typeBuilder);
+                    ImplementConstructor(typeBuilder, disposableType);
+                    ImplementInterfaces(interfaceType, typeBuilder);
+
+                    if (disposableType)
+                    {
+                        ImplementDispose(typeBuilder);
+                    }
+
+                    Types[interfaceType] = typeBuilder.CreateType();
+                }
+                var type = Types[interfaceType];
+                var inst = Activator.CreateInstance(type, _scope);
+
+                return (TInterface) inst;
             }
-            var type = Types[interfaceType];
-            var inst = Activator.CreateInstance(type, _scope);
-            return (TInterface)inst;
         }
 
         private void ImplementInterfaces(Type interfaceType, TypeBuilder typeBuilder)

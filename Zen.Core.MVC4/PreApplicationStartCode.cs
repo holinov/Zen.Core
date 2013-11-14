@@ -24,6 +24,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 
 using System.ComponentModel;
+using System.Web;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
 namespace Zen.Core.MVC4.Web

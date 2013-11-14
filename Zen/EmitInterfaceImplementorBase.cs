@@ -19,7 +19,7 @@ namespace Zen
         protected static readonly Dictionary<Type,Type> Types=new Dictionary<Type, Type>();
         private static readonly string AsmFileName = "Zen.EmitCache";
         private static bool _saveCache = true;
-
+        protected static object _locker=new object();
         static EmitInterfaceImplementorBase()
         {
             if (IsDirty && SaveCache)

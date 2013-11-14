@@ -23,6 +23,7 @@ namespace Zen
                     b =>
                         {
                             b.Register(c => this).SingleInstance().AsSelf();
+                            b.RegisterType<Config>().SingleInstance().AsSelf();
                             b.Register(c => this.BeginScope()).InstancePerDependency().As<IAppScope>().AsSelf();
                             b.RegisterModule<EmitImplementerModule>();
                         });
