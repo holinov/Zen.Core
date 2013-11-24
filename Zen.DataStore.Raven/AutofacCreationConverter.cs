@@ -20,7 +20,7 @@ namespace Zen.DataStore.Raven
             get { return false; }
         }
 
-        public AutofacCreationConverter(AppCore scope)
+        public AutofacCreationConverter(AppScope scope)
         {
             Container = (AppScope)scope;
         }

@@ -14,12 +14,12 @@ namespace Zen.DataStore
     [Serializable]
     public class Refrence<TRefObject> : IRefrence where TRefObject : class, IHasStringId
     {
-        private readonly Func<IDocumentSession> _sessionFactory;
+        private Func<IDocumentSession> _sessionFactory;
 
         public Refrence()
         {
-            _sessionFactory = AppCore.Instance.Resolve<Func<IDocumentSession>>();
-            RepositoryFactory = AppCore.Instance.Resolve<Func<IDocumentSession, IRepository<TRefObject>>>();
+            _sessionFactory = null;
+            RepositoryFactory = null;
         }
 
         public Refrence(Func<IDocumentSession, IRepository<TRefObject>> repository,
@@ -41,15 +41,38 @@ namespace Zen.DataStore
         {
             get
             {
-                if (RefrenceHacks.SkipRefrences) return default(TRefObject);
-                using (var sess=GetRefrenceSession())
+                if (RefrenceHacks.SkipRefrences || _sessionFactory == null || RepositoryFactory == null)
+                    return default(TRefObject);
+                IAppScope scope = null;
+                try
                 {
-                    if (refObject == default(TRefObject) && sess.Repository != null)
+                    //При не корректной инициализации создать оторванную сессию
+                    if (_sessionFactory == null || RepositoryFactory == null)
                     {
-                        refObject = sess.Repository.Find(Id);
+                        scope = AppCore.Instance.BeginScope();
+                        _sessionFactory = scope.Resolve<Func<IDocumentSession>>();
+                        RepositoryFactory = scope.Resolve<Func<IDocumentSession, IRepository<TRefObject>>>();
                     }
 
-                    return refObject;
+                    using (var sess = GetRefrenceSession())
+                    {
+                        if (refObject == default(TRefObject) && sess.Repository != null)
+                        {
+                            refObject = sess.Repository.Find(Id);
+                        }
+
+                        return refObject;
+                    }
+                }
+                finally
+                {
+                    //Если была создана оторванная сессия
+                    if (scope != null)
+                    {
+                        scope.Dispose();
+                        _sessionFactory = null;
+                        RepositoryFactory = null;
+                    }
                 }
             }
             set {
