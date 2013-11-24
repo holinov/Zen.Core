@@ -9,7 +9,7 @@ using log4net.Config;
 
 namespace Zen.Host.Launcher
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {
