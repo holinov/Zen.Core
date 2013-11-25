@@ -15,7 +15,7 @@ namespace Zen.NugetPacker
         static void Main(string[] args)
         {
             log4net.Config.XmlConfigurator.Configure();
-            var ser = new XmlSerializer(typeof(PackagesConfig));
+            var ser = new XmlSerializer(typeof(PackagesConfig), "urn:ZenCore:NuGet:configuration");
             PackagesConfig cfg;
             List<NugetPackage> packageList;
 
