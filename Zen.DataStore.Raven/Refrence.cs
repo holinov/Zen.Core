@@ -31,6 +31,7 @@ namespace Zen.DataStore
 
 
         private TRefObject refObject = default(TRefObject);
+        private string _id;
 
         /// <summary>
         ///     Объект на который ссылаемся
@@ -77,6 +78,8 @@ namespace Zen.DataStore
             }
             set {
                 Id = value != null ? value.Id : null;
+                
+                refObject = default(TRefObject);
             }
         }
 
@@ -104,6 +107,14 @@ namespace Zen.DataStore
         /// </summary>
         [DisplayName("Идентификатор объекта")]
         [Required(ErrorMessage = "Укажите идентификатор объекта")]
-        public string Id { get; set; }
+        public string Id
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+                refObject = default(TRefObject);
+            }
+        }
     }
 }
