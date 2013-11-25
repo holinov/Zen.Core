@@ -29,6 +29,12 @@ function Add-StartProgramIfNeeded {
 	$writer.Close()
 }
 
+#установка копирования конфига
+$projectItems = $project.ProjectItems
+$startupCmd = $projectItems.Item("Zen.Host.Launcher.exe.config")
+#$startupCmd.Properties.Item("BuildAction").Value = 0 # BuildAction = None
+$startupCmd.Properties.Item("CopyToOutputDirectory").Value = 1 #
+
 $project.Save()
 
 Add-StartProgramIfNeeded

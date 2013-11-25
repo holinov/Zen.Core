@@ -27,7 +27,7 @@ namespace Zen.NugetPacker
                     {
                         BuildType = "Release",
                         SolutionPath = "C:\\src\\Zen.Core",
-                        VersionString = "1.1.0.50"
+                        VersionString = "1.1.0.52"
                     };
                 packageList = new List<NugetPackage>()
                     {

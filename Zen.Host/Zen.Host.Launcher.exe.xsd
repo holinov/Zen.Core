@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified"
+           targetNamespace="urn:ZenCore:Host:configuration"
+           elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="HostConfig">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="HostedApp">
+          <xs:complexType>
+            <xs:attribute name="HostedAssembly" type="xs:string" use="required" />
+            <xs:attribute name="LoadModules" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="ScanAll" type="xs:boolean" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

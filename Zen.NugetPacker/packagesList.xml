@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PackagesConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+<PackagesConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+                xmlns="urn:ZenCore:NuGet:configuration" 
                 SolutionPath="C:\src\Zen.Core" 
                 BuildType="Release" 
-                VersionString="1.1.0.50" 
+                VersionString="1.1.0.52" 
                 Publish="true"
                 PublishKey="0b95448f-b7cf-42db-bef3-00f689b280dc">
-  <Packages>
+  <Packages>    
     <NugetPackage Name="Zen.Core">
       <Projects>
         <Project Name="Zen" />

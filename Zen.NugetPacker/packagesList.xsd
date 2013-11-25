@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn:ZenCore:NuGet:configuration" 
+           attributeFormDefault="unqualified" 
+           elementFormDefault="qualified">
+  <xsd:element name="PackagesConfig">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Packages">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element maxOccurs="unbounded" name="NugetPackage">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Projects">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element maxOccurs="unbounded" name="Project">
+                            <xsd:complexType>
+                              <xsd:attribute name="Name" type="xsd:string" use="required" />
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                  <xsd:attribute name="Name" type="xsd:string" use="required" />
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+      <xsd:attribute name="SolutionPath" type="xsd:string" use="required" />
+      <xsd:attribute name="BuildType" type="xsd:string" use="required" />
+      <xsd:attribute name="VersionString" type="xsd:string" use="required" />
+      <xsd:attribute name="Publish" type="xsd:boolean" use="required" />
+      <xsd:attribute name="PublishKey" type="xsd:string" use="required" />
+    </xsd:complexType>
+  </xsd:element>
+</xs:schema>
