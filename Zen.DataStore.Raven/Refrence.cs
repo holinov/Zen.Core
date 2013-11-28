@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using Raven.Client;
+using log4net;
 using JSIgnore = Raven.Imports.Newtonsoft.Json.JsonIgnoreAttribute;
 
 namespace Zen.DataStore
@@ -14,8 +15,7 @@ namespace Zen.DataStore
     [Serializable]
     public class Refrence<TRefObject> : IRefrence where TRefObject : class, IHasStringId
     {
-        private Func<IDocumentSession> _sessionFactory;
-
+        private Func<IDocumentSession> _sessionFactory;       
         public Refrence()
         {
             _sessionFactory = null;
@@ -30,7 +30,7 @@ namespace Zen.DataStore
         }
 
 
-        private TRefObject refObject = default(TRefObject);
+        private TRefObject _refObject;
         private string _id;
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Zen.DataStore
         {
             get
             {
-                if (RefrenceHacks.SkipRefrences || _sessionFactory == null || RepositoryFactory == null)
+                if (RefrenceHacks.SkipRefrences)
                     return default(TRefObject);
                 IAppScope scope = null;
                 try
@@ -57,12 +57,12 @@ namespace Zen.DataStore
 
                     using (var sess = GetRefrenceSession())
                     {
-                        if (refObject == default(TRefObject) && sess.Repository != null)
+                        if (_refObject == default(TRefObject) && sess.Repository != null)
                         {
-                            refObject = sess.Repository.Find(Id);
+                            _refObject = sess.Repository.Find(Id);
                         }
 
-                        return refObject;
+                        return _refObject;
                     }
                 }
                 finally
@@ -79,7 +79,7 @@ namespace Zen.DataStore
             set {
                 Id = value != null ? value.Id : null;
                 
-                refObject = default(TRefObject);
+                _refObject = default(TRefObject);
             }
         }
 
@@ -94,10 +94,9 @@ namespace Zen.DataStore
         public RefrenceSession<TRefObject> GetRefrenceSession()
         {
             //Гарантируем открытие сессии вне скоупов для конкретной транкации
-            IDocumentSession session;
             using (var rootSession = _sessionFactory())
             {
-                session = rootSession.Advanced.DocumentStore.OpenSession();
+                IDocumentSession session = rootSession.Advanced.DocumentStore.OpenSession();
                 return new RefrenceSession<TRefObject>(RepositoryFactory(session), session);
             }
         }
@@ -113,7 +112,7 @@ namespace Zen.DataStore
             set
             {
                 _id = value;
-                refObject = default(TRefObject);
+                _refObject = default(TRefObject);
             }
         }
     }

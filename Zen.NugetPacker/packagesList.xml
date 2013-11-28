@@ -4,54 +4,54 @@
                 xmlns="urn:ZenCore:NuGet:configuration" 
                 SolutionPath="C:\src\Zen.Core" 
                 BuildType="Release" 
-                VersionString="1.1.0.52" 
+                VersionString="1.1.0.53" 
                 Publish="true"
-                PublishKey="0b95448f-b7cf-42db-bef3-00f689b280dc">
+                PublishKey="0b95448f-b7cf-42db-bef3-00f689b280dc" >
   <Packages>    
-    <NugetPackage Name="Zen.Core">
+    <NugetPackage Name="Zen.Core" >
       <Projects>
         <Project Name="Zen" />
         <Project Name="Zen.DataStore" />
       </Projects>
     </NugetPackage>
-    <NugetPackage Name="Zen.Core.Host">
+    <NugetPackage Name="Zen.Core.Host" >
       <Projects>
         <Project Name="Zen.Host" />
         <Project Name="Zen.Host.Launcher" />
         <Project Name="Zen.Host.WebServices" />
       </Projects>
     </NugetPackage>
-    <NugetPackage Name="Zen.Core.Mongo">
+    <NugetPackage Name="Zen.Core.Mongo" >
       <Projects>
         <Project Name="Zen.DataStore.Mongo" />
       </Projects>
     </NugetPackage>
-    <NugetPackage Name="Zen.Core.NHibernate">
+    <NugetPackage Name="Zen.Core.NHibernate" >
       <Projects>
         <Project Name="Zen.DataStore.NHibernate" />
       </Projects>
     </NugetPackage>
-     <NugetPackage Name="Zen.Core.NHibernate.SQLite">
+     <NugetPackage Name="Zen.Core.NHibernate.SQLite" >
       <Projects>
         <Project Name="Zen.DataStore.NHibernate.SQLLite" />
       </Projects>
     </NugetPackage>
-    <NugetPackage Name="Zen.Core.EntityFramework">
+    <NugetPackage Name="Zen.Core.EntityFramework" >
       <Projects>
         <Project Name="Zen.DataStore.EntityFramework" />
       </Projects>
     </NugetPackage>
-    <NugetPackage Name="Zen.Core.Raven">
+    <NugetPackage Name="Zen.Core.Raven" >
       <Projects>
         <Project Name="Zen.DataStore.Raven" />
       </Projects>
     </NugetPackage>
-    <NugetPackage Name="Zen.Core.Raven.Embeeded">
+    <NugetPackage Name="Zen.Core.Raven.Embeeded" >
       <Projects>
         <Project Name="Zen.DataStore.Raven.Embeeded" />
       </Projects>
     </NugetPackage>
-    <NugetPackage Name="Zen.Core.MVC4">
+    <NugetPackage Name="Zen.Core.MVC4" >
       <Projects>
         <Project Name="Zen.Core.MVC4" />
       </Projects>
