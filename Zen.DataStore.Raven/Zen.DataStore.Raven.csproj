@@ -70,6 +70,7 @@
     <Compile Include="RavenSegmentedDataStoreModule.cs" />
     <Compile Include="RecordClrTypeInJsonContractResolver.cs" />
     <Compile Include="Refrence.cs" />
+    <Compile Include="RefrenceHelper.cs" />
     <Compile Include="RefrenceSession.cs" />
   </ItemGroup>
   <ItemGroup>

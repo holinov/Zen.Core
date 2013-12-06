@@ -34,6 +34,11 @@ namespace Zen.DataStore
         private string _id;
 
         /// <summary>
+        /// Не получать значение ссылки
+        /// </summary>
+        public bool SkipLoad { get; set; }
+
+        /// <summary>
         ///     Объект на который ссылаемся
         /// </summary>
         [JsonIgnore]
@@ -42,7 +47,7 @@ namespace Zen.DataStore
         {
             get
             {
-                if (RefrenceHacks.SkipRefrences)
+                if (SkipLoad || RefrenceHacks.SkipRefrences)
                     return default(TRefObject);
                 IAppScope scope = null;
                 try
