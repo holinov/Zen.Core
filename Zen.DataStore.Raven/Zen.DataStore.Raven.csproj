@@ -66,6 +66,7 @@
     <Compile Include="Indexes\NGramAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RavenDataStoreModule.cs" />
+    <Compile Include="RavenQueryableExtensions.cs" />
     <Compile Include="RavenRepositoriesModule.cs" />
     <Compile Include="RavenSegmentedDataStoreModule.cs" />
     <Compile Include="RecordClrTypeInJsonContractResolver.cs" />
