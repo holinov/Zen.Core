@@ -4,7 +4,7 @@
                 xmlns="urn:ZenCore:NuGet:configuration" 
                 SolutionPath="C:\src\Zen.Core" 
                 BuildType="Release" 
-                VersionString="1.1.0.54" 
+                VersionString="1.1.0.55" 
                 Publish="true"
                 PublishKey="0b95448f-b7cf-42db-bef3-00f689b280dc" >
   <Packages>    

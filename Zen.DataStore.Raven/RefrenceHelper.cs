@@ -1,9 +1,12 @@
 using System.Linq;
+using System.Text;
+using log4net;
 
 namespace Zen.DataStore
 {
     public static class RefrenceHelpers
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof (RefrenceHelpers));
         /// <summary>
         /// Установить на бизнес сущности загружить или нет ссылку
         /// </summary>
@@ -13,6 +16,8 @@ namespace Zen.DataStore
         /// <returns>Сущность</returns>
         public static T SkipRefrences<T>(this T obj,bool skip) where T : IHasStringId
         {
+            var sb = new StringBuilder();
+            sb.AppendLine("Установка загрузки ссылок в " + skip);
             //TODO: Переделать на кешированные експрешны
             var type = typeof (T);
             foreach (var prop in type.GetProperties().Where(p=>p.PropertyType==typeof(Refrence<>)))
@@ -25,9 +30,10 @@ namespace Zen.DataStore
 
                 //Свойство разрешающее загрузку значения ссылки
                 var loadProp = pType.GetProperty("SkipLoad");
-
+                sb.AppendLine("Установлено для свойства " + prop.Name);
                 loadProp.SetValue(pVal, skip);
             }
+            Log.Debug(sb);
             return obj;
         }
 

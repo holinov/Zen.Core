@@ -20,6 +20,7 @@ namespace Zen.DataStore
         {
             _sessionFactory = null;
             RepositoryFactory = null;
+            SkipLoad = RefrenceHacks.SkipRefrencesByDefault;
         }
 
         public Refrence(Func<IDocumentSession, IRepository<TRefObject>> repository,
@@ -27,6 +28,7 @@ namespace Zen.DataStore
         {
             _sessionFactory = sessionFactory;
             RepositoryFactory = repository;
+            SkipLoad = RefrenceHacks.SkipRefrencesByDefault;
         }
 
 
