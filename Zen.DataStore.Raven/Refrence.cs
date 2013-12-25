@@ -100,11 +100,39 @@ namespace Zen.DataStore
 
         public RefrenceSession<TRefObject> GetRefrenceSession()
         {
-            //Гарантируем открытие сессии вне скоупов для конкретной транкации
-            using (var rootSession = _sessionFactory())
+            // Если _sessionFactory == null то создаем временый скоуп с продолжительностью жизни, 
+            // равной продолжительности жизни создаваемой сессии. Из этого скоупа временно резолвим _sessionFactory
+            // и зануляем его после получения сессии.
+            AppScope localScope = null;
+            try
             {
-                IDocumentSession session = rootSession.Advanced.DocumentStore.OpenSession();
-                return new RefrenceSession<TRefObject>(RepositoryFactory(session), session);
+                if (_sessionFactory == null || RepositoryFactory == null)
+                {
+                    localScope = AppCore.Instance.BeginScope();
+                    _sessionFactory = localScope.Resolve<Func<IDocumentSession>>();
+                    RepositoryFactory = localScope.Resolve<Func<IDocumentSession, IRepository<TRefObject>>>();
+                }
+                
+                using (var rootSession = _sessionFactory())
+                {
+                    IDocumentSession session = rootSession.Advanced.DocumentStore.OpenSession();
+                    IRepository<TRefObject> repository = RepositoryFactory(session);
+                    
+                    if (localScope != null)
+                    {
+                        _sessionFactory = null;
+                        RepositoryFactory = null;
+                    }
+
+                    return new RefrenceSession<TRefObject>(repository, session, localScope);
+                }
+            }
+            catch
+            {
+                if (localScope != null)
+                    localScope.Dispose();
+
+                throw;
             }
         }
 
