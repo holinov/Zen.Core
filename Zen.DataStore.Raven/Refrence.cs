@@ -38,6 +38,8 @@ namespace Zen.DataStore
         /// <summary>
         /// Не получать значение ссылки
         /// </summary>
+        [JsonIgnore]
+        [JSIgnore]
         public bool SkipLoad { get; set; }
 
         /// <summary>
