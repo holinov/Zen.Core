@@ -113,6 +113,69 @@ namespace Zen.DataStore.Raven
             }
         }
 
+        public IEnumerable<TEntity> Enumerate(Func<IQueryable<TEntity>, IQueryable<TEntity>> filter=null, int pageSize = 120)
+        {
+            RavenQueryStatistics stats;
+            var session = OpenClonedSession(Session);
+            var sessQueryCount = 1;
+            IQueryable<TEntity> results = Session.Query<TEntity>()
+                                                 //ДЛЯ ТЕСТОВ
+                                                 .Customize(x => x.WaitForNonStaleResults())
+                                                 .Statistics(out stats);
+                                                 
+            if (filter != null)
+                results = filter(results);
+            var resSuery = results.Skip(0*pageSize) // retrieve results for the first page
+                                  .Take(pageSize); // page size is 10;
+
+            var resultsArr = resSuery.ToArray();
+            var pages = (stats.TotalResults - stats.SkippedResults) / pageSize;
+
+            foreach (var entity in resultsArr)
+            {
+                yield return entity;
+            }
+            try
+            {
+                for (int i = 1; i <= pages; i++)
+                {
+                    if (sessQueryCount >= 29)
+                    {
+                        session.Dispose();
+                        session = OpenClonedSession(Session);
+                    }
+                    results = session.Query<TEntity>()
+                                     .Statistics(out stats)
+                                     .Skip(i * pageSize + stats.SkippedResults)
+                                     .Take(pageSize);
+                    if (filter != null)
+                        results = filter(results);
+                    /*totalResults = stats.TotalResults;
+                    skippedResults = stats.SkippedResults;*/
+                    resultsArr = results.ToArray();
+                    sessQueryCount++;
+                    foreach (var entity in resultsArr)
+                    {
+                        yield return entity;
+                    }
+                }
+            }
+            finally
+            {
+                session.Dispose();
+            }
+            
+        }
+
+        private IDocumentSession OpenClonedSession(IDocumentSession session)
+        {
+            return session.Advanced.DocumentStore.OpenSession();
+        }
+
+        private static IQueryable<TEntity> FilterOut(IQueryable<TEntity> results)
+        {
+            return results.Where(x => x.Id != null);
+        }
 
         public void DeleteAttach(string key)
         {

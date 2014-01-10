@@ -206,7 +206,7 @@ namespace Zen.Tests.DataStore.Raven
         public void BulkOperationsTest()
         {
             var items = new List<TestObject3>();
-            for (int i = 0; i < 3000; i++)
+            for (int i = 0; i < 14000; i++)
             {
                 items.Add(new TestObject3
                     {
@@ -224,6 +224,31 @@ namespace Zen.Tests.DataStore.Raven
             using (var repo = _scope.Resolve<IRepository<TestObject3>>())
             {
                 Assert.AreEqual(items.Count, repo.GetAll().Count());
+            }
+
+            using (var repo = _scope.Resolve<IRepository<TestObject3>>())
+            {
+                var rRepo = (BasicRavenRepository<TestObject3>) repo;
+                TestObject3 obj = null;
+                var cnt = 0;
+                foreach (var testObject3 in rRepo.Enumerate(q => q.Where(x => x.P != 0)))
+                {
+                    obj = testObject3;
+                    if (obj != null) cnt++;
+                }
+                Assert.AreEqual(items.Count - 1, cnt);
+            }
+
+            using (var repo = _scope.Resolve<IRepository<TestObject3>>())
+            {
+                TestObject3 obj = null;
+                var cnt = 0;
+                foreach (var object3 in repo.Query)
+                {
+                    obj = object3;
+                    if (obj != null) cnt++;
+                }
+                Assert.AreEqual(128, cnt);
             }
         }
     }
