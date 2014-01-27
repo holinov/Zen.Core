@@ -7,8 +7,22 @@ namespace Zen.DataStore.Raven
     /// </summary>
     public class RavenRepositoriesModule : Module
     {
+        private readonly IBasicRavenRepositoryConfiguration _configuration;
+
+        public RavenRepositoriesModule() : this(new BasicRavenRepositoryConfiguration() { WaitForStaleIndexes = false })
+        {
+        }
+
+        public RavenRepositoriesModule(IBasicRavenRepositoryConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterInstance(_configuration).SingleInstance();
+
             builder.RegisterGeneric(typeof (BasicRavenRepository<>))
                    .As(typeof(IRepository<>))
                    .InstancePerLifetimeScope();

@@ -19,15 +19,17 @@ namespace Zen.DataStore.Raven
 
         private static object _saveLocker = new object();
         private readonly IDocumentSession _session;
+        private readonly IBasicRavenRepositoryConfiguration _configuration;
 
         static BasicRavenRepository()
         {
             BuildIncludes();
         }
 
-        public BasicRavenRepository(IDocumentSession session)
+        public BasicRavenRepository(IDocumentSession session, IBasicRavenRepositoryConfiguration configuration)
         {
             _session = session;
+            _configuration = configuration;
         }
 
         protected IDocumentSession Session
@@ -99,9 +101,16 @@ namespace Zen.DataStore.Raven
             {
                 if (Session != null)
                 {
-                    IRavenQueryable<TEntity> ss = Session
-                        .Query<TEntity>()
-                        .Customize(x => x.WaitForNonStaleResultsAsOfNow(new TimeSpan(0, 0, 100)));
+                    IRavenQueryable<TEntity> ss =
+                        _configuration.WaitForStaleIndexes
+                        ?
+                            Session
+                                .Query<TEntity>()
+                                .Customize(x => x.WaitForNonStaleResultsAsOfNow(new TimeSpan(0, 0, 100)))
+                        :
+                            Session
+                                .Query<TEntity>();
+
                     foreach (var include in Includes)
                     {
                         Expression<Func<TEntity, object>> include1 = include;
@@ -118,10 +127,15 @@ namespace Zen.DataStore.Raven
             RavenQueryStatistics stats;
             var session = OpenClonedSession(Session);
             var sessQueryCount = 1;
-            IQueryable<TEntity> results = Session.Query<TEntity>()
-                                                 //ДЛЯ ТЕСТОВ
+            IQueryable<TEntity> results = _configuration.WaitForStaleIndexes
+                                            ?
+                                            Session.Query<TEntity>()
+                                                  //ДЛЯ ТЕСТОВ
                                                  .Customize(x => x.WaitForNonStaleResults())
-                                                 .Statistics(out stats);
+                                                 .Statistics(out stats)
+                                            :
+                                            Session.Query<TEntity>()
+                                                 .Statistics(out stats);                                    
                                                  
             if (filter != null)
                 results = filter(results);

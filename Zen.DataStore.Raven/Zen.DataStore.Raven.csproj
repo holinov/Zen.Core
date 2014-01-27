@@ -61,7 +61,9 @@
   <ItemGroup>
     <Compile Include="AutofacCreationConverter.cs" />
     <Compile Include="BasicRavenRepository.cs" />
+    <Compile Include="BasicRavenRepositoryConfiguration.cs" />
     <Compile Include="BasicRavenRepositoryWithGuid.cs" />
+    <Compile Include="IBasicRavenRepositoryConfiguration.cs" />
     <Compile Include="Indexes\CategoriesIndex.cs" />
     <Compile Include="Indexes\NGramAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

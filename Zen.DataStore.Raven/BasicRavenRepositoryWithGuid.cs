@@ -10,7 +10,7 @@ namespace Zen.DataStore.Raven
                                                          IRepositoryWithGuid<TEntity>
         where TEntity : IHasGuidId
     {
-        public BasicRavenRepositoryWithGuid(IDocumentSession session) : base(session)
+        public BasicRavenRepositoryWithGuid(IDocumentSession session, IBasicRavenRepositoryConfiguration configuration) : base(session, configuration)
         {
         }
 
