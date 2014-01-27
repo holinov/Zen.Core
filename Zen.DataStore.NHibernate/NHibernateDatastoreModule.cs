@@ -2,6 +2,7 @@
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
@@ -45,11 +46,12 @@ namespace Zen.DataStore.NHibernate
                 {
                     foreach (var mappingAssembly in _mappingAssemblies)
                     {
+                        m.AutoMappings.Add(AutoMap.Assembly(mappingAssembly));
                         m.FluentMappings.AddFromAssembly(mappingAssembly);
                     }
                 });
             cnf.ExposeConfiguration(config => new SchemaExport(config).Create(false, true));
-
+            
             return cnf.BuildSessionFactory();
         }
     }
