@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
@@ -15,14 +16,22 @@ namespace Zen.DataStore.NHibernate
     {
         private readonly Assembly[] _mappingAssemblies;
         private readonly IPersistenceConfigurer _persConf;
+        private readonly Action<FluentConfiguration> _configAction;
 
-        public NHibernateDatastoreModule(params Assembly[] mappingAssemblies):this(null,mappingAssemblies)
+        public NHibernateDatastoreModule(params Assembly[] mappingAssemblies)
+            : this(null, null, mappingAssemblies)
+        {
+
+        }
+
+        public NHibernateDatastoreModule(Action<FluentConfiguration> configAction, params Assembly[] mappingAssemblies):this(null, configAction, mappingAssemblies)
         {
             
         }
-        public NHibernateDatastoreModule(IPersistenceConfigurer persConf, Assembly[] mappingAssemblies)
+        public NHibernateDatastoreModule(IPersistenceConfigurer persConf, Action<FluentConfiguration> configAction, params Assembly[] mappingAssemblies)
         {
             _persConf = persConf;
+            _configAction = configAction;
             _mappingAssemblies = mappingAssemblies;
         }
 
@@ -50,9 +59,19 @@ namespace Zen.DataStore.NHibernate
                         m.FluentMappings.AddFromAssembly(mappingAssembly);
                     }
                 });
-            cnf.ExposeConfiguration(config => new SchemaExport(config).Create(false, true));
-            
+            if (ExposeConfiguration)
+                cnf.ExposeConfiguration(config => new SchemaExport(config).Create(MakeScript, Export));
+
+            if (_configAction != null)
+                _configAction(cnf);
+
             return cnf.BuildSessionFactory();
         }
+
+        public bool Export { get; set; }
+
+        public bool MakeScript { get; set; }
+
+        public bool ExposeConfiguration { get; set; }
     }
 }
