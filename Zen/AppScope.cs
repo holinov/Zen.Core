@@ -117,5 +117,10 @@ namespace Zen
                 Scope = null;
             }
         }
+
+        public void Update(ContainerBuilder cb)
+        {
+            cb.Update(Scope.ComponentRegistry);
+        }
     }
 }

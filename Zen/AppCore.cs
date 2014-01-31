@@ -32,12 +32,7 @@ namespace Zen
             Instance = this;
         }
 
-        public void Update(ContainerBuilder cb)
-        {
-            if (_container == null)
-                throw new ZenCoreException("Ядро Zen.Core не получило IContaner при построении. Функционал не доступен.");
-            cb.Update(_container);
-        }
+
 
         public override void Dispose()
         {

@@ -46,5 +46,11 @@ namespace Zen
         /// </summary>
         /// <returns>Новая область видимости</returns>
         AppScope BeginScope(object tag, Action<ContainerBuilder> confAction);
+
+        /// <summary>
+        /// Обновить регистрации в текущем контексте
+        /// </summary>
+        /// <param name="cb">Билдер содержащий нужные обновления</param>
+        void Update(ContainerBuilder cb);
     }
 }
