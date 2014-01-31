@@ -56,7 +56,8 @@ namespace Zen.DataStore.NHibernate.SQLLite
             {
                 foreach (var mappingAssembly in _mappingAssemblies)
                 {
-                    m.AutoMappings.Add(AutoMap.Assembly(mappingAssembly)); 
+                    m.AutoMappings.Add(AutoMap.Assembly(mappingAssembly,
+                                                        AutomappingConfig ?? new DefaultAutomappingConfiguration()));
                     m.FluentMappings.AddFromAssembly(mappingAssembly);
                 }
             });
@@ -74,5 +75,7 @@ namespace Zen.DataStore.NHibernate.SQLLite
         public bool MakeScript { get; set; }
 
         public bool ExposeConfiguration { get; set; }
+
+        public IAutomappingConfiguration AutomappingConfig { get; set; } 
     }
 }

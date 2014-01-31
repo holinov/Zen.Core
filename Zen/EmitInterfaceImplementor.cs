@@ -14,7 +14,7 @@ namespace Zen
         private FieldBuilder _fieldScopeBuilder;
         private readonly AppScope _scope;
 
-        public EmitInterfaceImplementor(AppScope scope)
+        public EmitInterfaceImplementor(AppCore scope)
         {
             this._scope = scope;
         }
