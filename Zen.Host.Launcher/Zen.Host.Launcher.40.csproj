@@ -81,15 +81,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Zen.Host.WebServices\Zen.Host.WebServices.csproj">
+    <ProjectReference Include="..\Zen.Host.WebServices\Zen.Host.WebServices.40.csproj">
       <Project>{542e7c87-ac53-435e-8af7-0862e03d679d}</Project>
       <Name>Zen.Host.WebServices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zen.Host\Zen.Host.csproj">
+    <ProjectReference Include="..\Zen.Host\Zen.Host.40.csproj">
       <Project>{F91EEADE-9EBD-4CF3-8154-A09A10E3B556}</Project>
       <Name>Zen.Host</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zen\Zen.csproj">
+    <ProjectReference Include="..\Zen\Zen.40.csproj">
       <Project>{82D8EA0D-A5B1-43DF-A9B2-CF69EE166922}</Project>
       <Name>Zen</Name>
     </ProjectReference>

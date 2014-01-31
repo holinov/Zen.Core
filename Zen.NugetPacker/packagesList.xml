@@ -4,8 +4,8 @@
                 xmlns="urn:ZenCore:NuGet:configuration" 
                 SolutionPath="C:\src\Zen.Core" 
                 BuildType="Release" 
-                VersionString="1.2.0.5" 
-                Publish="true"
+                VersionString="1.2.0.7" 
+                Publish="false"
                 PublishKey="0b95448f-b7cf-42db-bef3-00f689b280dc" >
   <Packages>    
     <NugetPackage Name="Zen.Core" >
@@ -19,6 +19,41 @@
         <Project Name="Zen.Host" />
         <Project Name="Zen.Host.Launcher" />
         <Project Name="Zen.Host.WebServices" />
+      </Projects>
+    </NugetPackage>
+    <NugetPackage Name="Zen.Core.Mongo" >
+      <Projects>
+        <Project Name="Zen.DataStore.Mongo" />
+      </Projects>
+    </NugetPackage>
+    <NugetPackage Name="Zen.Core.NHibernate" >
+      <Projects>
+        <Project Name="Zen.DataStore.NHibernate" />
+      </Projects>
+    </NugetPackage>
+     <NugetPackage Name="Zen.Core.NHibernate.SQLite" >
+      <Projects>
+        <Project Name="Zen.DataStore.NHibernate.SQLLite" />
+      </Projects>
+    </NugetPackage>
+    <NugetPackage Name="Zen.Core.EntityFramework" >
+      <Projects>
+        <Project Name="Zen.DataStore.EntityFramework" />
+      </Projects>
+    </NugetPackage>
+    <NugetPackage Name="Zen.Core.Raven" >
+      <Projects>
+        <Project Name="Zen.DataStore.Raven" />
+      </Projects>
+    </NugetPackage>
+    <NugetPackage Name="Zen.Core.Raven.Embeeded" >
+      <Projects>
+        <Project Name="Zen.DataStore.Raven.Embeeded" />
+      </Projects>
+    </NugetPackage>
+    <NugetPackage Name="Zen.Core.MVC4" >
+      <Projects>
+        <Project Name="Zen.Core.MVC4" />
       </Projects>
     </NugetPackage>
   </Packages>

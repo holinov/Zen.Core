@@ -27,7 +27,7 @@ namespace Zen.NugetPacker
                     {
                         BuildType = "Release",
                         SolutionPath = "C:\\src\\Zen.Core",
-                        VersionString = "1.2.0.5"
+                        VersionString = "1.2.0.7"
                     };
                 packageList = new List<NugetPackage>()
                     {
@@ -59,7 +59,7 @@ namespace Zen.NugetPacker
             //Console.WriteLine("1");
             var nuget = new NugetRunner(cfg.SolutionPath, cfg.BuildType, cfg.VersionString,cfg.Publish,cfg.PublishKey);
             //nuget.Update();
-
+            nuget.BuildSolutions();
             foreach (var nugetPackage in cfg.Packages)
             {
                 nuget.CopyPackageFiles(nugetPackage);                
@@ -113,6 +113,21 @@ namespace Zen.NugetPacker
             _publishKey = publishKey;
         }
 
+        public void BuildSolutions()
+        {
+            foreach (var file in Directory.EnumerateFiles(_solutionPath, "*.sln"))
+            {
+                var cmd = string.Format("{0} /t:rebuild /m /fl /flp:logfile=MyProjectOutput.log;verbosity=diagnostic", file);
+                var process = Process.Start("C:\\Windows\\Microsoft.Net\\Framework64\\v4.0.30319\\MSBuild.exe", cmd);
+                Log.Info("Построение проекта " + file);
+                if (process != null)
+                {
+                    process.WaitForExit();
+                    Log.Info("Обновление закончено");
+                }
+            }
+        }
+
         public void Update()
         {
             Log.Info("Запуск обновления");
@@ -136,8 +151,17 @@ namespace Zen.NugetPacker
 
                 var from1 = Path.Combine(_solutionPath, project.Name, "bin", _buildType, project.Name);
                 var to1 = Path.Combine(packageDir, "lib", "net45", project.Name);
+                CopyFile(@from, to);
+                CopyFile(@from1, to1);
+            }
+        }
+
+        private void CopyFile(string @from, string to)
+        {
+            try
+            {
                 var ext = "";
-                if (File.Exists(from + ".dll"))
+                if (File.Exists(@from + ".dll"))
                 {
                     ext = ".dll";
                 }
@@ -146,24 +170,17 @@ namespace Zen.NugetPacker
                     ext = ".exe";
                 }
 
-                from += ext;
+                @from += ext;
                 to += ext;
+
                 var path = Path.GetDirectoryName(to);
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
 
-                Log.InfoFormat("Копирование файла {0} в {1}", from.Replace(_solutionPath, ""),
+                Log.InfoFormat("Копирование файла {0} в {1}", @from.Replace(_solutionPath, ""),
                                to.Replace(_solutionPath, ""));
-                File.Copy(from, to, true);
-
-                var path1 = Path.GetDirectoryName(to1);
-                if (!Directory.Exists(path1))
-                    Directory.CreateDirectory(path1);
-
-                Log.InfoFormat("Копирование файла {0} в {1}", from1.Replace(_solutionPath, ""),
-                               to1.Replace(_solutionPath, ""));
-                File.Copy(from1, to1, true);
-            }
+                File.Copy(@from, to, true);
+            }catch(Exception e){}
         }
 
         private string GetPackageDir(NugetPackage package)

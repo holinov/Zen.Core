@@ -21,6 +21,9 @@
     </metadata>
     <files>
         <file src="content\Zen.Host.Launcher.exe.config" target="content\Zen.Host.Launcher.exe.config" />
+        <file src="lib\net45\Zen.Host.dll" target="lib\net45\Zen.Host.dll" />
+        <file src="lib\net45\Zen.Host.Launcher.exe" target="lib\net45\Zen.Host.Launcher.exe" />
+        <file src="lib\net45\Zen.Host.WebServices.dll" target="lib\net45\Zen.Host.WebServices.dll" />
 		
 		<file src="lib\net40\Zen.Host.dll" target="lib\net40\Zen.Host.dll" />
         <file src="lib\net40\Zen.Host.Launcher.exe" target="lib\net40\Zen.Host.Launcher.exe" />

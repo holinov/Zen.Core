@@ -9,11 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Zen.Tests</RootNamespace>
     <AssemblyName>Zen.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,9 +33,8 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Autofac.3.3.0\lib\net40\Autofac.dll</HintPath>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.1.5\lib\net40\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -150,6 +148,22 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Zen.DataStore.NHibernate.SQLLite\Zen.DataStore.NHibernate.SQLLite.csproj">
+      <Project>{54F53486-7C25-4ECC-99D0-9841DD43940D}</Project>
+      <Name>Zen.DataStore.NHibernate.SQLLite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zen.DataStore.NHibernate\Zen.DataStore.NHibernate.csproj">
+      <Project>{20C6AF5E-C05D-4412-945C-BD9292DE068F}</Project>
+      <Name>Zen.DataStore.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zen.DataStore.Raven.Embeeded\Zen.DataStore.Raven.Embeeded.csproj">
+      <Project>{FA5F8C91-6D17-4C5F-9F3A-4BD16C0AE51C}</Project>
+      <Name>Zen.DataStore.Raven.Embeeded</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zen.DataStore.Raven\Zen.DataStore.Raven.csproj">
+      <Project>{A2304828-9054-40C8-99E2-CC45495F4CED}</Project>
+      <Name>Zen.DataStore.Raven</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zen.DataStore\Zen.DataStore.csproj">
       <Project>{E33D2198-2695-45B3-A353-F54C1E510F8A}</Project>
       <Name>Zen.DataStore</Name>

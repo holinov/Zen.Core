@@ -12,23 +12,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{442F9826-66C2-41FA-B0D5-2B638E9DA122}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen", "Zen\Zen.40.csproj", "{82D8EA0D-A5B1-43DF-A9B2-CF69EE166922}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.40", "Zen\Zen.40.csproj", "{82D8EA0D-A5B1-43DF-A9B2-CF69EE166922}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataStore", "DataStore", "{4D36FFCF-983E-4A03-A168-1FA1A57C239E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.DataStore", "Zen.DataStore\Zen.DataStore.40.csproj", "{E33D2198-2695-45B3-A353-F54C1E510F8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.DataStore.40", "Zen.DataStore\Zen.DataStore.40.csproj", "{E33D2198-2695-45B3-A353-F54C1E510F8A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework", "EntityFramework", "{763EB0DB-9BF0-4389-A390-16C91211BD0C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{21A3126E-B7CC-4895-9A95-3A033B43A8EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.Host.Launcher", "Zen.Host.Launcher\Zen.Host.Launcher.40.csproj", "{BC51F1F7-7002-49DB-AAC6-2DD3390FE874}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.Host.Launcher.40", "Zen.Host.Launcher\Zen.Host.Launcher.40.csproj", "{BC51F1F7-7002-49DB-AAC6-2DD3390FE874}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.Host", "Zen.Host\Zen.Host.40.csproj", "{F91EEADE-9EBD-4CF3-8154-A09A10E3B556}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.Host.40", "Zen.Host\Zen.Host.40.csproj", "{F91EEADE-9EBD-4CF3-8154-A09A10E3B556}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.Host.WebServices", "Zen.Host.WebServices\Zen.Host.WebServices.40.csproj", "{542E7C87-AC53-435E-8AF7-0862E03D679D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsRunner", "TestsRunner\TestsRunner.40.csproj", "{294AB93D-806E-4875-88B5-2058040F34DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.Host.WebServices.40", "Zen.Host.WebServices\Zen.Host.WebServices.40.csproj", "{542E7C87-AC53-435E-8AF7-0862E03D679D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mongo", "Mongo", "{70B4F626-9873-46E9-89AA-A41CAAE84406}"
 EndProject
@@ -98,16 +96,6 @@ Global
 		{542E7C87-AC53-435E-8AF7-0862E03D679D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{542E7C87-AC53-435E-8AF7-0862E03D679D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{542E7C87-AC53-435E-8AF7-0862E03D679D}.Release|x86.ActiveCfg = Release|Any CPU
-		{294AB93D-806E-4875-88B5-2058040F34DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{294AB93D-806E-4875-88B5-2058040F34DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{294AB93D-806E-4875-88B5-2058040F34DC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{294AB93D-806E-4875-88B5-2058040F34DC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{294AB93D-806E-4875-88B5-2058040F34DC}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{294AB93D-806E-4875-88B5-2058040F34DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{294AB93D-806E-4875-88B5-2058040F34DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{294AB93D-806E-4875-88B5-2058040F34DC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{294AB93D-806E-4875-88B5-2058040F34DC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{294AB93D-806E-4875-88B5-2058040F34DC}.Release|x86.ActiveCfg = Release|Any CPU
 		{5815C516-BC16-4154-900C-FA597BEB101D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5815C516-BC16-4154-900C-FA597BEB101D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5815C516-BC16-4154-900C-FA597BEB101D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
