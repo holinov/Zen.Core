@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,11 @@ using Zen.DataStore.NHibernate.SQLLite;
 using Zen.DataStore.Raven;
 using Zen.DataStore.Raven.Embeeded;
 using Zen.Tests.DataStore.DataModel;
-
+*/
 
 namespace Zen.Tests.DataStore.NHibernate
 {
-    [TestFixture]
+    /*[TestFixture]
     public class BasicNHibernateRepositoryTests
     {
 
@@ -30,8 +31,6 @@ namespace Zen.Tests.DataStore.NHibernate
                     .Create()
                     .AddModule(new NHibernateSQLiteDatastoreModule(this.GetType().Assembly))
                     .AddModule<NHibernateRepositoriesModule>()
-                    /*.AddModule(new RavenEmbeededDataStoreModule("Data") { RunInMemory = true })
-                    .AddModule<RavenRepositoriesModule>()*/
                     .Configure(b =>
                     {
                         // Необходимо для работы AutofacCreationConverter
@@ -112,5 +111,5 @@ namespace Zen.Tests.DataStore.NHibernate
                 Assert.AreEqual(items.Count, repo.GetAll().ToArray().Count());
             }
         }
-    }
+    }*/
 }
