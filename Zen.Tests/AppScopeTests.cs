@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Autofac;
 using NUnit.Framework;
 
@@ -12,9 +13,13 @@ namespace Zen.Tests
             public int Val { get; set; }
         }
 
-        public class TestClass2
+        public class TestClass2:IDisposable
         {
             public int Val { get; set; }
+            public void Dispose()
+            {
+               Trace.WriteLine("Dispose");
+            }
         }
 
 
@@ -50,6 +55,13 @@ namespace Zen.Tests
                 .Configure(b => b.RegisterType<Config>().AsSelf().SingleInstance())
                 .Build())
             {
+
+                using (var lscope = core.Scope.BeginLifetimeScope())
+                {
+                    var t2 = lscope.Resolve<TestClass2>();
+                    t2.Val = 1;
+                }
+
                 using (var scope = core.BeginScope())
                 {
                     var vaf = scope.Resolve<EmitInterfaceImplementor<IInterface>>().ImplementInterface();
