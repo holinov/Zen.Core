@@ -27,7 +27,7 @@ namespace Zen.NugetPacker
                     {
                         BuildType = "Release",
                         SolutionPath = "C:\\src\\Zen.Core",
-                        VersionString = "1.2.0.7"
+                        VersionString = "1.2.0.8"
                     };
                 packageList = new List<NugetPackage>()
                     {
@@ -66,8 +66,8 @@ namespace Zen.NugetPacker
                 nuget.Pack(nugetPackage);
             }
             //Console.WriteLine("2");
-            Console.WriteLine("Процесс сборки пакетов завершен. Нажмите любую клавишу для продолжения.");
-            Console.ReadKey();
+            Console.WriteLine("Процесс сборки пакетов завершен.");//" Нажмите любую клавишу для продолжения.");
+            //Console.ReadKey();
         }
     }
 
