@@ -7,9 +7,9 @@ namespace Zen.DataStore
     {
         private readonly IDocumentSession _session;
         private readonly IRepository<TRefObject> _repository;
-        private readonly AppScope _scope;
+        private readonly IAppScope _scope;
 
-        public RefrenceSession(IRepository<TRefObject> repository, IDocumentSession session, AppScope scope = null)
+        public RefrenceSession(IRepository<TRefObject> repository, IDocumentSession session, IAppScope scope = null)
         {
             _repository = repository;
             _session = session;

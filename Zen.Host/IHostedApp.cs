@@ -15,6 +15,6 @@
         /// <summary>
         /// Область видимости приложения
         /// </summary>
-        AppScope AppScope { get; set; }
+        IAppScope AppScope { get; set; }
     }
 }

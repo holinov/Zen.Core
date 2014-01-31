@@ -27,24 +27,30 @@ namespace Zen
         ///     Создать вложенную область видимости
         /// </summary>
         /// <returns>Новая область видимости</returns>
-        AppScope BeginScope();
+		IAppScope BeginScope();
 
         /// <summary>
         ///     Создать вложенную область видимости
         /// </summary>
         /// <returns>Новая область видимости</returns>
-        AppScope BeginScope(Action<ContainerBuilder> confAction);
+		IAppScope BeginScope(Action<ContainerBuilder> confAction);
 
         /// <summary>
         ///     Создать вложенную область видимости
         /// </summary>
         /// <returns>Новая область видимости</returns>
-        AppScope BeginScope(object tag);
+		IAppScope BeginScope(object tag);
 
         /// <summary>
         ///     Создать вложенную область видимости
         /// </summary>
         /// <returns>Новая область видимости</returns>
-        AppScope BeginScope(object tag, Action<ContainerBuilder> confAction);
+		IAppScope BeginScope(object tag, Action<ContainerBuilder> confAction);
+
+		/// <summary>
+		///     Ссылка на контейнер Autofac.
+		/// TODO: Убрать зависимость интерфейса ILifetimeScope от Autofac. Возможно нужно сделать IAppScope базовым, добавить IAppScope&lt;T&gt; и реализацию IAppScope&lt;ILifetimeScope&gt;
+		/// </summary>
+		ILifetimeScope Scope { get; }
     }
 }

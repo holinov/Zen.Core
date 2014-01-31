@@ -105,7 +105,7 @@ namespace Zen.DataStore
             // ≈сли _sessionFactory == null то создаем временый скоуп с продолжительностью жизни, 
             // равной продолжительности жизни создаваемой сессии. »з этого скоупа временно резолвим _sessionFactory
             // и занул€ем его после получени€ сессии.
-            AppScope localScope = null;
+            IAppScope localScope = null;
             try
             {
                 if (_sessionFactory == null || RepositoryFactory == null)

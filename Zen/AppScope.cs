@@ -6,9 +6,15 @@ namespace Zen
     /// <summary>
     ///     Область жизни созданных зависимостей
     ///     При разрушении области жизни разрушаются все зависимости созданные для нее
+    /// TODO: Реализация AppScopre зависит от Autofac. Переименовать её в AutofacAppScope, отрефакторить код, позволив существовать другим реализациям.
     /// </summary>
     public class AppScope : IAppScope
     {
+		/// <summary>
+		/// Признак того, что AppScope корректно закрыт.
+		/// </summary>
+	    private bool isDisposed;
+
         /// <summary>
         /// Создать область видимости по области видимости контейнера
         /// </summary>
@@ -22,6 +28,15 @@ namespace Zen
         protected AppScope()
         {
         }
+
+		/// <summary>
+		/// Финализатор AppScope. Проверяет корректность закрытия скопа.
+		/// </summary>
+		~AppScope()
+		{
+			if (!isDisposed)
+				Console.Error.WriteLine("AppScope wasn't disposed. Please use using keyword!");
+		}
 
         /// <summary>
         ///     Ссылка на контейнер Autofac
@@ -53,7 +68,7 @@ namespace Zen
         ///     Сощдать вложенную область видимости
         /// </summary>
         /// <returns>Новая область видимости</returns>
-        public AppScope BeginScope()
+		public IAppScope BeginScope()
         {
             var scope = new AppScope();
             var lscope = Scope.BeginLifetimeScope(b => b.Register(c => scope)
@@ -68,7 +83,7 @@ namespace Zen
         ///     Сощдать вложенную область видимости
         /// </summary>
         /// <returns>Новая область видимости</returns>
-        public AppScope BeginScope(Action<ContainerBuilder> confAction)
+		public IAppScope BeginScope(Action<ContainerBuilder> confAction)
         {
             var scope = new AppScope();
             var lscope = Scope.BeginLifetimeScope(scope,b =>
@@ -83,7 +98,7 @@ namespace Zen
             return scope;
         }
 
-        public AppScope BeginScope(object tag)
+		public IAppScope BeginScope(object tag)
         {
             var scope = new AppScope();
             var lscope = Scope.BeginLifetimeScope(tag,b => b.Register(c => scope)
@@ -94,7 +109,7 @@ namespace Zen
             return scope;
         }
 
-        public AppScope BeginScope(object tag, Action<ContainerBuilder> confAction)
+		public IAppScope BeginScope(object tag, Action<ContainerBuilder> confAction)
         {
             var scope = new AppScope();
             var lscope = Scope.BeginLifetimeScope(tag,b =>
@@ -111,6 +126,7 @@ namespace Zen
 
         public virtual void Dispose()
         {
+	        isDisposed = true;
             if (Scope != null)
             {
                 //Scope.Dispose();
