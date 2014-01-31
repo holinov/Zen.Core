@@ -49,6 +49,6 @@ namespace ZenHostTest
             //
         }
 
-        public AppScope AppScope { get; set; }
+        public IAppScope AppScope { get; set; }
     }
 }

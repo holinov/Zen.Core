@@ -132,6 +132,6 @@ namespace Zen.Host.WebServices
             }
         }
 
-        public AppScope AppScope { get; set; }
+        public IAppScope AppScope { get; set; }
     }
 }
