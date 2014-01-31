@@ -17,10 +17,16 @@
                 <dependency id="Autofac" version="[3.1.5]" />
                 <dependency id="log4net" version="2.0.2" />
             </group>
+			<group targetFramework=".NETFramework4.0">
+                <dependency id="Autofac" version="[3.1.5]" />
+                <dependency id="log4net" version="2.0.2" />
+            </group>
         </dependencies>
     </metadata>
     <files>
         <file src="lib\net45\Zen.DataStore.dll" target="lib\net45\Zen.DataStore.dll" />
         <file src="lib\net45\Zen.dll" target="lib\net45\Zen.dll" />
+		<file src="lib\net40\Zen.DataStore.dll" target="lib\net40\Zen.DataStore.dll" />
+        <file src="lib\net40\Zen.dll" target="lib\net40\Zen.dll" />
     </files>
 </package>

@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Zen.DataStore.NHibernate.SQLLite</RootNamespace>
     <AssemblyName>Zen.DataStore.NHibernate.SQLLite</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,10 +68,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Zen.DataStore.NHibernate\Zen.DataStore.NHibernate.csproj">
-      <Project>{20c6af5e-c05d-4412-945c-bd9292de068f}</Project>
-      <Name>Zen.DataStore.NHibernate</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Zen.DataStore\Zen.DataStore.csproj">
       <Project>{e33d2198-2695-45b3-a353-f54c1e510f8a}</Project>
       <Name>Zen.DataStore</Name>

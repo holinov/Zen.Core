@@ -12,6 +12,11 @@
                 <dependency id="Zen.Core" version="[{{VERSION}}]" />
 				<dependency id="Autofac.Wcf" version="3.0.0" />
             </group>
+			
+			<group targetFramework=".NETFramework4.0">
+                <dependency id="Zen.Core" version="[{{VERSION}}]" />
+				<dependency id="Autofac.Wcf" version="3.0.0" />
+            </group>
         </dependencies>
     </metadata>
     <files>
@@ -19,6 +24,11 @@
         <file src="lib\net45\Zen.Host.dll" target="lib\net45\Zen.Host.dll" />
         <file src="lib\net45\Zen.Host.Launcher.exe" target="lib\net45\Zen.Host.Launcher.exe" />
         <file src="lib\net45\Zen.Host.WebServices.dll" target="lib\net45\Zen.Host.WebServices.dll" />
+		
+		<file src="lib\net40\Zen.Host.dll" target="lib\net40\Zen.Host.dll" />
+        <file src="lib\net40\Zen.Host.Launcher.exe" target="lib\net40\Zen.Host.Launcher.exe" />
+        <file src="lib\net40\Zen.Host.WebServices.dll" target="lib\net40\Zen.Host.WebServices.dll" />
+		
         <file src="tools\install.ps1" target="tools\install.ps1" />
     </files>
 </package>

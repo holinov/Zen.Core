@@ -131,8 +131,8 @@ namespace Zen.NugetPacker
             Log.Info("Начало копирования файлов пакета "+package.Name);
             foreach (var project in package.Projects)
             {
-                var from = Path.Combine(_solutionPath, project.Name, "bin", _buildType, project.Name);
-                var to = Path.Combine(packageDir, "lib","net45", project.Name);
+                var from = Path.Combine(_solutionPath, project.Name, "bin40", _buildType, project.Name);
+                var to = Path.Combine(packageDir, "lib","net40", project.Name);
                 var ext = "";
                 if (File.Exists(from + ".dll"))
                 {
