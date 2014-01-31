@@ -27,7 +27,7 @@ namespace Zen.NugetPacker
                     {
                         BuildType = "Release",
                         SolutionPath = "C:\\src\\Zen.Core",
-                        VersionString = "1.2.0.4"
+                        VersionString = "1.2.0.5"
                     };
                 packageList = new List<NugetPackage>()
                     {
@@ -133,6 +133,9 @@ namespace Zen.NugetPacker
             {
                 var from = Path.Combine(_solutionPath, project.Name, "bin40", _buildType, project.Name);
                 var to = Path.Combine(packageDir, "lib","net40", project.Name);
+
+                var from1 = Path.Combine(_solutionPath, project.Name, "bin", _buildType, project.Name);
+                var to1 = Path.Combine(packageDir, "lib", "net45", project.Name);
                 var ext = "";
                 if (File.Exists(from + ".dll"))
                 {
@@ -152,6 +155,14 @@ namespace Zen.NugetPacker
                 Log.InfoFormat("Копирование файла {0} в {1}", from.Replace(_solutionPath, ""),
                                to.Replace(_solutionPath, ""));
                 File.Copy(from, to, true);
+
+                var path1 = Path.GetDirectoryName(to1);
+                if (!Directory.Exists(path1))
+                    Directory.CreateDirectory(path1);
+
+                Log.InfoFormat("Копирование файла {0} в {1}", from1.Replace(_solutionPath, ""),
+                               to1.Replace(_solutionPath, ""));
+                File.Copy(from1, to1, true);
             }
         }
 
