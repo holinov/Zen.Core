@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+
 using Autofac;
+using Autofac.Core;
+
+using NHibernate.Criterion;
+
 using NUnit.Framework;
 
 namespace Zen.Tests
@@ -11,8 +17,22 @@ namespace Zen.Tests
         public class TestClass1
         {
             public int Val { get; set; }
-        }
 
+	        public string SomeMethod(int a, int b)
+	        {
+		        return "test ok "+(a+b);
+	        }
+        }
+		public class TestClass1b : IInterfaceWithMethod
+		{
+			private IAppScope _scope;
+
+			public string SomeMethod(int a, int b)
+			{
+				return _scope.Resolve<TestClass1>().SomeMethod(a, b);
+			}
+			
+		}
         public class TestClass2:IDisposable
         {
             public int Val { get; set; }
@@ -20,6 +40,10 @@ namespace Zen.Tests
             {
                Trace.WriteLine("Dispose");
             }
+			public string SomeMethod(int a, string b)
+			{
+				return "test ok";
+			}
         }
 
 
@@ -27,6 +51,16 @@ namespace Zen.Tests
         {
             Config Config { get; }
         }
+		public interface IInterfaceWithMethod 
+		{
+			[MethodProxy(typeof(TestClass1))]
+			string SomeMethod(int a, int b);
+		}
+		public interface IInterfaceWithMethodF
+		{
+			[MethodProxy(typeof(TestClass2))]
+			string SomeMethod(int a, int b);
+		}
         public interface IInterface : IInterfaceConfig
         {
             TestClass1 Test1 { get; }
@@ -81,7 +115,51 @@ namespace Zen.Tests
                 }
             }
         }
+		[Test]
+		public void IInterfaceWithMethodTest()
+		{
+			var builder = new ContainerBuilder();
+			builder.RegisterType<TestClass1>().AsSelf().SingleInstance();
+			builder.RegisterModule<EmitImplementerModule>();
+			builder.RegisterType<TestClass2>().AsSelf().InstancePerLifetimeScope();
+		
+			using (
+				var core =
+					AppCoreBuilder.Create(builder)
+						.AddModule<EmitImplementerModule>()
+						.Configure(b => b.RegisterInterfaceForEmit<IInterfaceWithMethod>())
+						.Configure(b => b.RegisterType<Config>().AsSelf().SingleInstance())
+						.Build())
+			{
+				using (var scope = core.BeginScope())
+				{
+					var resolvedScope = scope.Resolve<IInterfaceWithMethod>();
+					Assert.AreEqual("test ok 3", resolvedScope.SomeMethod(1,2));
+				}
+			}
+		}
+		[Test]
+		public void IInterfaceWithMethodTestFail()
+		{
+			var builder = new ContainerBuilder();
+			builder.RegisterType<TestClass1>().AsSelf().SingleInstance();
+			builder.RegisterModule<EmitImplementerModule>();
+			builder.RegisterType<TestClass2>().AsSelf().InstancePerLifetimeScope();
 
+			using (
+				var core =
+					AppCoreBuilder.Create(builder)
+						.AddModule<EmitImplementerModule>()
+						.Configure(b => b.RegisterInterfaceForEmit<IInterfaceWithMethodF>())
+						.Configure(b => b.RegisterType<Config>().AsSelf().SingleInstance())
+						.Build())
+			{
+				using (var scope = core.BeginScope())
+				{
+					Assert.Throws<DependencyResolutionException>(() => scope.Resolve<IInterfaceWithMethodF>());
+				}
+			}
+		}
         [Test]
         public void AppScopeTest()
         {

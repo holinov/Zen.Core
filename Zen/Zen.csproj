@@ -55,6 +55,7 @@
     <Compile Include="EmitRegistrationHelper.cs" />
     <Compile Include="ExceptionReflector.cs" />
     <Compile Include="IAppScope.cs" />
+    <Compile Include="MethodProxyAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ZenCoreException.cs" />
   </ItemGroup>

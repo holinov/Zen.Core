@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq.Expressions;
+
 using Autofac;
 
 namespace Zen
 {
-    /// <summary>
+	/// <summary>
     ///     Область жизни созданных зависимостей
     ///     При разрушении области жизни разрушаются все зависимости созданные для нее
     /// </summary>
