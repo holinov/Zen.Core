@@ -53,6 +53,10 @@ namespace Zen.DataStore
             {
                 if (SkipLoad || RefrenceHacks.SkipRefrences)
                     return default(TRefObject);
+
+                if (_refObject != default(TRefObject))
+                    return _refObject;
+
                 IAppScope scope = null;
                 try
                 {
@@ -65,14 +69,10 @@ namespace Zen.DataStore
                     }
 
                     using (var sess = GetRefrenceSession())
-                    {
-                        if (_refObject == default(TRefObject) && sess.Repository != null)
-                        {
+                        if (sess.Repository != null)
                             _refObject = sess.Repository.Find(Id);
-                        }
 
-                        return _refObject;
-                    }
+                    return _refObject;
                 }
                 finally
                 {

@@ -17,7 +17,6 @@ namespace Zen.DataStore.Raven
         private static readonly List<Expression<Func<TEntity, object>>> Includes =
             new List<Expression<Func<TEntity, object>>>();
 
-        private static object _saveLocker = new object();
         private readonly IDocumentSession _session;
         private readonly IBasicRavenRepositoryConfiguration _configuration;
 
@@ -86,10 +85,7 @@ namespace Zen.DataStore.Raven
         /// </summary>
         public void SaveChanges()
         {
-            lock (_saveLocker)
-            {
-                Session.SaveChanges();
-            }
+            Session.SaveChanges();
         }
 
         /// <summary>
