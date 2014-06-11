@@ -14,11 +14,11 @@
         <tags>RavenDB raven mongo nhibernate autofac zen zencore</tags>
         <dependencies>
             <group targetFramework=".NETFramework4.5">
-                <dependency id="Autofac" version="[3.1.5]" />
+                <dependency id="Autofac" version="3.3.1" />
                 <dependency id="log4net" version="2.0.2" />
             </group>
 			<group targetFramework=".NETFramework4.0">
-                <dependency id="Autofac" version="[3.1.5]" />
+                <dependency id="Autofac" version="3.3.1" />
                 <dependency id="log4net" version="2.0.2" />
             </group>
         </dependencies>

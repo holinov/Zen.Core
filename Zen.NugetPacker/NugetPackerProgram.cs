@@ -27,7 +27,7 @@ namespace Zen.NugetPacker
                     {
                         BuildType = "Release",
                         SolutionPath = "C:\\src\\Zen.Core",
-                        VersionString = "1.2.0.7"
+                        VersionString = "1.2.0.8"
                     };
                 packageList = new List<NugetPackage>()
                     {
@@ -180,7 +180,8 @@ namespace Zen.NugetPacker
                 Log.InfoFormat("Копирование файла {0} в {1}", @from.Replace(_solutionPath, ""),
                                to.Replace(_solutionPath, ""));
                 File.Copy(@from, to, true);
-            }catch(Exception e){}
+            }
+            catch{}
         }
 
         private string GetPackageDir(NugetPackage package)
