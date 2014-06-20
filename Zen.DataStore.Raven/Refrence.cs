@@ -51,7 +51,7 @@ namespace Zen.DataStore
         {
             get
             {
-                if (SkipLoad || RefrenceHacks.SkipRefrences)
+                if (SkipLoad || RefrenceHacks.SkipRefrences || String.IsNullOrWhiteSpace(_id))
                     return default(TRefObject);
 
                 if (_refObject != default(TRefObject))
