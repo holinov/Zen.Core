@@ -5,7 +5,7 @@
         <version>{{VERSION}}</version>
         <authors>frut</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Модуль встроенного хранения данных в RavenDB для Zon.Core</description>
+        <description>Модуль встроенного хранения данных в RavenDB для Zen.Core</description>
         <summary />
         <language />
         <dependencies>

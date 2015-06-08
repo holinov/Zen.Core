@@ -14,6 +14,8 @@ namespace Zen.DataStore.Raven
     public class BasicRavenRepository<TEntity> : IRepository<TEntity>
         where TEntity : IHasStringId
     {
+        private const int MaxChunkSize = 1024;
+
         private static readonly List<Expression<Func<TEntity, object>>> Includes =
             new List<Expression<Func<TEntity, object>>>();
 
@@ -97,21 +99,16 @@ namespace Zen.DataStore.Raven
             {
                 if (Session != null)
                 {
-                    IRavenQueryable<TEntity> ss =
-                        _configuration.WaitForStaleIndexes
-                        ?
-                            Session
-                                .Query<TEntity>()
-                                .Customize(x => x.WaitForNonStaleResultsAsOfNow(new TimeSpan(0, 0, 100)))
-                        :
-                            Session
-                                .Query<TEntity>();
+                    IRavenQueryable<TEntity> ss = Session.Query<TEntity>();
+                    if (_configuration.WaitForStaleIndexes)
+                        ss = ss.Customize(x => x.WaitForNonStaleResultsAsOfLastWrite());
 
                     foreach (var include in Includes)
                     {
                         Expression<Func<TEntity, object>> include1 = include;
                         ss.Customize(x => x.Include(include1));
                     }
+                    
                     return ss;
                 }
                 return null;
@@ -123,51 +120,51 @@ namespace Zen.DataStore.Raven
             RavenQueryStatistics stats;
             var session = OpenClonedSession(Session);
             var sessQueryCount = 1;
-            IQueryable<TEntity> results = _configuration.WaitForStaleIndexes
-                                            ?
-                                            Session.Query<TEntity>()
-                                                  //ДЛЯ ТЕСТОВ
-                                                 .Customize(x => x.WaitForNonStaleResults())
-                                                 .Statistics(out stats)
-                                            :
-                                            Session.Query<TEntity>()
-                                                 .Statistics(out stats);                                    
+            
+            IRavenQueryable<TEntity> ravenQuery = Session.Query<TEntity>().Statistics(out stats);
+
+            IQueryable<TEntity> results = !_configuration.WaitForStaleIndexes
+                ? ravenQuery
+                : ravenQuery.Customize(x => x.WaitForNonStaleResultsAsOfLastWrite()); //ДЛЯ ТЕСТОВ                                    
                                                  
             if (filter != null)
                 results = filter(results);
-            var resSuery = results.Skip(0*pageSize) // retrieve results for the first page
-                                  .Take(pageSize); // page size is 10;
 
-            var resultsArr = resSuery.ToArray();
+            results = results
+                .Skip(0 * pageSize) // retrieve results for the first page
+                .Take(pageSize); // page size is 10;
+
             var pages = (stats.TotalResults - stats.SkippedResults) / pageSize;
 
-            foreach (var entity in resultsArr)
-            {
+            foreach (var entity in results)
                 yield return entity;
-            }
+            
             try
             {
                 for (int i = 1; i <= pages; i++)
                 {
-                    if (sessQueryCount >= 29)
+                    if (sessQueryCount++ >= session.Advanced.MaxNumberOfRequestsPerSession)
                     {
                         session.Dispose();
                         session = OpenClonedSession(Session);
                     }
-                    results = session.Query<TEntity>()
-                                     .Statistics(out stats)
-                                     .Skip(i * pageSize + stats.SkippedResults)
-                                     .Take(pageSize);
+
+                    ravenQuery = session.Query<TEntity>()
+                        .Statistics(out stats);
+
+                    results = !_configuration.WaitForStaleIndexes
+                        ? ravenQuery
+                        : ravenQuery.Customize(x => x.WaitForNonStaleResultsAsOfLastWrite()); //ДЛЯ ТЕСТОВ
+                    
                     if (filter != null)
                         results = filter(results);
-                    /*totalResults = stats.TotalResults;
-                    skippedResults = stats.SkippedResults;*/
-                    resultsArr = results.ToArray();
-                    sessQueryCount++;
-                    foreach (var entity in resultsArr)
-                    {
+
+                    results = results
+                        .Skip(i * pageSize + stats.SkippedResults)
+                        .Take(pageSize);
+
+                    foreach (var entity in results)
                         yield return entity;
-                    }
                 }
             }
             finally
@@ -204,7 +201,7 @@ namespace Zen.DataStore.Raven
                 return;
             }
 
-            int numberOfDocumentsPerSession = 1024;
+            int numberOfDocumentsPerSession = MaxChunkSize;
 
             var objectListInChunks = new List<List<TEntity>>();
 
@@ -273,112 +270,68 @@ namespace Zen.DataStore.Raven
             Session.Advanced.Evict(entity);
         }
 
-
         public IEnumerable<TEntity> GetAll()
         {
-            return GetAllFrom(0, new List<TEntity>());
-        }
-
-        private List<TEntity> GetAllFrom(int startFrom, List<TEntity> list)
-        {
-            List<TEntity> allUsers = list;
-
-            using (IDocumentSession session = Session.Advanced.DocumentStore.OpenSession())
-            {
-                int queryCount = 0;
-                int start = startFrom;
-                while (true)
-                {
-                    List<TEntity> current = session.Query<TEntity>().Take(1024).Skip(start).ToList();
-                    queryCount += 1;
-                    if (current.Count == 0)
-                        break;
-
-                    start += current.Count;
-                    allUsers.AddRange(current);
-
-                    if (queryCount >= session.Advanced.MaxNumberOfRequestsPerSession)
-                    {
-                        return GetAllFrom(start, allUsers);
-                    }
-                }
-            }
-            return allUsers;
+            return QueryAll<TEntity>(x => x, null);
         }
 
         public IQueryable<TEntity> QueryAll(Expression<Func<TEntity, bool>> queryExpr = null)
         {
             return QueryAll<TEntity>(x => x, queryExpr);
         }
+
         public IQueryable<TResult> QueryAll<TResult>(Expression<Func<TEntity, TResult>> selectExpr, Expression<Func<TEntity, bool>> queryExpr = null)
         {
-            var total = Session.Query<TEntity>().Count();
-
-            var pages = queryAllFrom<TResult>(0, total, new List<IQueryable<TResult>>(), queryExpr, selectExpr);
-
-            var result = new List<TResult>().AsQueryable();
-
-            pages.ForEach(x =>
-            {
-                result = result.Union(x);
-            });
-
-            return result;
-        }
-
-        private List<IQueryable<TResult>> queryAllFrom<TResult>(int startFrom, int total, List<IQueryable<TResult>> list, Expression<Func<TEntity, bool>> query, Expression<Func<TEntity, TResult>> selectExpr)
-        {
-            var allUsers = list;
-
-            using (var session = Session.Advanced.DocumentStore.OpenSession())
+            List<TResult> allEntities = new List<TResult>();
+            
+            var session = OpenClonedSession(Session);
+            try
             {
                 int queryCount = 0;
-                int start = startFrom;
+                int lastCount = 0;
                 while (true)
                 {
-                    var current = query == null ? session.Query<TEntity>().Skip(start).Take(1024).Select<TEntity, TResult>(selectExpr) : session.Query<TEntity>().Skip(start).Take(1024).Where(query).Select<TEntity, TResult>(selectExpr);
-                    queryCount += 1;
-                    allUsers.Add(current);
-                    start += 1024;
+                    if (++queryCount >= session.Advanced.MaxNumberOfRequestsPerSession)
+                    {
+                        session.Dispose();
+                        session = null;
 
-                    if (start >= total)
+                        session = OpenClonedSession(Session);
+                    }
+
+                    RavenQueryStatistics statistics;
+                    var query = session.Query<TEntity>().Statistics(out statistics);
+                    if (_configuration.WaitForStaleIndexes)
+                        query = query.Customize(x => x.WaitForNonStaleResultsAsOfLastWrite());
+
+                    if (queryExpr != null)
+                        query = query.Where(queryExpr);
+
+                    allEntities.AddRange(query.Select(selectExpr).Skip(allEntities.Count).Take(MaxChunkSize));
+
+                    if (allEntities.Count - lastCount < MaxChunkSize)
                         break;
 
-                    if (queryCount >= session.Advanced.MaxNumberOfRequestsPerSession)
+                    if (lastCount == 0 && statistics.TotalResults > allEntities.Count)
                     {
-                        return queryAllFrom(start, total, allUsers, query, selectExpr);
+                        var newList = new List<TResult>(statistics.TotalResults);
+                        newList.AddRange(allEntities);
+
+                        allEntities = newList;
                     }
+
+                    lastCount = allEntities.Count;
                 }
             }
-            return allUsers;
-        }
-
-        private List<TEntity> getAllFrom(int startFrom, List<TEntity> list)
-        {
-            var allUsers = list;
-
-            using (var session = Session.Advanced.DocumentStore.OpenSession())
+            finally
             {
-                int queryCount = 0;
-                int start = startFrom;
-                while (true)
-                {
-                    var current = session.Query<TEntity>().Take(1024).Skip(start).ToList();
-                    queryCount += 1;
-                    if (current.Count == 0)
-                        break;
-
-                    start += current.Count;
-                    allUsers.AddRange(current);
-
-                    if (queryCount >= session.Advanced.MaxNumberOfRequestsPerSession)
-                    {
-                        return getAllFrom(start, allUsers);
-                    }
-                }
+                if (session != null)
+                    session.Dispose();
             }
-            return allUsers;
+
+            return allEntities.AsQueryable();
         }
+
         public void DeleteById(string id)
         {
             Session.Advanced.Defer(new DeleteCommandData { Key = id });
