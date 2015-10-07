@@ -41,7 +41,7 @@ namespace Zen
             {
                 _scope = value;
 
-                if (_scope != null && !_scope.IsRegistered<IAppScope>())
+                if (_scope != null)
                 {
                     var containerBuilder = new ContainerBuilder();
                     containerBuilder.RegisterInstance(this)
@@ -80,7 +80,7 @@ namespace Zen
         public AppScope BeginScope()
         {
             var scope = new AppScope();
-            scope.Scope = Scope.BeginLifetimeScope(scope, InnerScopeRegistratorBuilder(scope));
+            scope.Scope = Scope.BeginLifetimeScope(_ => { });
             
             return scope;
         }
@@ -92,7 +92,7 @@ namespace Zen
         public AppScope BeginScope(Action<ContainerBuilder> confAction)
         {
             var scope = new AppScope();
-            scope.Scope = Scope.BeginLifetimeScope(scope, InnerScopeRegistratorBuilder(scope, confAction));
+            scope.Scope = Scope.BeginLifetimeScope(confAction);
             
             return scope;
         }
@@ -100,7 +100,7 @@ namespace Zen
         public AppScope BeginScope(object tag)
         {
             var scope = new AppScope();
-            scope.Scope = Scope.BeginLifetimeScope(tag, InnerScopeRegistratorBuilder(scope));
+            scope.Scope = Scope.BeginLifetimeScope(tag, _ => { });
 
             return scope;
         }
@@ -108,7 +108,7 @@ namespace Zen
         public AppScope BeginScope(object tag, Action<ContainerBuilder> confAction)
         {
             var scope = new AppScope();
-            scope.Scope = Scope.BeginLifetimeScope(tag, InnerScopeRegistratorBuilder(scope, confAction));
+            scope.Scope = Scope.BeginLifetimeScope(tag, confAction);
 
             return scope;
         }
@@ -120,19 +120,6 @@ namespace Zen
                 Scope.Dispose();
                 Scope = null;
             }
-        }
-
-        protected Action<ContainerBuilder> InnerScopeRegistratorBuilder(AppScope scope, Action<ContainerBuilder> configurationAction = null)
-        {
-            return b =>
-            {
-                b.RegisterInstance(scope)
-                    .As<IAppScope>()
-                    .AsSelf();
-
-                if (configurationAction != null)
-                    configurationAction(b);
-            };
         }
     }
 }

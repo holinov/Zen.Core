@@ -16,20 +16,24 @@ namespace Zen
         /// Создать область видимости приложения
         /// </summary>
         /// <param name="container">Контейнер области видимости приложения</param>
-        public AppCore(ILifetimeScope container)
-            : base()
+        public AppCore(ILifetimeScope container) : base()
         {
             _rootScope = container;
+            
             Scope = _rootScope.BeginLifetimeScope(b =>
                 {
                     b.RegisterType<Config>()
-                        .SingleInstance()
+                        .AsSelf()
+                        .SingleInstance();
+
+                    b.RegisterInstance(this)
+                        .AsSelf()
+                        .SingleInstance();
+
+                    b.Register(c => this.BeginScope())
+                        .As<IAppScope>()
                         .AsSelf();
-                    
-                    b.Register(c => this)
-                        .SingleInstance()
-                        .AsSelf();
-                    
+
                     b.RegisterModule<EmitImplementerModule>();
                 });
             

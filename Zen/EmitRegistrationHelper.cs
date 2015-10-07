@@ -49,7 +49,7 @@ namespace Zen
             }
             else
                 function = Transformers[t];
-            
+
             builder.Register(c => function(Activator.CreateInstance(factoryType, AppScopeResolver(c)))).As(t);
         }
 

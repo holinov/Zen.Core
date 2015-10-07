@@ -5,7 +5,7 @@
                 SolutionPath="C:\Work\workspace\Zen.Core" 
                 BuildType="Release" 
                 Publish="true"
-                VersionString="1.2.0.19" 
+                VersionString="1.2.0.20" 
                 PublishKey="0b95448f-b7cf-42db-bef3-00f689b280dc" >
   <Packages>    
     <NugetPackage Name="Zen.Core" >
