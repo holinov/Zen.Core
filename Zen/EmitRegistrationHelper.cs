@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Autofac;
 
 namespace Zen
 {
@@ -48,12 +48,9 @@ namespace Zen
 
             }
             else
-            {
                 function = Transformers[t];
-            }
-            builder
-                .Register(c => function(c.Resolve(factoryType)))
-                .As(t);
+            
+            builder.Register(c => function(Activator.CreateInstance(factoryType, AppScopeResolver(c)))).As(t);
         }
 
         /// <summary>
@@ -63,9 +60,21 @@ namespace Zen
         /// <param name="builder">Построитель контейнера</param>
         public static void RegisterInterfaceForEmit<T>(this ContainerBuilder builder)
         {
-            builder
-                .Register(c => c.Resolve<EmitInterfaceImplementor<T>>().ImplementInterface())
-                .As<T>();
-        }        
+            builder.Register(c => new EmitInterfaceImplementor<T>(AppScopeResolver(c)).ImplementInterface()).As<T>();
+        }
+
+        private static IAppScope AppScopeResolver(IComponentContext ctx)
+        {
+            if (ctx.IsRegistered<IAppScope>())
+                return ctx.Resolve<IAppScope>();
+
+            if (ctx.IsRegistered<ILifetimeScope>())
+                return new AppScope(ctx.Resolve<ILifetimeScope>());
+
+            if (ctx.IsRegistered<AppCore>())
+                return ctx.Resolve<AppCore>();
+
+            return null;
+        }
     }
 }

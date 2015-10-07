@@ -12,9 +12,9 @@ namespace Zen
     public class EmitInterfaceImplementor<TInterface> : EmitInterfaceImplementorBase
     {
         private FieldBuilder _fieldScopeBuilder;
-        private readonly AppScope _scope;
+        private readonly IAppScope _scope;
 
-        public EmitInterfaceImplementor(AppScope scope)
+        public EmitInterfaceImplementor(IAppScope scope)
         {
             this._scope = scope;
         }
