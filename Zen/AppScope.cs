@@ -1,5 +1,5 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
+using System;
 
 namespace Zen
 {
@@ -9,13 +9,21 @@ namespace Zen
     /// </summary>
     public class AppScope : IAppScope
     {
+        # region Fields
+
+        private ILifetimeScope _scope;
+
+        # endregion
+
         /// <summary>
         /// Создать область видимости по области видимости контейнера
         /// </summary>
         /// <param name="scope">Ссылка на контейнер Autofac</param>
         public AppScope(ILifetimeScope scope)
         {
-            if (scope == null) throw new ArgumentNullException("scope");
+            if (scope == null) 
+                throw new ArgumentNullException("scope");
+            
             Scope = scope;
         }
 
@@ -26,7 +34,24 @@ namespace Zen
         /// <summary>
         ///     Ссылка на контейнер Autofac
         /// </summary>
-        public ILifetimeScope Scope { get; protected set; }
+        public ILifetimeScope Scope
+        {
+            get { return _scope; }
+            protected set 
+            {
+                _scope = value;
+
+                if (_scope != null)
+                {
+                    var containerBuilder = new ContainerBuilder();
+                    containerBuilder.RegisterInstance(this)
+                        .As<IAppScope>()
+                        .AsSelf();
+
+                    containerBuilder.Update(_scope.ComponentRegistry);
+                }
+            }
+        }
 
         /// <summary>
         ///     Разрешить зависимость
@@ -35,7 +60,7 @@ namespace Zen
         /// <returns>Созданный объект</returns>
         public TType Resolve<TType>()
         {
-            return Scope.Resolve<TType>();
+            return Scope.IsRegistered<TType>() ? Scope.Resolve<TType>() : default(TType);
         }
 
         /// <summary>
@@ -45,8 +70,7 @@ namespace Zen
         /// <returns>Созданный объект</returns>
         public object Resolve(Type type)
         {
-            if (!Scope.IsRegistered(type)) return null;
-            return Scope.Resolve(type);
+            return Scope.IsRegistered(type) ? Scope.Resolve(type) : null;
         }
 
         /// <summary>
@@ -56,11 +80,8 @@ namespace Zen
         public AppScope BeginScope()
         {
             var scope = new AppScope();
-            var lscope = Scope.BeginLifetimeScope(b => b.Register(c => scope)
-                .As<IAppScope>()
-                .AsSelf()
-                .InstancePerLifetimeScope());
-            scope.Scope = lscope;
+            scope.Scope = Scope.BeginLifetimeScope(_ => { });
+            
             return scope;
         }
 
@@ -71,41 +92,24 @@ namespace Zen
         public AppScope BeginScope(Action<ContainerBuilder> confAction)
         {
             var scope = new AppScope();
-            var lscope = Scope.BeginLifetimeScope(scope,b =>
-                {
-                    b.Register(c => scope)
-                     .As<IAppScope>()
-                     .AsSelf()
-                     .InstancePerLifetimeScope();
-                    confAction(b);
-                });
-            scope.Scope = lscope;
+            scope.Scope = Scope.BeginLifetimeScope(confAction);
+            
             return scope;
         }
 
         public AppScope BeginScope(object tag)
         {
             var scope = new AppScope();
-            var lscope = Scope.BeginLifetimeScope(tag,b => b.Register(c => scope)
-                                                            .As<IAppScope>()
-                                                            .AsSelf()
-                                                            .InstancePerLifetimeScope());
-            scope.Scope = lscope;
+            scope.Scope = Scope.BeginLifetimeScope(tag, _ => { });
+
             return scope;
         }
 
         public AppScope BeginScope(object tag, Action<ContainerBuilder> confAction)
         {
             var scope = new AppScope();
-            var lscope = Scope.BeginLifetimeScope(tag,b =>
-            {
-                b.Register(c => scope)
-                 .As<IAppScope>()
-                 .AsSelf()
-                 .InstancePerLifetimeScope();
-                confAction(b);
-            });
-            scope.Scope = lscope;
+            scope.Scope = Scope.BeginLifetimeScope(tag, confAction);
+
             return scope;
         }
 

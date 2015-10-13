@@ -2,10 +2,10 @@
 <PackagesConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
                 xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
                 xmlns="urn:ZenCore:NuGet:configuration" 
-                SolutionPath="C:\src\Zen.Core" 
+                SolutionPath="C:\Work\workspace\Zen.Core" 
                 BuildType="Release" 
-                Publish="false"
-                VersionString="1.2.0.15" 
+                Publish="true"
+                VersionString="1.2.0.20" 
                 PublishKey="0b95448f-b7cf-42db-bef3-00f689b280dc" >
   <Packages>    
     <NugetPackage Name="Zen.Core" >
